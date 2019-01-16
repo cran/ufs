@@ -7,9 +7,9 @@
 #'
 #' @return A logical vector.
 #' @rdname IN
-#' @export
-#'
 #' @examples letters[1:4] %IN% LETTERS
+#'
+#' @export
 "%IN%" <- function(find, table) {
   return(toupper(find) %in% toupper(table));
 }

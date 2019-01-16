@@ -19,4 +19,5 @@ Case insensitive version of \%in\%
 }
 \examples{
 letters[1:4] \%IN\% LETTERS
+
 }
