@@ -9,10 +9,10 @@
 #' @aliases getData getDat
 #' @param filename,file It is possible to specify a path and filename to load
 #' here. If not specified, the default R file selection dialogue is shown.
-#' \code{file} is still available for backward compatibility but will
+#' `file` is still available for backward compatibility but will
 #' eventually be phased out.
 #' @param errorMessage The error message that is shown if the file does not
-#' exist or does not have the right extension; "[defaultErrorMessage]" is
+#' exist or does not have the right extension; `[defaultErrorMessage]` is
 #' replaced with a default error message (and can be included in longer
 #' messages).
 #' @param applyRioLabels Whether to apply the labels supplied by Rio. This will
@@ -28,19 +28,19 @@
 #' @param ...  Additional options, passed on to the function used to import the
 #' data (which depends on the extension of the file).
 #' @param dfName The name of the dataframe to create in the parent environment.
-#' @param backup Whether to backup an object with name \code{dfName}, if one
+#' @param backup Whether to backup an object with name `dfName`, if one
 #' already exists in the parent environment.
 #' @return
 #'
 #' getData returns the imported dataframe, with the filename from which it was
 #' read stored in the 'filename' attribute.
 #'
-#' getDat is a simple wrapper for \code{getData()} which creates a dataframe in
+#' getDat is a simple wrapper for `getData()` which creates a dataframe in
 #' the parent environment, by default with the name 'dat'. Therefore, calling
-#' \code{getDat()} in the console will allow the user to select a file, and the
+#' `getDat()` in the console will allow the user to select a file, and the
 #' data from the file will then be read and be available as 'dat'. If an object
-#' with \code{dfName} (i.e. 'dat' by default) already exists, it will be backed
-#' up with a warning. \code{getDat()} therefore returns nothing.
+#' with `dfName` (i.e. 'dat' by default) already exists, it will be backed
+#' up with a warning. `getDat()` therefore returns nothing.
 #'
 #' mediaan returns the median, or, in the case of a factor where the median is
 #' in between two categories, both categories.

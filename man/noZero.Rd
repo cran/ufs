@@ -19,5 +19,5 @@ Remove one or more zeroes before the decimal point
 noZero("0.3");
 }
 \seealso{
-\code{\link{formatCI}}, \code{\link{formatR}}, \code{\link{formatPvalue}}
+\code{\link[=formatCI]{formatCI()}}, \code{\link[=formatR]{formatR()}}, \code{\link[=formatPvalue]{formatPvalue()}}
 }

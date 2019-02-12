@@ -25,6 +25,6 @@ ufs::areColors(c(NA, "black", "blackk", "1", "#00", "#000000"));
 \author{
 Josh O'Brien
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{utilities}

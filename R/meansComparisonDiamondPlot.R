@@ -19,21 +19,21 @@
 #' @param compareBy The variable by which to compare (i.e. the variable
 #' indicating to which subgroup or sample a row in the dataframe belongs).
 #' @param labels The labels to use on the y axis; these values will replace the
-#' variable names in the dataframe (specified in \code{items}).
+#' variable names in the dataframe (specified in `items`).
 #' @param compareByLabels The labels to use to replace the value labels of the
-#' \code{compareBy} variable.
+#' `compareBy` variable.
 #' @param decreasing Whether to sort the variables by their mean values
-#' (\code{NULL} to not sort, \code{TRUE} to sort in descending order (i.e.
-#' items with lower means are plotted more to the bottom), and \code{FALSE} to
+#' (`NULL` to not sort, `TRUE` to sort in descending order (i.e.
+#' items with lower means are plotted more to the bottom), and `FALSE` to
 #' sort in ascending order (i.e. items with lower means are plotted more to the
 #' top).
-#' @param sortBy If the variables should be sorted (see \code{decreasing}),
+#' @param sortBy If the variables should be sorted (see `decreasing`),
 #' this variable specified which subgroup should be sorted by. Therefore, the
 #' value specified here must be a value label ('level label') of the
-#' \code{comparisonBy} variable.
+#' `comparisonBy` variable.
 #' @param conf.level The confidence level of the confidence intervals specified
-#' by the diamonds for the means (for \code{meansComparisonDiamondPlot}) and
-#' for both the means and effect sizes (for \code{duoComparisonDiamondPlot}).
+#' by the diamonds for the means (for `meansComparisonDiamondPlot`) and
+#' for both the means and effect sizes (for `duoComparisonDiamondPlot`).
 #' @param showData Whether to plot the data points.
 #' @param dataAlpha The transparency (alpha channel) value for the data points:
 #' a value between 0 and 1, where 0 denotes complete transparency and 1 denotes
@@ -42,7 +42,7 @@
 #' @param comparisonColors The colors to use for the different subgroups or
 #' samples. This should be a vector of valid colors with at least as many
 #' elements as sets of data points that should be plotted.
-#' @param associationsColor For \code{duoComparisonDiamondPlot}, the color to
+#' @param associationsColor For `duoComparisonDiamondPlot`, the color to
 #' use to plot the effect sizes in the right-hand plot.
 #' @param alpha The alpha channel (transparency) value for the diamonds: a
 #' value between 0 and 1, where 0 denotes complete transparency and 1 denotes
@@ -51,8 +51,8 @@
 #' prevent overplotting) in the horizontal (x axis) and vertical (y axis)
 #' directions.
 #' @param xlab,ylab The label to use for the x and y axes (for
-#' \code{duoComparisonDiamondPlot}, must be vectors of two elements). Use
-#' \code{NULL} to not use a label.
+#' `duoComparisonDiamondPlot`, must be vectors of two elements). Use
+#' `NULL` to not use a label.
 #' @param theme The theme to use for the plots.
 #' @param showLegend Whether to show the legend (which color represents which
 #' subgroup/sample).
@@ -62,25 +62,25 @@
 #' x axis should be.
 #' @param outputFile A file to which to save the plot.
 #' @param outputWidth,outputHeight Width and height of saved plot (specified in
-#' centimeters by default, see \code{ggsaveParams}).
+#' centimeters by default, see `ggsaveParams`).
 #' @param ggsaveParams Parameters to pass to ggsave when saving the plot.
 #' @param \dots Any additional arguments are passed to
-#' \code{\link{diamondPlot}} by \code{meansComparisonDiamondPlot} and to both
-#' \code{meansComparisonDiamondPlot} and \code{\link{associationsDiamondPlot}}
-#' by \code{duoComparisonDiamondPlot}.
+#' [diamondPlot()] by `meansComparisonDiamondPlot` and to both
+#' `meansComparisonDiamondPlot` and [associationsDiamondPlot()]
+#' by `duoComparisonDiamondPlot`.
 #' @return A Diamond plots: a [ggplot2::ggplot()] plot
-#' \code{meansComparisonDiamondPlot}, and a \code{\link{gtable}} by
-#' \code{duoComparisonDiamondPlot}.
+#' `meansComparisonDiamondPlot`, and a [gtable()] by
+#' `duoComparisonDiamondPlot`.
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{diamondPlot}}, \code{\link{meansDiamondPlot}},
+#' @seealso [diamondPlot()], [meansDiamondPlot()],
 #' [behaviorchange::CIBER()]
 #' @references Peters, G.-J. Y. (2017). Diamond Plots: a tutorial to introduce
 #' a visualisation tool that facilitates interpretation and comparison of
 #' multiple sample estimates while respecting their inaccuracy.
-#' \emph{PsyArXiv.} http://doi.org/10.17605/OSF.IO/9W8YV
-#' @keywords ~kwd1 ~kwd2
+#' *PsyArXiv.* http://doi.org/10.17605/OSF.IO/9W8YV
+#' @keywords hplot
 #' @examples
 #'
 #' meansComparisonDiamondPlot(mtcars,

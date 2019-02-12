@@ -28,6 +28,6 @@ A function to find the longest shared substring in a character vector.
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{character}

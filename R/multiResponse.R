@@ -1,13 +1,13 @@
 #' Generate a table for multiple response questions
 #'
-#' The \code{multiResponse} function mimics the behavior of the table produced
+#' The `multiResponse` function mimics the behavior of the table produced
 #' by SPSS for multiple response questions.
 #'
 #'
 #' @param data Dataframe containing the variables to display.
-#' @param items,regex Arguments \code{items} and \code{regex} can be used to
-#' specify which variables to process. \code{items} should contain the variable
-#' (column) names (or indices), and \code{regex} should contain a regular
+#' @param items,regex Arguments `items` and `regex` can be used to
+#' specify which variables to process. `items` should contain the variable
+#' (column) names (or indices), and `regex` should contain a regular
 #' expression used to match to the column names of the dataframe. If none is
 #' provided, all variables in the dataframe are processed.
 #' @param perlRegex Whether to use the perl engine to match the regex.
@@ -15,8 +15,8 @@
 #' producing this kind of table requires dichotomous items, where each variable
 #' is either endorsed or not endorsed, so this is also a way to treat other
 #' variables as dichotomour).
-#' @return A dataframe with columns \code{Option}, \code{Frequency},
-#' \code{Percentage}, and \code{Percentage of (X) cases}, where X is the number
+#' @return A dataframe with columns `Option`, `Frequency`,
+#' `Percentage`, and `Percentage of (X) cases`, where X is the number
 #' of cases.
 #' @author Ananda Mahto; implemented in this package (and tweaked a bit) by
 #' Gjalt-Jorn Peters.

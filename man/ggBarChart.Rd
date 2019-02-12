@@ -11,13 +11,13 @@ ggBarChart(vector, plotTheme = ggplot2::theme_bw(), ...)
 
 \item{plotTheme}{The theme to apply.}
 
-\item{\dots}{And additional arguments are passed to [ggplot2::geom_bar()].}
+\item{\dots}{And additional arguments are passed to \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}}.}
 }
 \value{
-A [ggplot2::ggplot()] plot is returned.
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} plot is returned.
 }
 \description{
-This function provides a simple interface to create a [ggplot2::ggplot()]
+This function provides a simple interface to create a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}
 bar chart.
 }
 \examples{
@@ -26,10 +26,10 @@ ggBarChart(mtcars$cyl);
 
 }
 \seealso{
-[ggplot2::geom_bar()]
+\code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}}
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }

@@ -13,11 +13,11 @@ makeScales(data, scales, append = TRUE)
 where each vectors' name is the name of the scale.}
 
 \item{append}{Whether to return the dataframe including the new variables
-(`TRUE`), or a dataframe with only those new variables (`FALSE`).}
+(\code{TRUE}), or a dataframe with only those new variables (\code{FALSE}).}
 }
 \value{
 Either a dataframe with the newly created variables, or the
-  supplied dataframe with the newly created variables appended.
+supplied dataframe with the newly created variables appended.
 }
 \description{
 Title

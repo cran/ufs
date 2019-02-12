@@ -17,7 +17,7 @@
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{table}}
+#' @seealso [table()]
 #' @keywords utilities
 #' @examples
 #'
@@ -50,11 +50,15 @@ multiVarFreq <- function(data,
     labels <- items;
   }
 
-  res <- do.call(dplyr::bind_rows,
-                 lapply(data[, items],
-                        function(x)
-                          return(as.data.frame(t(as.matrix(table(x)))))
-                 ));
+  if (length(items)==1) {
+    res <- as.data.frame(t(as.matrix(table(data[, items]))));
+  } else {
+    res <- do.call(dplyr::bind_rows,
+                   lapply(data[, items],
+                          function(x)
+                            return(as.data.frame(t(as.matrix(table(x)))))
+                   ));
+  }
 
   rownames(res) <- labels;
 

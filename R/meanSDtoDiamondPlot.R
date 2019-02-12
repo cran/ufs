@@ -27,19 +27,19 @@
 #' @param xlab The label for the x axis.
 #' @param outputFile A file to which to save the plot.
 #' @param outputWidth,outputHeight Width and height of saved plot (specified in
-#' centimeters by default, see \code{ggsaveParams}).
+#' centimeters by default, see `ggsaveParams`).
 #' @param ggsaveParams Parameters to pass to ggsave when saving the plot.
-#' @param \dots Additional arguments are passed to \code{\link{diamondPlot}}
-#' and eventually to \code{\link{ggDiamondLayer}}. This can be used to, for
+#' @param \dots Additional arguments are passed to [diamondPlot()]
+#' and eventually to [ggDiamondLayer()]. This can be used to, for
 #' example, specify two or more colors to use to generate a gradient (using
-#' \code{generateColors} and maybe \code{fullColorRange}).
-#' @return A \code{\link{ggplot}} plot with a \code{\link{ggDiamondLayer}} is
+#' `generateColors` and maybe `fullColorRange`).
+#' @return A [ggplot()] plot with a [ggDiamondLayer()] is
 #' returned.
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{meansDiamondPlot}}, \code{\link{diamondPlot}},
-#' \code{\link{factorLoadingDiamondCIplot}}, \code{\link{ggDiamondLayer}}
+#' @seealso [meansDiamondPlot()], [diamondPlot()],
+#' [factorLoadingDiamondCIplot()], [ggDiamondLayer()]
 #' @keywords hplot
 #' @examples
 #'

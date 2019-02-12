@@ -76,22 +76,22 @@ bars of that color).}
 \item{rank.conf}{Whether to let the fill and color gradients use the confidence
 or the ranked confidence.}
 
-\item{linetype}{The \code{\link{linetype}} to use (0 = blank, 1 = solid, 2 =
+\item{linetype}{The \code{\link[=linetype]{linetype()}} to use (0 = blank, 1 = solid, 2 =
 dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash).}
 
 \item{theme}{The theme to use.}
 
-\item{returnPlotOnly}{Whether to only return the \code{\link{ggplot2}} plot
+\item{returnPlotOnly}{Whether to only return the \code{\link[=ggplot2]{ggplot2()}} plot
 or the full object including intermediate values and objects.}
 
 \item{x}{The object to print/plot.}
 
-\item{\dots}{Any additional arguments are passed on to `print` and
-`grid.draw`.}
+\item{\dots}{Any additional arguments are passed on to \code{print} and
+\code{grid.draw}.}
 }
 \value{
-A \code{\link{ggplot2}} object (if \code{returnPlotOnly} is TRUE),
-or an object containing that \code{\link{ggplot2}} object and intermediate
+A \code{\link[=ggplot2]{ggplot2()}} object (if \code{returnPlotOnly} is TRUE),
+or an object containing that \code{\link[=ggplot2]{ggplot2()}} object and intermediate
 products.
 }
 \description{
@@ -102,7 +102,7 @@ of point estimates, thereby urging a level of caution that is consistent
 with what the data allows.
 }
 \details{
-This function used \code{\link{confIntProp}} to compute confidence intervals
+This function used \code{\link[=confIntProp]{confIntProp()}} to compute confidence intervals
 for proportions at different levels of confidence. The confidence interval
 bounds at those levels of confidence are then used to draw rectangles with
 colors in a gradient that corresponds to the confidence level.
@@ -171,12 +171,12 @@ ggProportionPlot(mtcars,
 
 }
 \seealso{
-\code{\link{confIntProp}} and \code{\link{binom.test}}
+\code{\link[=confIntProp]{confIntProp()}} and \code{\link[=binom.test]{binom.test()}}
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{graphs}
 \keyword{hplot}

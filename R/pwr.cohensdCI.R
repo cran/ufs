@@ -34,20 +34,54 @@ pwr.cohensdCI <- pwr.confIntd <- function(d, w=.1, conf.level=.95, extensive = F
   n <- numeric();
   for (di in 1:length(d)) {
     n[di] <- 4;
-    withCallingHandlers(while (lowerBound[di] > qCohensd(lowerP, df=n[di]-2, populationD=d[di], lower.tail=TRUE) ||
-                               upperBound[di] < qCohensd(upperP, df=n[di]-2, populationD=d[di], lower.tail=FALSE)) {
+
+    ### Hundreds of people
+    withCallingHandlers(while(abs(diff(convert.t.to.d(from_MBESS_conf.limits.nct(ncp=convert.d.to.t(d[di],
+                                                                                                   df=n[di]-2),
+                                                                                 df=n[di]-2,
+                                                                                 conf.level=conf.level),
+                                                      df=n[di]-2))) > abs(w*2)) {
       n[di] <- n[di] + 100;
-    }, warning = wHandler);
+    }, warning=wHandler);
+
+    ### Subtract last addition
     if (n[di] > 100) n[di] <- n[di] - 100;
-    withCallingHandlers(while (lowerBound[di] > qCohensd(lowerP, df=n[di]-2, populationD=d[di], lower.tail=TRUE) ||
-                               upperBound[di] < qCohensd(upperP, df=n[di]-2, populationD=d[di], lower.tail=FALSE)) {
+
+    ### Tens of people
+    withCallingHandlers(while(abs(diff(convert.t.to.d(from_MBESS_conf.limits.nct(ncp=convert.d.to.t(d[di],
+                                                                                                    df=n[di]-2),
+                                                                                 df=n[di]-2,
+                                                                                 conf.level=conf.level),
+                                                      df=n[di]-2))) > abs(w*2)) {
       n[di] <- n[di] + 10;
-    }, warning = wHandler);
+    }, warning=wHandler);
+
+    ### Subtract last addition
     if (n[di] > 10) n[di] <- n[di] - 10;
-    withCallingHandlers(while (lowerBound[di] > qCohensd(lowerP, n[di]-2, populationD=d[di], lower.tail=TRUE) ||
-                               upperBound[di] < qCohensd(upperP, n[di]-2, populationD=d[di], lower.tail=FALSE)) {
+
+    ### People
+    withCallingHandlers(while(abs(diff(convert.t.to.d(from_MBESS_conf.limits.nct(ncp=convert.d.to.t(d[di],
+                                                                                                    df=n[di]-2),
+                                                                                 df=n[di]-2,
+                                                                                 conf.level=conf.level),
+                                                      df=n[di]-2))) > abs(w*2)) {
       n[di] <- n[di] + 1;
-    }, warning = wHandler);
+    }, warning=wHandler);
+
+    # withCallingHandlers(while (lowerBound[di] > qCohensd(lowerP, df=n[di]-2, populationD=d[di], lower.tail=TRUE) ||
+    #                            upperBound[di] < qCohensd(upperP, df=n[di]-2, populationD=d[di], lower.tail=FALSE)) {
+    #   n[di] <- n[di] + 100;
+    # }, warning = wHandler);
+    # if (n[di] > 100) n[di] <- n[di] - 100;
+    # withCallingHandlers(while (lowerBound[di] > qCohensd(lowerP, df=n[di]-2, populationD=d[di], lower.tail=TRUE) ||
+    #                            upperBound[di] < qCohensd(upperP, df=n[di]-2, populationD=d[di], lower.tail=FALSE)) {
+    #   n[di] <- n[di] + 10;
+    # }, warning = wHandler);
+    # if (n[di] > 10) n[di] <- n[di] - 10;
+    # withCallingHandlers(while (lowerBound[di] > qCohensd(lowerP, n[di]-2, populationD=d[di], lower.tail=TRUE) ||
+    #                            upperBound[di] < qCohensd(upperP, n[di]-2, populationD=d[di], lower.tail=FALSE)) {
+    #   n[di] <- n[di] + 1;
+    # }, warning = wHandler);
   }
   if (extensive) {
     df <- n - 2;

@@ -2,13 +2,13 @@
 #'
 #' This function simply computes confidence intervals for proportions.
 #'
-#' This function is the adapted source code of \code{\link{binom.test}}. Ir
-#' uses \code{\link{pbeta}}, with some lines of code taken from the
-#' \code{\link{binom.test}} source. Specifically, the count for the low
-#' category is specified as first 'shape argument' to \code{\link{pbeta}}, and
+#' This function is the adapted source code of [binom.test()]. Ir
+#' uses [pbeta()], with some lines of code taken from the
+#' [binom.test()] source. Specifically, the count for the low
+#' category is specified as first 'shape argument' to [pbeta()], and
 #' the total count (either the sum of the count for the low category and the
 #' count for the high category, or the total number of cases if
-#' \code{compareHiToLo} is \code{FALSE}) minus the count for the low category
+#' `compareHiToLo` is `FALSE`) minus the count for the low category
 #' as the second 'shape argument'.
 #'
 #' @param x The number of 'successes', i.e. the number of events, observations,
@@ -19,10 +19,10 @@
 #' @return The confidence interval bounds in a twodimensional matrix, with the
 #' first column containing the lower bound and the second column containing the
 #' upper bound.
-#' @author Unknown (see \code{\link{binom.test}}; adapted by Gjalt-Jorn Peters)
+#' @author Unknown (see [binom.test()]; adapted by Gjalt-Jorn Peters)
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{binom.test}} and \code{\link{ggProportionPlot}, the
+#' @seealso [binom.test()] and \code{\link{ggProportionPlot}, the
 #' function for which this was written.}
 #' @keywords univar htest
 #' @examples

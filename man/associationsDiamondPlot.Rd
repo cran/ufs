@@ -70,7 +70,7 @@ specified in \code{singleAlpha}.}
 \code{duoComparisonDiamondPlot}, must be vectors of two elements). Use
 \code{NULL} to not use a label.}
 
-\item{theme}{The \code{\link{ggplot}} theme to use.}
+\item{theme}{The \code{\link[=ggplot]{ggplot()}} theme to use.}
 
 \item{lineSize}{The thickness of the lines (the diamonds' strokes).}
 
@@ -82,7 +82,7 @@ centimeters by default, see \code{ggsaveParams}).}
 \item{ggsaveParams}{Parameters to pass to ggsave when saving the plot.}
 
 \item{\dots}{Any additional arguments are passed to
-\code{\link{diamondPlot}} and eventually to \code{\link{ggDiamondLayer}}.}
+\code{\link[=diamondPlot]{diamondPlot()}} and eventually to \code{\link[=ggDiamondLayer]{ggDiamondLayer()}}.}
 }
 \value{
 A plot.
@@ -124,12 +124,12 @@ associationsDiamondPlot(mtcars,
 
 }
 \seealso{
-\code{\link{diamondPlot}}, \code{\link{ggDiamondLayer}},
-[behaviorchange::CIBER()]
+\code{\link[=diamondPlot]{diamondPlot()}}, \code{\link[=ggDiamondLayer]{ggDiamondLayer()}},
+\code{\link[behaviorchange:CIBER]{behaviorchange::CIBER()}}
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{hplot}

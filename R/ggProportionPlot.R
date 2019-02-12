@@ -6,7 +6,7 @@
 #' of point estimates, thereby urging a level of caution that is consistent
 #' with what the data allows.
 #'
-#' This function used \code{\link{confIntProp}} to compute confidence intervals
+#' This function used [confIntProp()] to compute confidence intervals
 #' for proportions at different levels of confidence. The confidence interval
 #' bounds at those levels of confidence are then used to draw rectangles with
 #' colors in a gradient that corresponds to the confidence level.
@@ -50,28 +50,28 @@
 #' @param scale_color,scale_fill A vector with two values (valid colors), that
 #' are used for the colors (stroke) and fill for the gradient; both vectors
 #' should normally be the same, but if you feel adventurous, you can play
-#' around with the number of \code{conf.steps} and this. If you specify only
+#' around with the number of `conf.steps` and this. If you specify only
 #' one color, no gradient is used but a single color (i.e. specifying the same
-#' single color for both \code{scale_color} and \code{scale_fill} simply draws
+#' single color for both `scale_color` and `scale_fill` simply draws
 #' bars of that color).
 #' @param rank.conf Whether to let the fill and color gradients use the confidence
 #' or the ranked confidence.
-#' @param linetype The \code{\link{linetype}} to use (0 = blank, 1 = solid, 2 =
+#' @param linetype The [linetype()] to use (0 = blank, 1 = solid, 2 =
 #' dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash).
 #' @param theme The theme to use.
-#' @param returnPlotOnly Whether to only return the \code{\link{ggplot2}} plot
+#' @param returnPlotOnly Whether to only return the [ggplot2()] plot
 #' or the full object including intermediate values and objects.
 #' @param x The object to print/plot.
 #' @param \dots Any additional arguments are passed on to `print` and
 #' `grid.draw`.
 #'
-#' @return A \code{\link{ggplot2}} object (if \code{returnPlotOnly} is TRUE),
-#' or an object containing that \code{\link{ggplot2}} object and intermediate
+#' @return A [ggplot2()] object (if `returnPlotOnly` is TRUE),
+#' or an object containing that [ggplot2()] object and intermediate
 #' products.
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{confIntProp}} and \code{\link{binom.test}}
+#' @seealso [confIntProp()] and [binom.test()]
 #' @keywords hplot graphs
 #' @examples
 #'

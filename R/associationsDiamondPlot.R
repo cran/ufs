@@ -17,49 +17,49 @@
 #' criterion or criteria, usually the predictors.
 #' @param criteria,criterion The criteria, usually the dependent variables; one
 #' criterion (one dependent variable) can also be specified of course. The
-#' helper function \code{associationsToDiamondPlotDf} always accepts only one
+#' helper function `associationsToDiamondPlotDf` always accepts only one
 #' criterion.
 #' @param labels The labels for the covariates, for example the questions that
 #' were used (as a character vector).
 #' @param criteriaLabels The labels for the criteria (in the legend).
 #' @param decreasing Whether to sort the covariates by the point estimate of
-#' the effect size of their association with the criterion. Use \code{NULL} to
-#' not sort at all, \code{TRUE} to sort in descending order, and \code{FALSE}
+#' the effect size of their association with the criterion. Use `NULL` to
+#' not sort at all, `TRUE` to sort in descending order, and `FALSE`
 #' to sort in ascending order.
 #' @param sortBy When specifying multiple criteria, this can be used to
 #' indicate by which criterion the items should be sorted (if they should be
 #' sorted).
 #' @param conf.level The confidence of the confidence intervals.
 #' @param criteriaColors,criterionColor The colors to use for the different
-#' associations can be specified in \code{criteriaColors}. This should be a
+#' associations can be specified in `criteriaColors`. This should be a
 #' vector of valid colors with at least as many elements as criteria are
-#' specified in \code{criteria}. If only one criterion is specified, the color
-#' in \code{criterionColor} is used.
+#' specified in `criteria`. If only one criterion is specified, the color
+#' in `criterionColor` is used.
 #' @param returnLayerOnly Whether to return the entire object that is
 #' generated, or just the resulting ggplot2 layer.
 #' @param esMetric The effect size metric to plot - currently, only 'r' is
 #' supported, and other values will return an error.
 #' @param multiAlpha,singleAlpha The transparency (alpha channel) value of the
-#' diamonds for each association can be specified in \code{multiAlpha}, and if
+#' diamonds for each association can be specified in `multiAlpha`, and if
 #' only one criterion is specified, the alpha level of the diamonds can be
-#' specified in \code{singleAlpha}.
+#' specified in `singleAlpha`.
 #' @param showLegend Whether to show the legend.
 #' @param xlab,ylab The label to use for the x and y axes (for
-#' \code{duoComparisonDiamondPlot}, must be vectors of two elements). Use
-#' \code{NULL} to not use a label.
-#' @param theme The \code{\link{ggplot}} theme to use.
+#' `duoComparisonDiamondPlot`, must be vectors of two elements). Use
+#' `NULL` to not use a label.
+#' @param theme The [ggplot()] theme to use.
 #' @param lineSize The thickness of the lines (the diamonds' strokes).
 #' @param outputFile A file to which to save the plot.
 #' @param outputWidth,outputHeight Width and height of saved plot (specified in
-#' centimeters by default, see \code{ggsaveParams}).
+#' centimeters by default, see `ggsaveParams`).
 #' @param ggsaveParams Parameters to pass to ggsave when saving the plot.
 #' @param \dots Any additional arguments are passed to
-#' \code{\link{diamondPlot}} and eventually to \code{\link{ggDiamondLayer}}.
+#' [diamondPlot()] and eventually to [ggDiamondLayer()].
 #' @return A plot.
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{diamondPlot}}, \code{\link{ggDiamondLayer}},
+#' @seealso [diamondPlot()], [ggDiamondLayer()],
 #' [behaviorchange::CIBER()]
 #' @keywords hplot
 #' @examples

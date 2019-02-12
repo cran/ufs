@@ -21,5 +21,5 @@ Pretty formatting of correlation coefficients
 formatR(cor(mtcars$mpg, mtcars$disp));
 }
 \seealso{
-\code{\link{noZero}}, \code{\link{formatCI}}, \code{\link{formatPvalue}}
+\code{\link[=noZero]{noZero()}}, \code{\link[=formatCI]{formatCI()}}, \code{\link[=formatPvalue]{formatPvalue()}}
 }

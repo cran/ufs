@@ -7,9 +7,9 @@
 faConfInt(fa)
 }
 \arguments{
-\item{fa}{The object produced by the [psych::fa()] function from the
-[psych::psych] package. It is important that the \code{n.iter} argument
-of[psych::fa()] was set to a realistic number, because otherwise, no
+\item{fa}{The object produced by the \code{\link[psych:fa]{psych::fa()}} function from the
+\link[psych:psych-package]{psych::psych-package} package. It is important that the \code{n.iter} argument
+of\code{\link[psych:fa]{psych::fa()}} was set to a realistic number, because otherwise, no
 confidence intervals will be available.}
 }
 \value{
@@ -19,7 +19,7 @@ dataframe three variables: \item{lo}{lower bound of the confidence interval}
 the confidence interval}
 }
 \description{
-This function contains some code from a function in [psych::psych]
+This function contains some code from a function in \link[psych:psych-package]{psych::psych-package}
 that's not exported \code{print.psych.fa.ci} but useful nonetheless. It
 basically takes the outcomes of a factor analysis and extracted the
 confidence intervals.
@@ -27,7 +27,7 @@ confidence intervals.
 \details{
 THis function extract confidence interval bounds and combines them with
 factor loadings using the code from the \code{print.psych.fa.ci} in
-[psych::psych].
+\link[psych:psych-package]{psych::psych-package}.
 }
 \examples{
 
@@ -42,5 +42,5 @@ faConfInt(psych::fa(Thurstone.33, 2, n.iter=100, n.obs=100));
 \author{
 William Revelle (extracted by Gjalt-Jorn Peters)
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }

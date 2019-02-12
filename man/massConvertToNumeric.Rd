@@ -11,10 +11,10 @@ massConvertToNumeric(dat, byFactorLabel = FALSE,
 \item{dat}{The dataframe with the columns.}
 
 \item{byFactorLabel}{When converting factors, whether to do this
-by their label value (`TRUE`) or their level value (`FALSE`).}
+by their label value (\code{TRUE}) or their level value (\code{FALSE}).}
 
-\item{ignoreCharacter}{Whether to convert (`FALSE`) or
-ignore (`TRUE`) character vectors.}
+\item{ignoreCharacter}{Whether to convert (\code{FALSE}) or
+ignore (\code{TRUE}) character vectors.}
 
 \item{stringsAsFactors}{In the returned dataframe, whether
 to return string (character) vectors as factors or not.}

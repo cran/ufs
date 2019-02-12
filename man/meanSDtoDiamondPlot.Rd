@@ -42,13 +42,13 @@ centimeters by default, see \code{ggsaveParams}).}
 
 \item{ggsaveParams}{Parameters to pass to ggsave when saving the plot.}
 
-\item{\dots}{Additional arguments are passed to \code{\link{diamondPlot}}
-and eventually to \code{\link{ggDiamondLayer}}. This can be used to, for
+\item{\dots}{Additional arguments are passed to \code{\link[=diamondPlot]{diamondPlot()}}
+and eventually to \code{\link[=ggDiamondLayer]{ggDiamondLayer()}}. This can be used to, for
 example, specify two or more colors to use to generate a gradient (using
 \code{generateColors} and maybe \code{fullColorRange}).}
 }
 \value{
-A \code{\link{ggplot}} plot with a \code{\link{ggDiamondLayer}} is
+A \code{\link[=ggplot]{ggplot()}} plot with a \code{\link[=ggDiamondLayer]{ggDiamondLayer()}} is
 returned.
 }
 \description{
@@ -97,12 +97,12 @@ meanSDtoDiamondPlot(tmpDf,
 
 }
 \seealso{
-\code{\link{meansDiamondPlot}}, \code{\link{diamondPlot}},
-\code{\link{factorLoadingDiamondCIplot}}, \code{\link{ggDiamondLayer}}
+\code{\link[=meansDiamondPlot]{meansDiamondPlot()}}, \code{\link[=diamondPlot]{diamondPlot()}},
+\code{\link[=factorLoadingDiamondCIplot]{factorLoadingDiamondCIplot()}}, \code{\link[=ggDiamondLayer]{ggDiamondLayer()}}
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{hplot}

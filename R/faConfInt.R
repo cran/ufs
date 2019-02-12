@@ -1,16 +1,16 @@
 #' Extract confidence bounds from psych's factor analysis object
 #'
-#' This function contains some code from a function in [psych::psych]
-#' that's not exported \code{print.psych.fa.ci} but useful nonetheless. It
+#' This function contains some code from a function in [psych::psych-package]
+#' that's not exported `print.psych.fa.ci` but useful nonetheless. It
 #' basically takes the outcomes of a factor analysis and extracted the
 #' confidence intervals.
 #'
 #' THis function extract confidence interval bounds and combines them with
-#' factor loadings using the code from the \code{print.psych.fa.ci} in
-#' [psych::psych].
+#' factor loadings using the code from the `print.psych.fa.ci` in
+#' [psych::psych-package].
 #'
 #' @param fa The object produced by the [psych::fa()] function from the
-#' [psych::psych] package. It is important that the \code{n.iter} argument
+#' [psych::psych-package] package. It is important that the `n.iter` argument
 #' of[psych::fa()] was set to a realistic number, because otherwise, no
 #' confidence intervals will be available.
 #' @return A list of dataframes, one for each extracted factor, with in each

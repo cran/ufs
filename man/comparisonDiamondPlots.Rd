@@ -101,8 +101,8 @@ centimeters by default, see \code{ggsaveParams}).}
 \item{ggsaveParams}{Parameters to pass to ggsave when saving the plot.}
 
 \item{\dots}{Any additional arguments are passed to
-\code{\link{diamondPlot}} by \code{meansComparisonDiamondPlot} and to both
-\code{meansComparisonDiamondPlot} and \code{\link{associationsDiamondPlot}}
+\code{\link[=diamondPlot]{diamondPlot()}} by \code{meansComparisonDiamondPlot} and to both
+\code{meansComparisonDiamondPlot} and \code{\link[=associationsDiamondPlot]{associationsDiamondPlot()}}
 by \code{duoComparisonDiamondPlot}.}
 
 \item{sortBy}{If the variables should be sorted (see \code{decreasing}),
@@ -111,8 +111,8 @@ value specified here must be a value label ('level label') of the
 \code{comparisonBy} variable.}
 }
 \value{
-A Diamond plots: a [ggplot2::ggplot()] plot
-\code{meansComparisonDiamondPlot}, and a \code{\link{gtable}} by
+A Diamond plots: a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} plot
+\code{meansComparisonDiamondPlot}, and a \code{\link[=gtable]{gtable()}} by
 \code{duoComparisonDiamondPlot}.
 }
 \description{
@@ -153,13 +153,12 @@ multiple sample estimates while respecting their inaccuracy.
 \emph{PsyArXiv.} http://doi.org/10.17605/OSF.IO/9W8YV
 }
 \seealso{
-\code{\link{diamondPlot}}, \code{\link{meansDiamondPlot}},
-[behaviorchange::CIBER()]
+\code{\link[=diamondPlot]{diamondPlot()}}, \code{\link[=meansDiamondPlot]{meansDiamondPlot()}},
+\code{\link[behaviorchange:CIBER]{behaviorchange::CIBER()}}
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
-\keyword{~kwd1}
-\keyword{~kwd2}
+\keyword{hplot}

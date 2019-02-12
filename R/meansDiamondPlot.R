@@ -9,7 +9,7 @@
 #' diamonds remedies this.
 #'
 #'
-#' @param data,dat The dataframe containing the variables (\code{items}) to show in
+#' @param data,dat The dataframe containing the variables (`items`) to show in
 #' the diamond plot (the name `dat` for this argument is deprecated but still
 #' works for backward compatibility).
 #' @param items Optionally, the names (or numeric indices) of the variables
@@ -22,8 +22,8 @@
 #' @param conf.level The confidence of the confidence intervals.
 #' @param showData Whether to show the raw data or not.
 #' @param dataAlpha This determines the alpha (transparency) of the data
-#' points. Note that argument \code{alpha} can be used to set the alpha of the
-#' diamonds; this is eventually passed on to \code{\link{ggDiamondLayer}}.
+#' points. Note that argument `alpha` can be used to set the alpha of the
+#' diamonds; this is eventually passed on to [ggDiamondLayer()].
 #' @param dataSize The size of the data points.
 #' @param dataColor The color of the data points.
 #' @param diamondColors A vector of the same length as there are rows in the
@@ -32,7 +32,7 @@
 #' horizontally.
 #' @param jitterHeight How much to jitter the individual datapoints vertically.
 #' @param returnLayerOnly Set this to TRUE to only return the
-#' \code{\link{ggplot}} layer of the diamondplot, which can be useful to
+#' [ggplot()] layer of the diamondplot, which can be useful to
 #' include it in other plots.
 #' @param xlab,ylab The labels of the X and Y axes.
 #' @param theme The theme to use.
@@ -40,20 +40,20 @@
 #' x axis should be.
 #' @param outputFile A file to which to save the plot.
 #' @param outputWidth,outputHeight Width and height of saved plot (specified in
-#' centimeters by default, see \code{ggsaveParams}).
+#' centimeters by default, see `ggsaveParams`).
 #' @param ggsaveParams Parameters to pass to ggsave when saving the plot.
-#' @param \dots Additional arguments are passed to \code{\link{diamondPlot}}
-#' and eventually to \code{\link{ggDiamondLayer}}. This can be used to, for
+#' @param \dots Additional arguments are passed to [diamondPlot()]
+#' and eventually to [ggDiamondLayer()]. This can be used to, for
 #' example, specify two or more colors to use to generate a gradient (using
-#' \code{generateColors} and maybe \code{fullColorRange}).
-#' @return A \code{\link{ggplot}} plot with a \code{\link{ggDiamondLayer}} is
+#' `generateColors` and maybe `fullColorRange`).
+#' @return A [ggplot()] plot with a [ggDiamondLayer()] is
 #' returned.
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{diamondPlot}}, \code{\link{meanSDtoDiamondPlot}},
-#' \code{\link{ggDiamondLayer}}
-#####'## \code{\link{factorLoadingDiamondCIplot}}
+#' @seealso [diamondPlot()], [meanSDtoDiamondPlot()],
+#' [ggDiamondLayer()]
+#####'## [factorLoadingDiamondCIplot()]
 #' @keywords hplot
 #' @examples
 #'

@@ -20,7 +20,7 @@ opening and closing parenthesis/bracket.}
 
 \item{noZero}{Whether to strip the leading zero (before the decimal
 point), as is typically done when following APA style and
-displaying correlations, *p* values, and other numbers that cannot
+displaying correlations, \emph{p} values, and other numbers that cannot
 reach 1 or more.}
 }
 \value{
@@ -37,5 +37,5 @@ formatCI(c(0.55, 0.021));
 formatCI(c(0.55, 0.021), noZero=TRUE);
 }
 \seealso{
-\code{\link{noZero}}, \code{\link{formatR}}, \code{\link{formatPvalue}}
+\code{\link[=noZero]{noZero()}}, \code{\link[=formatR]{formatR()}}, \code{\link[=formatPvalue]{formatPvalue()}}
 }

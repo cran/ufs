@@ -18,8 +18,8 @@ confIntR(r, N, conf.level = 0.95, plot = FALSE)
 \value{
 The confidence interval(s) in a matrix with two columns. The left
 column contains the lower bound, the right column the upper bound. The
-\code{\link{rownames}} are the observed correlations, and the
-\code{\link{colnames}} are 'lo' and 'hi'. The confidence level and sample
+\code{\link[=rownames]{rownames()}} are the observed correlations, and the
+\code{\link[=colnames]{colnames()}} are 'lo' and 'hi'. The confidence level and sample
 size are stored as attributes. The results are returned like this to make it
 easy to access single correlation coefficients from the resulting object
 (see the examples).
@@ -64,13 +64,13 @@ for establishing how effective an intervention or behavior change method is:
 required sample size for accurate parameter estimation in health psychology.
 }
 \seealso{
-\code{\link{confIntR}}
+\code{\link[=confIntR]{confIntR()}}
 }
 \author{
 Douglas Bonett (UC Santa Cruz, United States), with minor edits by
 Murray Moinester (Tel Aviv University, Israel) and Gjalt-Jorn Peters (Open
 University of the Netherlands, the Netherlands).
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{htest}

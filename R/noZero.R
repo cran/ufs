@@ -3,7 +3,7 @@
 #' @param str The character string to process.
 #'
 #' @return The processed string.
-#' @seealso \code{\link{formatCI}}, \code{\link{formatR}}, \code{\link{formatPvalue}}
+#' @seealso [formatCI()], [formatR()], [formatPvalue()]
 #' @export
 #'
 #' @examples noZero("0.3");

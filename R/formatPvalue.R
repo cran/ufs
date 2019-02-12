@@ -1,4 +1,4 @@
-#' Pretty formatting of \emph{p} values
+#' Pretty formatting of *p* values
 #'
 #' @param values The p-values to format.
 #' @param digits The number of digits to round to. Numbers smaller
@@ -13,7 +13,7 @@
 #'   remove the zero preceding the decimal point, and p values
 #'   that would round to zero given the requested number of digits
 #'   are shown as e.g. p<.001.
-#' @seealso \code{\link{formatCI}}, \code{\link{formatR}}, \code{\link{noZero}}
+#' @seealso [formatCI()], [formatR()], [noZero()]
 #' @export
 #'
 #' @examples formatPvalue(cor.test(mtcars$mpg,

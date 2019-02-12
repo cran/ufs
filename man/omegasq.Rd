@@ -22,7 +22,7 @@ respectively.}
 \item{populationOmegaSq}{The value of Omega Squared in the population; this
 determines the center of the Omega Squared distribution. This has not been
 implemented yet in this version of \code{userfriendlyscience}. If anybody
-has the inverse of \code{\link{convert.ncf.to.omegasq}} for me, I'll happily
+has the inverse of \code{\link[=convert.ncf.to.omegasq]{convert.ncf.to.omegasq()}} for me, I'll happily
 integrate this.}
 
 \item{lower.tail}{logical; if TRUE (default), probabilities are the
@@ -47,8 +47,8 @@ These functions use some conversion to and from the \emph{F} distribution to
 provide the Omega Squared distribution.
 }
 \details{
-The functions use \code{\link{convert.omegasq.to.f}} and
-\code{\link{convert.f.to.omegasq}} to provide the Omega Squared
+The functions use \code{\link[=convert.omegasq.to.f]{convert.omegasq.to.f()}} and
+\code{\link[=convert.f.to.omegasq]{convert.f.to.omegasq()}} to provide the Omega Squared
 distribution.
 }
 \examples{
@@ -62,13 +62,13 @@ pomegaSq(.06, 66, 3);
 
 }
 \seealso{
-\code{\link{convert.omegasq.to.f}},
-\code{\link{convert.f.to.omegasq}}, \code{\link{df}}, \code{\link{pf}},
-\code{\link{qf}}, \code{\link{rf}}
+\code{\link[=convert.omegasq.to.f]{convert.omegasq.to.f()}},
+\code{\link[=convert.f.to.omegasq]{convert.f.to.omegasq()}}, \code{\link[=df]{df()}}, \code{\link[=pf]{pf()}},
+\code{\link[=qf]{qf()}}, \code{\link[=rf]{rf()}}
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{univar}

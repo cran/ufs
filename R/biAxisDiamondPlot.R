@@ -15,16 +15,16 @@
 #' @param leftAnchors The anchors to display on the left side of the left hand
 #' panel. If the items were measured with one variable each, this can be used
 #' to show the anchors that were used for the respective scales. Must have the
-#' same length as \code{items}.
+#' same length as `items`.
 #' @param rightAnchors The anchors to display on the left side of the left hand
 #' panel. If the items were measured with one variable each, this can be used
 #' to show the anchors that were used for the respective scales. Must have the
-#' same length as \code{items}.
+#' same length as `items`.
 #' @param subQuestions The subquestions used to measure each item. This can
 #' also be used to provide pretty names for the variables if the items were not
-#' measured by one question each. Must have the same length as \code{items}.
-#' @param decreasing Whether to sort the items. Specify \code{NULL} to not sort
-#' at all, \code{TRUE} to sort in descending order, and \code{FALSE} to sort in
+#' measured by one question each. Must have the same length as `items`.
+#' @param decreasing Whether to sort the items. Specify `NULL` to not sort
+#' at all, `TRUE` to sort in descending order, and `FALSE` to sort in
 #' ascending order.
 #' @param conf.level The confidence levels for the confidence intervals.
 #' @param showData Whether to show the individual datapoints.
@@ -33,16 +33,16 @@
 #' (i.e. invisibility) and 1 signifies complete 'opaqueness'.
 #' @param dataColor The color to use for the individual datapoints.
 #' @param diamondColors The colours to use for the diamonds. If NULL, the
-#' \code{generateColors} argument can be used which will then be passed to
-#' \code{\link{diamondPlot}}.
+#' `generateColors` argument can be used which will then be passed to
+#' [diamondPlot()].
 #' @param jitterWidth How much to jitter the individual datapoints
 #' horizontally.
 #' @param jitterHeight How much to jitter the individual datapoints vertically.
 #' @param xbreaks Which breaks to use on the X axis (can be useful to override
-#' \code{\link{ggplot}}'s defaults).
+#' [ggplot()]'s defaults).
 #' @param xLabels Which labels to use for those breaks (can be useful to
-#' override \code{\link{ggplot}}'s defaults; especially useful in combination
-#' with \code{xBreaks} of course).
+#' override [ggplot()]'s defaults; especially useful in combination
+#' with `xBreaks` of course).
 #' @param xAxisLab Axis label for the X axis.
 #' @param drawPlot Whether to draw the plot, or only return it.
 #' @param returnPlotOnly Whether to return the entire object that is generated
@@ -52,11 +52,11 @@
 #' @param dotSize This is the size of the points used to show the individual
 #' data points in the left hand plot.
 #' @param baseFontSize This can be used to set the font size separately from
-#' the \code{baseSize}.
+#' the `baseSize`.
 #' @param theme This is the theme that is used for the plots.
 #' @param outputFile A file to which to save the plot.
 #' @param outputWidth,outputHeight Width and height of saved plot (specified in
-#' centimeters by default, see \code{ggsaveParams}).
+#' centimeters by default, see `ggsaveParams`).
 #' @param ggsaveParams Parameters to pass to ggsave when saving the plot.
 #' @param \dots These arguments are passed on to diamondPlot].
 #' @return Either just a plot (a [gtable::gtable()] object) or an object with
@@ -64,7 +64,7 @@
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso [behaviorchange::CIBER()], \code{\link{associationsDiamondPlot}}
+#' @seealso [behaviorchange::CIBER()], [associationsDiamondPlot()]
 #' @keywords hplot
 #' @examples
 #'

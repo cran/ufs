@@ -56,8 +56,8 @@ diamond, or a vector with colors (with as many elements as the dataframe has
 rows).}
 
 \item{generateColors}{A vector with colors to use to generate a gradient.
-These colors must be valid arguments to \code{\link{colorRamp}} (and
-therefore, to \code{\link{col2rgb}}).}
+These colors must be valid arguments to \code{\link[=colorRamp]{colorRamp()}} (and
+therefore, to \code{\link[=col2rgb]{col2rgb()}}).}
 
 \item{fullColorRange}{When specifying a gradient using
 \code{generateColors}, it is usually desirable to specify the minimum and
@@ -76,16 +76,16 @@ have this color.}
 \item{lineColor}{If NA, lines will have the same colors as the diamonds'
 fill. If not NA, must be a valid color, which is then used as line color.
 Note that e.g. \code{linetype} and \code{color} can be used as well, which
-will be passed on to \code{\link{geom_polygon}}.}
+will be passed on to \code{\link[=geom_polygon]{geom_polygon()}}.}
 
 \item{otherAxisCol}{A vector of values, or the index of the column in the
 dataframe, that specifies the values for the Y axis of the diamonds. This
 should normally just be a vector of consecutive integers.}
 
 \item{\dots}{Any additional arguments are passed to
-\code{\link{geom_polygon}}. This can be used to set, for example, the
+\code{\link[=geom_polygon]{geom_polygon()}}. This can be used to set, for example, the
 \code{alpha} value of the diamonds. Additional arguments for
-\code{rawDataDiamondLayer} are passed on to \code{\link{geom_jitter}}.}
+\code{rawDataDiamondLayer} are passed on to \code{\link[=geom_jitter]{geom_jitter()}}.}
 
 \item{items}{The items from the dataframe to include in the diamondplot or
 dataframe.}
@@ -112,22 +112,22 @@ decreasing (TRUE), increasing (FALSE), or not at all (NULL).}
 \item{conf.level}{The confidence of the confidence intervals.}
 }
 \value{
-\code{ggDiamondLayer} returns a \code{\link{ggplot}}
-\code{\link{geom_polygon}} object, which can then be used in
-\code{\link{ggplot}} plots (as \code{\link{diamondPlot}} does).
+\code{ggDiamondLayer} returns a \code{\link[=ggplot]{ggplot()}}
+\code{\link[=geom_polygon]{geom_polygon()}} object, which can then be used in
+\code{\link[=ggplot]{ggplot()}} plots (as \code{\link[=diamondPlot]{diamondPlot()}} does).
 
 \code{diamondCoordinates} returns a set of four coordinates that together
 specify a diamond.
 
 \code{varsToDiamondPlotDf} returns a dataframe of diamondCoordinates.
 
-\code{rawDataDiamondLayer} returns a \code{\link{geom_jitter}} object.
+\code{rawDataDiamondLayer} returns a \code{\link[=geom_jitter]{geom_jitter()}} object.
 }
 \description{
-These functions are used by \code{\link{diamondPlot}} to construct a diamond
+These functions are used by \code{\link[=diamondPlot]{diamondPlot()}} to construct a diamond
 plot. It's normally not necessary to call this function directly: instead,
-use \code{\link{meansDiamondPlot}}, \code{\link{meanSDtoDiamondPlot}}, and
-\code{\link{factorLoadingDiamondCIplot}}.
+use \code{\link[=meansDiamondPlot]{meansDiamondPlot()}}, \code{\link[=meanSDtoDiamondPlot]{meanSDtoDiamondPlot()}}, and
+\code{\link[=factorLoadingDiamondCIplot]{factorLoadingDiamondCIplot()}}.
 }
 \examples{
 
@@ -145,12 +145,12 @@ ggplot() + ggDiamondLayer(data.frame(1,2,3));
 
 }
 \seealso{
-\code{\link{meansDiamondPlot}}, \code{\link{meanSDtoDiamondPlot}},
-\code{\link{factorLoadingDiamondCIplot}}, \code{\link{diamondPlot}}
+\code{\link[=meansDiamondPlot]{meansDiamondPlot()}}, \code{\link[=meanSDtoDiamondPlot]{meanSDtoDiamondPlot()}},
+\code{\link[=factorLoadingDiamondCIplot]{factorLoadingDiamondCIplot()}}, \code{\link[=diamondPlot]{diamondPlot()}}
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{hplot}

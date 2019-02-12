@@ -4,7 +4,7 @@
 #' @param digits The number of digits to round to.
 #'
 #' @return The formatted correlation.
-#' @seealso \code{\link{noZero}}, \code{\link{formatCI}}, \code{\link{formatPvalue}}
+#' @seealso [noZero()], [formatCI()], [formatPvalue()]
 #' @export
 #'
 #' @examples formatR(cor(mtcars$mpg, mtcars$disp));

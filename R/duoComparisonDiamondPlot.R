@@ -34,6 +34,8 @@ duoComparisonDiamondPlot <- function(dat, items = NULL,
          "It has ", length(unique(stats::na.omit(dat[, compareBy]))), ".");
   }
 
+  dat[, compareBy] <- factor(dat[, compareBy]);
+
   associationsDf <- ufs::associationsToDiamondPlotDf(dat = dat,
                                                      covariates = items,
                                                      criterion = compareBy,

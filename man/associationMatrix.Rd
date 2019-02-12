@@ -2,6 +2,8 @@
 % Please edit documentation in R/associationMatrix.R
 \name{associationMatrix}
 \alias{associationMatrix}
+\alias{print.associationMatrix}
+\alias{pander.associationMatrix}
 \title{associationMatrix}
 \usage{
 associationMatrix(dat = NULL, x = NULL, y = NULL,
@@ -10,7 +12,13 @@ associationMatrix(dat = NULL, x = NULL, y = NULL,
   bootstrapV.samples = 5000, digits = 2, pValueDigits = digits + 1,
   colNames = FALSE, type = c("R", "html", "latex"), file = "",
   statistic = associationMatrixStatDefaults,
-  effectSize = associationMatrixESDefaults, var.equal = "test")
+  effectSize = associationMatrixESDefaults, var.equal = TRUE)
+
+\method{print}{associationMatrix}(x, type = x$input$type,
+  info = x$input$info, file = x$input$file, ...)
+
+\method{pander}{associationMatrix}(x, info = x$input$info,
+  file = x$input$file, ...)
 }
 \arguments{
 \item{dat}{A dataframe with the variables of interest. All variables in this
@@ -76,8 +84,11 @@ value, associationMatrixESDefaults, works for everyday use. Again, see the
 'Notes' section below if you want to customize.}
 
 \item{var.equal}{Whether to test for equal variances ('test'), assume
-equality ('yes'), or assume unequality ('no'). See [userfriendlyscience::meanDiff()]
+equality ('yes'), or assume unequality ('no'). See \code{\link[userfriendlyscience:meanDiff]{userfriendlyscience::meanDiff()}}
 for more information.}
+
+\item{...}{Addition arguments are passed on to the \code{\link[=print]{print()}} amd \code{\link[pander:pander]{pander::pander()}}
+functions.}
 }
 \value{
 An object with the input and several output variables, one of which is a
@@ -115,7 +126,7 @@ For example, when the default settings are used, the string (function name)
 found for two dichotomous variables when searching in
 associationMatrixStatDefaults is 'chisq', and the string found in
 associationMatrixESDefaults is 'v'.  associationMatrix then calls
-computeStatistic[['chisq']] and computeEffectSize[['v']], providing the two
+\code{computeStatistic[['chisq']]} and \code{computeEffectSize[['v']]}, providing the two
 variables as arguments, as well as passing the 'conf.level' argument. These
 two functions then each return an object that associationMatrix extracts the
 information from. Inspect the source code of these functions (by typing
@@ -141,7 +152,7 @@ associationMatrix(Orange, colNames=TRUE, type='html');
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{univar}
 \keyword{utilities}

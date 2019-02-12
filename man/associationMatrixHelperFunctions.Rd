@@ -14,7 +14,7 @@
 \alias{computeEffectSize_omegasq}
 \title{associationMatrix Helper Functions}
 \usage{
-computeStatistic_t(var1, var2, conf.level = 0.95, var.equal = "test",
+computeStatistic_t(var1, var2, conf.level = 0.95, var.equal = TRUE,
   ...)
 
 computeStatistic_r(var1, var2, conf.level = 0.95, ...)
@@ -23,7 +23,7 @@ computeStatistic_f(var1, var2, conf.level = 0.95, ...)
 
 computeStatistic_chisq(var1, var2, conf.level = 0.95, ...)
 
-computeEffectSize_d(var1, var2, conf.level = 0.95, var.equal = "test",
+computeEffectSize_d(var1, var2, conf.level = 0.95, var.equal = TRUE,
   ...)
 
 computeEffectSize_r(var1, var2, conf.level = 0.95, ...)
@@ -45,11 +45,11 @@ size}
 \item{conf.level}{The confidence for the confidence interval for the effect
 size}
 
-\item{var.equal}{Whether to test for equal variances ('test'), assume
-equality ('yes'), or assume unequality ('no'). See [userfriendlyscience::meanDiff()]
+\item{var.equal}{Whether to test for equal variances (\code{test}), assume
+equality (\code{yes}), or assume unequality (\code{no}). See \code{\link[userfriendlyscience:meanDiff]{userfriendlyscience::meanDiff()}}
 for more information.}
 
-\item{\dots}{Any additonal arguments are sometimes used to specify exactly
+\item{...}{Any additonal arguments are sometimes used to specify exactly
 how statistics and effect sizes should be computed.}
 
 \item{bootstrap}{Whether to bootstrap to estimate the confidence interval
@@ -91,12 +91,12 @@ computeEffectSize_etasq(Orange$Tree, Orange$circumference)
 
 }
 \seealso{
-[userfriendlyscience::meanDiff()], [associationMatrix()]
+\code{\link[userfriendlyscience:meanDiff]{userfriendlyscience::meanDiff()}}, \code{\link[=associationMatrix]{associationMatrix()}}
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{bivar}
 \keyword{utilities}

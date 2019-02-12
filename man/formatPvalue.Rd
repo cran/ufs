@@ -20,10 +20,10 @@ results (the '<' symbol is always included).}
 }
 \value{
 A formatted P value, roughly according to APA style
-  guidelines. This means that the [noZero] function is used to
-  remove the zero preceding the decimal point, and p values
-  that would round to zero given the requested number of digits
-  are shown as e.g. p<.001.
+guidelines. This means that the \link{noZero} function is used to
+remove the zero preceding the decimal point, and p values
+that would round to zero given the requested number of digits
+are shown as e.g. p<.001.
 }
 \description{
 Pretty formatting of \emph{p} values
@@ -35,5 +35,5 @@ formatPvalue(cor.test(mtcars$drat,
                       mtcars$qsec)$p.value);
 }
 \seealso{
-\code{\link{formatCI}}, \code{\link{formatR}}, \code{\link{noZero}}
+\code{\link[=formatCI]{formatCI()}}, \code{\link[=formatR]{formatR()}}, \code{\link[=noZero]{noZero()}}
 }

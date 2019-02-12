@@ -1,79 +1,86 @@
-#' The distribution of Cohen's \emph{d}
+#' The distribution of Cohen's *d*
 #'
-#' These functions use some conversion to and from the \emph{t} distribution to
-#' provide the Cohen's \emph{d} distribution. There are four versions that act
-#' similar to the standard distribution functions (the \code{d.}, \code{p.},
-#' \code{q.}, and \code{r.} functions, and their longer aliases
-#' \code{.Cohensd}), three convenience functions (\code{pdExtreme},
-#' \code{pdMild}, and \code{pdInterval}), a function to compute the confidence
-#' interval for a Cohen's \emph{d} estimate \code{cohensdCI}, and a function to
+#' These functions use some conversion to and from the *t* distribution to
+#' provide the Cohen's *d* distribution. There are four versions that act
+#' similar to the standard distribution functions (the `d.`, `p.`,
+#' `q.`, and `r.` functions, and their longer aliases
+#' `.Cohensd`), three convenience functions (`pdExtreme`,
+#' `pdMild`, and `pdInterval`), a function to compute the confidence
+#' interval for a Cohen's *d* estimate `cohensdCI`, and a function to
 #' compute the sample size required to obtain a confidence interval around a
-#' Cohen's \emph{d} estimate with a specified accuracy (\code{pwr.cohensdCI}
-#' and its alias \code{pwr.confIntd}).
+#' Cohen's *d* estimate with a specified accuracy (`pwr.cohensdCI`
+#' and its alias `pwr.confIntd`).
 #'
-#' The functions use \code{\link{convert.d.to.t}} and
-#' \code{\link{convert.t.to.d}} to provide the Cohen's \emph{d} distribution.
+#' The functions use [convert.d.to.t()] and
+#' [convert.t.to.d()] to provide the Cohen's *d* distribution.
 #'
-#' More details about \code{cohensdCI} and \code{pwr.cohensdCI} are provided in
+#' The confidence interval functions, `cohensdCI` and `pwr.cohensdCI`,
+#' now use the same method as MBESS (a slightly adapted version of
+#' [MBESS::conf.limits.nct()] is used).
+#'
+#' More details about `cohensdCI` and `pwr.cohensdCI` are provided in
 #' Peters & Crutzen (2017).
 #'
 #' @aliases dCohensd pCohensd qCohensd rCohensd dd pd qd rd pdExtreme pdMild
 #' pdInterval cohensdCI confIntD pwr.cohensdCI pwr.confIntd
 #' @param x,q,d Vector of quantiles, or, in other words, the value(s) of
-#' Cohen's \emph{d}.
-#' @param ds A vector with two Cohen's \emph{d} values.
-#' @param p Vector of probabilites (\emph{p}-values).
+#' Cohen's *d*.
+#' @param ds A vector with two Cohen's *d* values.
+#' @param p Vector of probabilites (*p*-values).
 #' @param df Degrees of freedom.
-#' @param n,n1,n2 Desired number of Cohen's \emph{d} values for \code{rCohensd} and
-#' \code{rd} (`n`), and the number of participants/datapoints in total (`n`) or in each
-#' group (`n1` and `n2`) for `dd`, `dCohensd`, \code{pdExtreme},
-#' \code{pdMild}, \code{pdInterval}, and \code{cohensdCI}.
-#' @param populationD The value of Cohen's \emph{d} in the population; this
-#' determines the center of the Cohen's \emph{d} distribution. I suppose this
+#' @param n,n1,n2 Desired number of Cohen's *d* values for `rCohensd` and
+#' `rd` (`n`), and the number of participants/datapoints in total (`n`) or in each
+#' group (`n1` and `n2`) for `dd`, `dCohensd`, `pdExtreme`,
+#' `pdMild`, `pdInterval`, and `cohensdCI`.
+#' @param populationD The value of Cohen's *d* in the population; this
+#' determines the center of the Cohen's *d* distribution. I suppose this
 #' is the noncentrality parameter.
 #' @param lower.tail logical; if TRUE (default), probabilities are the
-#' likelihood of finding a Cohen's \emph{d} smaller than the specified value;
-#' otherwise, the likelihood of finding a Cohen's \emph{d} larger than the
+#' likelihood of finding a Cohen's *d* smaller than the specified value;
+#' otherwise, the likelihood of finding a Cohen's *d* larger than the
 #' specified value.
 #' @param conf.level The level of confidence of the confidence interval.
 #' @param plot Whether to show a plot of the sampling distribution of Cohen's
-#' \emph{d} and the confidence interval. This can only be used if specifying
-#' one value for \code{d}, \code{n}, and \code{conf.level}.
-#' @param w The desired 'half-width' or margin of error of the confidence
+#' *d* and the confidence interval. This can only be used if specifying
+#' one value for `d`, `n`, and `conf.level`.
+#' @param w The desired maximum 'half-width' or margin of error of the confidence
 #' interval.
 #' @param extensive Whether to only return the required sample size, or more
 #' extensive results.
-#' @param silent Whether to provide \code{FALSE} or suppress (\code{TRUE})
+#' @param silent Whether to provide `FALSE` or suppress (`TRUE`)
 #' warnings.  This is useful because function 'qt', which is used under the
-#' hood (see \code{\link{qt}} for more information), warns that 'full precision
+#' hood (see [qt()] for more information), warns that 'full precision
 #' may not have been achieved' when the density of the distribution is very
 #' close to zero. This is normally no cause for concern, because with sample
 #' sizes this big, small deviations have little impact.
-#' @return \code{dCohensd} (or \code{dd}) gives the density, \code{pCohensd}
-#' (or \code{pd}) gives the distribution function, \code{qCohensd} (or
-#' \code{qd}) gives the quantile function, and \code{rCohensd} (or \code{rd})
+#' @return `dCohensd` (or `dd`) gives the density, `pCohensd`
+#' (or `pd`) gives the distribution function, `qCohensd` (or
+#' `qd`) gives the quantile function, and `rCohensd` (or `rd`)
 #' generates random deviates.
 #'
-#' \code{pdExtreme} returns the probability (or probabilities) of finding a
-#' Cohen's \emph{d} equal to or more extreme than the specified value(s).
+#' `pdExtreme` returns the probability (or probabilities) of finding a
+#' Cohen's *d* equal to or more extreme than the specified value(s).
 #'
-#' \code{pdMild} returns the probability (or probabilities) of finding a
-#' Cohen's \emph{d} equal to or \emph{less} extreme than the specified
+#' `pdMild` returns the probability (or probabilities) of finding a
+#' Cohen's *d* equal to or *less* extreme than the specified
 #' value(s).
 #'
-#' \code{pdInterval} returns the probability of finding a Cohen's \emph{d} that
-#' lies in between the two specified values of Cohen's \emph{d}.
+#' `pdInterval` returns the probability of finding a Cohen's *d* that
+#' lies in between the two specified values of Cohen's *d*.
 #'
-#' \code{cohensdCI} provides the confidence interval(s) for a given Cohen's
-#' \emph{d} value.
+#' `cohensdCI` provides the confidence interval(s) for a given Cohen's
+#' *d* value.
 #'
-#' \code{pwr.cohensdCI} provides the sample size required to obtain a
-#' confidence interval for Cohen's \emph{d} with a desired width.
-#' @author Gjalt-Jorn Peters
+#' `pwr.cohensdCI` provides the sample size required to obtain a
+#' confidence interval for Cohen's *d* with a desired width.
+#' @author Gjalt-Jorn Peters (Open University of the Netherlands), with
+#' the exported MBESS function conf.limits.nct written by Ken Kelley
+#' (University of Notre Dame), and with an error noticed by Guy Prochilo
+#' (University of Melbourne).
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{convert.d.to.t}}, \code{\link{convert.t.to.d}},
-#' \code{\link{dt}}, \code{\link{pt}}, \code{\link{qt}}, \code{\link{rt}}
+#' @seealso [convert.d.to.t()], [convert.t.to.d()],
+#' [dt()], [pt()], [qt()], [rt()]
 #' @references
 #'
 #' Peters, G. J. Y. & Crutzen, R. (2017) Knowing exactly how effective an
@@ -183,8 +190,8 @@ dCohensd <- dd <- function(x, df=NULL,
 #' @rdname cohensDdistribution
 pCohensd <- pd <- function(q, df, populationD = 0, lower.tail=TRUE) {
   ### Return p-value for given Cohen's d
-  return(stats::pt(ufs::convert.d.to.t(q, df=df), df,
-                   ncp=ufs::convert.d.to.t(populationD, df=df),
+  return(stats::pt(convert.d.to.t(q, df=df), df,
+                   ncp=convert.d.to.t(populationD, df=df),
                    lower.tail=lower.tail));
 }
 
@@ -193,10 +200,11 @@ pCohensd <- pd <- function(q, df, populationD = 0, lower.tail=TRUE) {
 #' @rdname cohensDdistribution
 qCohensd <- qd <- function(p, df, populationD = 0, lower.tail=TRUE) {
   ### Return Cohen's d for given p-value
-  return(ufs::convert.t.to.d(stats::qt(p, df,
-                                       ncp=ufs::convert.d.to.t(d=populationD,
-                                                               df=df),
-                                       lower.tail=lower.tail), df + 2));
+  return(convert.t.to.d(stats::qt(p=p, df=df,
+                                  ncp=convert.d.to.t(d=populationD,
+                                                     df=df),
+                                  lower.tail=lower.tail),
+                       df=df));
 }
 
 #' @export rCohensd
@@ -204,28 +212,28 @@ qCohensd <- qd <- function(p, df, populationD = 0, lower.tail=TRUE) {
 #' @rdname cohensDdistribution
 rCohensd <- rd <- function(n, df, populationD = 0) {
   ### Return random Cohen's d value(s)
-  return(ufs::convert.t.to.d(stats::rt(n, df=df,
-                                       ncp=ufs::convert.d.to.t(d=populationD,
-                                                               df=df)),
-                             df=df));
+  return(convert.t.to.d(stats::rt(n, df=df,
+                                  ncp=convert.d.to.t(d=populationD,
+                                                     df=df)),
+                        df=df));
 }
 
 #' @export
 #' @rdname cohensDdistribution
 pdInterval <- function(ds, n, populationD = 0) {
-  return(ufs::pd(max(ds), df=n - 2, populationD=populationD) -
-           ufs::pd(min(ds), df=n - 2, populationD=populationD));
+  return(pd(max(ds), df=n - 2, populationD=populationD) -
+           pd(min(ds), df=n - 2, populationD=populationD));
 }
 
 #' @export
 #' @rdname cohensDdistribution
 pdExtreme <- function(d, n, populationD = 0) {
-  return(2 * ufs::pd(d, n - 2, populationD=populationD,
-                     lower.tail = (d <= populationD)));
+  return(2 * pd(d, df=n - 2, populationD=populationD,
+                lower.tail = (d <= populationD)));
 }
 
 #' @export
 #' @rdname cohensDdistribution
 pdMild <- function(d, n, populationD = 0) {
-  return(1 - ufs::pdExtreme(d, n, populationD=populationD));
+  return(1 - pdExtreme(d, n, populationD=populationD));
 }

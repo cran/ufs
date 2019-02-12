@@ -47,7 +47,7 @@ the height to use.}
 \item{color}{Color to use if colors are specified for each diamond.}
 
 \item{returnLayerOnly}{Set this to TRUE to only return the
-\code{\link{ggplot}} layer of the diamondplot, which can be useful to
+\code{\link[=ggplot]{ggplot()}} layer of the diamondplot, which can be useful to
 include it in other plots.}
 
 \item{outputFile}{A file to which to save the plot.}
@@ -58,17 +58,17 @@ centimeters by default, see \code{ggsaveParams}).}
 \item{ggsaveParams}{Parameters to pass to ggsave when saving the plot.}
 
 \item{\dots}{Additional arguments will be passed to
-\code{\link{ggDiamondLayer}}.}
+\code{\link[=ggDiamondLayer]{ggDiamondLayer()}}.}
 }
 \value{
-A [ggplot2::ggplot()] plot with a \code{\link{ggDiamondLayer}} is
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} plot with a \code{\link[=ggDiamondLayer]{ggDiamondLayer()}} is
 returned.
 }
 \description{
-This function constructs a diamond plot using \code{\link{ggDiamondLayer}}.
+This function constructs a diamond plot using \code{\link[=ggDiamondLayer]{ggDiamondLayer()}}.
 It's normally not necessary to call this function directly: instead, use
-\code{\link{meansDiamondPlot}} \code{\link{meanSDtoDiamondPlot}}, and
-[factorLoadingDiamondCIplot()].
+\code{\link[=meansDiamondPlot]{meansDiamondPlot()}} \code{\link[=meanSDtoDiamondPlot]{meanSDtoDiamondPlot()}}, and
+\code{\link[=factorLoadingDiamondCIplot]{factorLoadingDiamondCIplot()}}.
 }
 \examples{
 
@@ -96,12 +96,12 @@ diamondPlot(tmpDf, generateColors=c('green', 'red'),
 
 }
 \seealso{
-\code{\link{meansDiamondPlot}}, \code{\link{meanSDtoDiamondPlot}},
-\code{\link{ggDiamondLayer}}, [factorLoadingDiamondCIplot()]
+\code{\link[=meansDiamondPlot]{meansDiamondPlot()}}, \code{\link[=meanSDtoDiamondPlot]{meanSDtoDiamondPlot()}},
+\code{\link[=ggDiamondLayer]{ggDiamondLayer()}}, \code{\link[=factorLoadingDiamondCIplot]{factorLoadingDiamondCIplot()}}
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{hplot}

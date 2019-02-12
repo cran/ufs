@@ -28,10 +28,9 @@ used instead of the variable names.}
 
 \item{xlab, ylab}{The labels for the x and y axes.}
 
-\item{scale_fill_function}{The function to pass to \code{\link{ggplot}} to
-provide the colors of the bars. If `NULL`, set to
-\code{ggplot2::scale_fill_viridis_d(labels = legendValueLabels,
-guide = ggplot2::guide_legend(title = NULL, nrow=legendRows, byrow=TRUE))}.}
+\item{scale_fill_function}{The function to pass to \code{\link[=ggplot]{ggplot()}} to
+provide the colors of the bars. If \code{NULL}, set to
+\code{ggplot2::scale_fill_viridis_d(labels = legendValueLabels, guide = ggplot2::guide_legend(title = NULL, nrow=legendRows, byrow=TRUE))}.}
 
 \item{fontColor, fontSize}{The color and size of the font used to display the
 labels}
@@ -59,7 +58,7 @@ which must each have the same length as the number of items specified in
 \code{items}. See the examples for, well, examples.}
 }
 \value{
-A \code{\link{ggplot}} plot is returned.
+A \code{\link[=ggplot]{ggplot()}} plot is returned.
 }
 \description{
 These are convenience functions to quickly generate plots for multiple
@@ -81,11 +80,11 @@ ggEasyBar(mtcars, c('gear', 'carb'),
                             rightAnchors=c("More", "Greater")));
 }
 \seealso{
-\code{\link{geom_ridgeline}}, \code{\link{geom_bar}}
+\code{\link[=geom_ridgeline]{geom_ridgeline()}}, \code{\link[=geom_bar]{geom_bar()}}
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{hplot}

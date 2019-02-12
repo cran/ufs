@@ -7,12 +7,12 @@
 cat0(..., sep = "")
 }
 \arguments{
-\item{...}{The character vector(s) to print; passed to [cat].}
+\item{...}{The character vector(s) to print; passed to \link{cat}.}
 
-\item{sep}{The separator to pass to [cat], of course, `""` by default.}
+\item{sep}{The separator to pass to \link{cat}, of course, \code{""} by default.}
 }
 \value{
-Nothing (invisible `NULL`, like [cat]).
+Nothing (invisible \code{NULL}, like \link{cat}).
 }
 \description{
 The cat0 function is to cat what paste0 is to paste; it

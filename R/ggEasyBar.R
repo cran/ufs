@@ -12,18 +12,18 @@
 #' used instead of the variable names.
 #' @param sortByMean Whether to sort the variables by mean value.
 #' @param xlab,ylab The labels for the x and y axes.
-#' @param scale_fill_function The function to pass to \code{\link{ggplot}} to
+#' @param scale_fill_function The function to pass to [ggplot()] to
 #' provide the colors of the bars. If `NULL`, set to
-#' \code{ggplot2::scale_fill_viridis_d(labels = legendValueLabels,
-#' guide = ggplot2::guide_legend(title = NULL, nrow=legendRows, byrow=TRUE))}.
+#' `ggplot2::scale_fill_viridis_d(labels = legendValueLabels,
+#' guide = ggplot2::guide_legend(title = NULL, nrow=legendRows, byrow=TRUE))`.
 #' @param fontColor,fontSize The color and size of the font used to display the
 #' labels
 #' @param labelMinPercentage The minimum percentage that a category must reach
 #' before the label is printed (in whole percentages, i.e., on a scale from 0
 #' to 100).
 #' @param showInLegend What to show in the legend in addition to the values;
-#' nothing ("\code{none}"), the frequencies ("\code{freq}"), the percentages
-#' ("\code{perc}"), or both ("\code{both}"). This is only used if only one
+#' nothing ("`none`"), the frequencies ("`freq`"), the percentages
+#' ("`perc`"), or both ("`both`"). This is only used if only one
 #' variable is shown in the plot; afterwise, after all, the absolute
 #' frequencies and percentages differ for each variable.
 #' @param legendRows Number or rows in the legend.
@@ -32,14 +32,14 @@
 #' @param biAxisLabels This can be used to specify labels to use if you want to
 #' use labels on both the left and right side. This is mostly useful when
 #' plotting single questions or semantic differentials. This must be a list
-#' with two character vectors, \code{leftAnchors} and \code{rightAnchors},
+#' with two character vectors, `leftAnchors` and `rightAnchors`,
 #' which must each have the same length as the number of items specified in
-#' \code{items}. See the examples for, well, examples.
-#' @return A \code{\link{ggplot}} plot is returned.
+#' `items`. See the examples for, well, examples.
+#' @return A [ggplot()] plot is returned.
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{geom_ridgeline}}, \code{\link{geom_bar}}
+#' @seealso [geom_ridgeline()], [geom_bar()]
 #' @keywords hplot
 #' @rdname ggEasyPlots
 #' @examples

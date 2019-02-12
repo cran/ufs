@@ -28,10 +28,10 @@
 #' for Cramer's V.  If FALSE, the Fisher's Z conversion is used.
 #' @param samples If bootstrapping, the number of samples to generate (of
 #' course, more samples means more accuracy and longer processing time).
-#' @param var.equal Whether to test for equal variances ('test'), assume
-#' equality ('yes'), or assume unequality ('no'). See [userfriendlyscience::meanDiff()]
+#' @param var.equal Whether to test for equal variances (`test`), assume
+#' equality (`yes`), or assume unequality (`no`). See [userfriendlyscience::meanDiff()]
 #' for more information.
-#' @param \dots Any additonal arguments are sometimes used to specify exactly
+#' @param ... Any additonal arguments are sometimes used to specify exactly
 #' how statistics and effect sizes should be computed.
 #' @return
 #'
@@ -68,7 +68,7 @@
 #'
 #' @export
 computeStatistic_t <- function(var1, var2, conf.level=.95,
-                               var.equal='test', ...) {
+                               var.equal=TRUE, ...) {
 
   if (nlevels(as.factor(var1)) == 2) {
     dichotomous <- factor(var1);
@@ -162,7 +162,7 @@ computeStatistic_chisq <- function(var1, var2, conf.level=.95,
 #' @rdname associationMatrixHelperFunctions
 #' @export
 computeEffectSize_d <- function(var1, var2, conf.level=.95,
-                                var.equal="test", ...) {
+                                var.equal=TRUE, ...) {
   if (length(unique(stats::na.omit(var1))) == 2) {
     dichotomous <- factor(var1);
     interval <- var2;
@@ -179,8 +179,8 @@ computeEffectSize_d <- function(var1, var2, conf.level=.95,
   tTest <- stats::t.test(interval ~ dichotomous,
                          var.equal = var.equal)$statistic;
   dValue <- ufs::convert.t.to.d(tTest,
-                                n1 = sum(dichotomous==min(dichotomous)),
-                                n2 = sum(dichotomous==max(dichotomous)));
+                                n1 = sum(as.numeric(dichotomous)==min(as.numeric(dichotomous))),
+                                n2 = sum(as.numeric(dichotomous)==max(as.numeric(dichotomous))));
 
   res$object <- ufs::confIntD(dValue,
                               n=sum(!is.na(interval)),
@@ -419,6 +419,8 @@ associationMatrixESDefaults <- list(dichotomous =
 #' @param var.equal Whether to test for equal variances ('test'), assume
 #' equality ('yes'), or assume unequality ('no'). See [userfriendlyscience::meanDiff()]
 #' for more information.
+#' @param ... Addition arguments are passed on to the [print()] amd [pander::pander()]
+#' functions.
 #' @return
 #'
 #' An object with the input and several output variables, one of which is a
@@ -450,7 +452,7 @@ associationMatrixESDefaults <- list(dichotomous =
 #' found for two dichotomous variables when searching in
 #' associationMatrixStatDefaults is 'chisq', and the string found in
 #' associationMatrixESDefaults is 'v'.  associationMatrix then calls
-#' computeStatistic[['chisq']] and computeEffectSize[['v']], providing the two
+#' `computeStatistic[['chisq']]` and `computeEffectSize[['v']]`, providing the two
 #' variables as arguments, as well as passing the 'conf.level' argument. These
 #' two functions then each return an object that associationMatrix extracts the
 #' information from. Inspect the source code of these functions (by typing
@@ -460,6 +462,7 @@ associationMatrixESDefaults <- list(dichotomous =
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
 #' @keywords utilities univar
+#' @rdname associationMatrix
 #' @examples
 #'
 #'
@@ -485,7 +488,7 @@ associationMatrix <- function(dat=NULL, x=NULL, y=NULL, conf.level = .95,
                               type=c("R", "html", "latex"), file="",
                               statistic = associationMatrixStatDefaults,
                               effectSize = associationMatrixESDefaults,
-                              var.equal = "test") {
+                              var.equal = TRUE) {
 
   ### Make object to store results
   res <- list(input = as.list(environment()),
@@ -676,7 +679,7 @@ associationMatrix <- function(dat=NULL, x=NULL, y=NULL, conf.level = .95,
           tmpFun(dat[,curXvar], dat[,curYvar], conf.level = conf.level);
         ### We repeat the same trick for the effect sizes.
         tmpFun <- match.fun(effectSize[[measurementLevelsX[xCounter]]]
-                            [[measurementLevelsY[yCounter]]]);
+                                      [[measurementLevelsY[yCounter]]]);
         res$intermediate$effectSizes[[curXvar]][[curYvar]] <-
           tmpFun(dat[,curXvar], dat[,curYvar], conf.level = conf.level,
                  var.equal = var.equal);
@@ -781,6 +784,9 @@ associationMatrix <- function(dat=NULL, x=NULL, y=NULL, conf.level = .95,
   return(res);
 }
 
+#' @method print associationMatrix
+#' @rdname associationMatrix
+#' @export
 print.associationMatrix <- function (x, type = x$input$type,
                                      info = x$input$info,
                                      file = x$input$file, ...) {
@@ -818,12 +824,16 @@ print.associationMatrix <- function (x, type = x$input$type,
   invisible();
 }
 
-# pander.associationMatrix <- function (x,
-#                                      info = x$input$info,
-#                                      file = x$input$file, ...) {
-#
-#   ### Extract matrix to print (es, ci, or full)
-#   pander(x$output$matrix[[info[1]]],
-#          missing="");
-#   invisible();
-# }
+#' @method pander associationMatrix
+#' @rdname associationMatrix
+#' @importFrom pander pander
+#' @export
+pander.associationMatrix <- function (x,
+                                     info = x$input$info,
+                                     file = x$input$file, ...) {
+
+  ### Extract matrix to print (es, ci, or full)
+  pander(x$output$matrix[[info[1]]],
+         missing="");
+  invisible();
+}

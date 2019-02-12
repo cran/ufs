@@ -1,8 +1,8 @@
 Package: ufs
 Type: Package
 Title: Quantitative Analysis Made Accessible
-Version: 0.1.0
-Date: 2019-01-16
+Version: 0.2.0
+Date: 2019-02-11
 Authors@R: c(person("Gjalt-Jorn", "Peters",
                     email = "gjalt-jorn@userfriendlyscience.com",
                     role = c("aut", "cre", "ctb")))
@@ -19,7 +19,7 @@ Description: This is a new version of the 'userfriendlyscience' package,
     distributions, to generate confidence intervals, to plan study sample sizes
     for confidence intervals, and to do some basic operations such as
     (dis)attenuate effect size estimates.
-URL: https://userfriendlyscience.com
+URL: https://ufs.opens.science
 BugReports: https://github.com/matherion/ufs/issues
 Encoding: UTF-8
 LazyData: true
@@ -31,7 +31,7 @@ Imports: BiasedUrn (>= 1.07), dplyr (>= 0.7.6), ggplot2 (>= 2.2.1),
         gtable (>= 0.2.0), pander (>= 0.6.3), scales (>= 1.0.0),
         SuppDists (>= 1.1.9), viridis (>= 0.5.1)
 NeedsCompilation: no
-Packaged: 2019-01-16 15:19:31 UTC; gjalt
+Packaged: 2019-02-12 10:34:20 UTC; micro
 Author: Gjalt-Jorn Peters [aut, cre, ctb]
 Repository: CRAN
-Date/Publication: 2019-01-16 15:50:03 UTC
+Date/Publication: 2019-02-12 13:10:03 UTC

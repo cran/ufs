@@ -1,8 +1,8 @@
 #' Basic diamond plot construction function
 #'
-#' This function constructs a diamond plot using \code{\link{ggDiamondLayer}}.
+#' This function constructs a diamond plot using [ggDiamondLayer()].
 #' It's normally not necessary to call this function directly: instead, use
-#' \code{\link{meansDiamondPlot}} \code{\link{meanSDtoDiamondPlot}}, and
+#' [meansDiamondPlot()] [meanSDtoDiamondPlot()], and
 #' [factorLoadingDiamondCIplot()].
 #'
 #'
@@ -15,35 +15,35 @@
 #' rows).
 #' @param otherAxisCol The column in the dataframe containing the values that
 #' determine where on the Y axis the diamond should be placed. If this is not
-#' available in the dataframe, specify it manually using \code{yValues}.
+#' available in the dataframe, specify it manually using `yValues`.
 #' @param yValues The values that determine where on the Y axis the diamond
 #' should be placed (can also be a column in the dataframe; in that case, use
-#' \code{otherAxisCol}.
+#' `otherAxisCol`.
 #' @param yLabels The labels to use for for each diamond (placed on the Y
 #' axis).
 #' @param xlab,ylab The labels of the X and Y axes.
 #' @param autoSize Whether to make the height of each diamond conditional upon
 #' its length (the width of the confidence interval).
-#' @param fixedSize If not using relative heights, \code{fixedSize} determines
+#' @param fixedSize If not using relative heights, `fixedSize` determines
 #' the height to use.
 #' @param theme The theme to use.
 #' @param color Color to use if colors are specified for each diamond.
 #' @param returnLayerOnly Set this to TRUE to only return the
-#' \code{\link{ggplot}} layer of the diamondplot, which can be useful to
+#' [ggplot()] layer of the diamondplot, which can be useful to
 #' include it in other plots.
 #' @param outputFile A file to which to save the plot.
 #' @param outputWidth,outputHeight Width and height of saved plot (specified in
-#' centimeters by default, see \code{ggsaveParams}).
+#' centimeters by default, see `ggsaveParams`).
 #' @param ggsaveParams Parameters to pass to ggsave when saving the plot.
 #' @param \dots Additional arguments will be passed to
-#' \code{\link{ggDiamondLayer}}.
-#' @return A [ggplot2::ggplot()] plot with a \code{\link{ggDiamondLayer}} is
+#' [ggDiamondLayer()].
+#' @return A [ggplot2::ggplot()] plot with a [ggDiamondLayer()] is
 #' returned.
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{meansDiamondPlot}}, \code{\link{meanSDtoDiamondPlot}},
-#' \code{\link{ggDiamondLayer}}, [factorLoadingDiamondCIplot()]
+#' @seealso [meansDiamondPlot()], [meanSDtoDiamondPlot()],
+#' [ggDiamondLayer()], [factorLoadingDiamondCIplot()]
 #' @keywords hplot
 #' @examples
 #'

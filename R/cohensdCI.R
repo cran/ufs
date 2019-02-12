@@ -10,7 +10,7 @@ cohensdCI <- confIntD <- function(d, n, conf.level = .95, plot=FALSE, silent=TRU
   ci.bound.lo <- (1 - conf.level) / 2;
   ci.bound.hi <- 1 - (1 - conf.level) / 2;
 
-  ### From a post at the R-help mailig list by Luke Tierney, see
+  ### From a post at the R-help mailing list by Luke Tierney, see
   ### http://stackoverflow.com/questions/3903157/how-can-i-check-whether-a-function-call-results-in-a-warning
   wHandler <- function(w) {
     myWarnings <<- c(myWarnings, list(w));
@@ -18,24 +18,56 @@ cohensdCI <- confIntD <- function(d, n, conf.level = .95, plot=FALSE, silent=TRU
   }
   myWarnings <- NULL;
 
+
+  ### Based on @GuyProchilo's message on Twitter at 2019-02-11
+
+  ### Now following http://home.cc.umanitoba.ca/~kesel/CIl_Kelly.pdf
+
+  ### Here, the CI isn't found by using Cohen's d's distribution, for the relevant
+  ### NCP in the t distribution (as converted from d), but by finding the two
+  ### NCPs that yield two noncentral t distribution where for the first, the
+  ### p=.025 corresponds to the relevant NCP, and for the second, the p=.975
+  ### corresponds to the relevant NCP.
+
+  ### The MBESS method uses both nlm and optimize, probably because there are
+  ### situations where either doesn't work quite as expected. I'll simply export
+  ### that method.
+
+
+
+
   if (length(d) == length(n)) {
     res <- t(sapply(1:length(d), function(i) {
-      return(withCallingHandlers(c(ufs::qCohensd(ci.bound.lo,
-                                                 n[i],
-                                                 populationD=d[i]),
-                                   ufs::qCohensd(ci.bound.hi,
-                                                 n[i],
-                                                 populationD=d[i])),
-                                 warning = wHandler));
+      return(convert.t.to.d(from_MBESS_conf.limits.nct(ncp=convert.d.to.t(d[i],
+                                                                          df=n[i]-2),
+                                                       df=n[i]-2,
+                                                       conf.level=conf.level),
+                            df=n[i]-2));
+      # return(withCallingHandlers(c(qCohensd(p=ci.bound.lo,
+      #                                       df=n[i]-2,
+      #                                       populationD=d[i]),
+      #                              qCohensd(p=ci.bound.hi,
+      #                                       df=n[i]-2,
+      #                                       populationD=d[i])),
+      #                            warning = wHandler));
     }));
   } else if ((length(d) == 1) || (length(n) == 1)) {
-    res <- withCallingHandlers(matrix(c(ufs::qCohensd(ci.bound.lo,
-                                                      n,
-                                                      populationD=d),
-                                        ufs::qCohensd(ci.bound.hi,
-                                                      n,
-                                                      populationD=d)), ncol=2),
-                               warning = wHandler);
+    if (length(d) == 1) d <- rep(d, length(n));
+    if (length(n) == 1) n <- rep(n, length(d));
+    res <- t(sapply(1:length(d), function(i) {
+      return(convert.t.to.d(from_MBESS_conf.limits.nct(ncp=convert.d.to.t(d[i],
+                                                                          df=n[i]-2),
+                                                       df=n[i]-2,
+                                                       conf.level=conf.level),
+                            df=n[i]-2));
+    }));
+    # res <- withCallingHandlers(matrix(c(qCohensd(p=ci.bound.lo,
+    #                                              df=n-2,
+    #                                              populationD=d),
+    #                                     qCohensd(p=ci.bound.hi,
+    #                                              df=n-2,
+    #                                              populationD=d)), ncol=2),
+    #                            warning = wHandler);
   } else {
     stop("Either specify vectors of equal length as 'd' and 'n', or a ",
          "single value for one and a vector for the other.");
@@ -108,7 +140,7 @@ cohensdCI <- confIntD <- function(d, n, conf.level = .95, plot=FALSE, silent=TRU
     if (any(precisionWarnings)) {
       cat0("Function 'qt', which is used under the hood of this function (see ?qt for more information), ",
            "warned that 'full precision may not have been achieved'. ",
-           "This is normally no cause for concern, because with sample sizes this big, small deviations ",
+           "This is normally no cause for concern, because with sufficiently large sample sizes, small deviations ",
            "have little impact, but informing you seemed appropriate nonetheless.\n\n");
     }
     if (!all(precisionWarnings)) {

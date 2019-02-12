@@ -1,4 +1,4 @@
-#' Attentuate a Cohen's d estimate for unreliability in the continuous variable
+#' Attenuate a Cohen's d estimate for unreliability in the continuous variable
 #'
 #' @param d The (disattenuated) value of Cohen's d
 #' @param reliability The reliability of the measurements of the continuous variable

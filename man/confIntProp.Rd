@@ -25,10 +25,10 @@ upper bound.
 This function simply computes confidence intervals for proportions.
 }
 \details{
-This function is the adapted source code of \code{\link{binom.test}}. Ir
-uses \code{\link{pbeta}}, with some lines of code taken from the
-\code{\link{binom.test}} source. Specifically, the count for the low
-category is specified as first 'shape argument' to \code{\link{pbeta}}, and
+This function is the adapted source code of \code{\link[=binom.test]{binom.test()}}. Ir
+uses \code{\link[=pbeta]{pbeta()}}, with some lines of code taken from the
+\code{\link[=binom.test]{binom.test()}} source. Specifically, the count for the low
+category is specified as first 'shape argument' to \code{\link[=pbeta]{pbeta()}}, and
 the total count (either the sum of the count for the low category and the
 count for the high category, or the total number of cases if
 \code{compareHiToLo} is \code{FALSE}) minus the count for the low category
@@ -44,13 +44,13 @@ as the second 'shape argument'.
 
 }
 \seealso{
-\code{\link{binom.test}} and \code{\link{ggProportionPlot}, the
+\code{\link[=binom.test]{binom.test()}} and \code{\link{ggProportionPlot}, the
 function for which this was written.}
 }
 \author{
-Unknown (see \code{\link{binom.test}}; adapted by Gjalt-Jorn Peters)
+Unknown (see \code{\link[=binom.test]{binom.test()}}; adapted by Gjalt-Jorn Peters)
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{htest}
 \keyword{univar}

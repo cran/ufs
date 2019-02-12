@@ -9,38 +9,38 @@
 
 #' The distribution of Omega Squared
 #'
-#' These functions use some conversion to and from the \emph{F} distribution to
+#' These functions use some conversion to and from the *F* distribution to
 #' provide the Omega Squared distribution.
 #'
-#' The functions use \code{\link{convert.omegasq.to.f}} and
-#' \code{\link{convert.f.to.omegasq}} to provide the Omega Squared
+#' The functions use [convert.omegasq.to.f()] and
+#' [convert.f.to.omegasq()] to provide the Omega Squared
 #' distribution.
 #'
 #' @aliases domegaSq pomegaSq qomegaSq romegaSq
 #' @param x,q Vector of quantiles, or, in other words, the value(s) of Omega
 #' Squared.
-#' @param p Vector of probabilites (\emph{p}-values).
+#' @param p Vector of probabilites (*p*-values).
 #' @param df1,df2 Degrees of freedom for the numerator and the denominator,
 #' respectively.
 #' @param n Desired number of Omega Squared values.
 #' @param populationOmegaSq The value of Omega Squared in the population; this
 #' determines the center of the Omega Squared distribution. This has not been
-#' implemented yet in this version of \code{userfriendlyscience}. If anybody
-#' has the inverse of \code{\link{convert.ncf.to.omegasq}} for me, I'll happily
+#' implemented yet in this version of `ufs`. If anybody
+#' has the inverse of [convert.ncf.to.omegasq()] for me, I'll happily
 #' integrate this.
 #' @param lower.tail logical; if TRUE (default), probabilities are the
 #' likelihood of finding an Omega Squared smaller than the specified value;
 #' otherwise, the likelihood of finding an Omega Squared larger than the
 #' specified value.
-#' @return \code{domegaSq} gives the density, \code{pomegaSq} gives the
-#' distribution function, \code{qomegaSq} gives the quantile function, and
-#' \code{romegaSq} generates random deviates.
+#' @return `domegaSq` gives the density, `pomegaSq` gives the
+#' distribution function, `qomegaSq` gives the quantile function, and
+#' `romegaSq` generates random deviates.
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{convert.omegasq.to.f}},
-#' \code{\link{convert.f.to.omegasq}}, \code{\link{df}}, \code{\link{pf}},
-#' \code{\link{qf}}, \code{\link{rf}}
+#' @seealso [convert.omegasq.to.f()],
+#' [convert.f.to.omegasq()], [df()], [pf()],
+#' [qf()], [rf()]
 #' @keywords univar
 #' @examples
 #'

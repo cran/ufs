@@ -4,7 +4,7 @@
 #' Needed for Change.
 #'
 #' @aliases convert.d.to.nnc convert.d.to.eer
-#' @param d The value of Cohen's \emph{d}.
+#' @param d The value of Cohen's *d*.
 #' @param cer The Control Event Rate.
 #' @param r The correlation between the determinant and behavior (for mediated
 #' Numbers Needed for Change).

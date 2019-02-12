@@ -46,6 +46,6 @@ https://stackoverflow.com/questions/9265003/analysis-of-multiple-response.
 Ananda Mahto; implemented in this package (and tweaked a bit) by
 Gjalt-Jorn Peters.
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{utilities}

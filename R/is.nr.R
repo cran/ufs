@@ -1,4 +1,4 @@
-#' \code{NULL} and \code{NA} 'proof' checking of whether something is a number
+#' `NULL` and `NA` 'proof' checking of whether something is a number
 #'
 #' Convenience function that returns TRUE if the argument is not null, not NA,
 #' and is.numeric.

@@ -9,35 +9,35 @@ factorLoadingDiamondCIplot(fa, xlab = "Factor Loading",
   theme = ggplot2::theme_bw(), ...)
 }
 \arguments{
-\item{fa}{The object produced by the [psych::fa()] function from the
-[psych::psych] package. It is important that the \code{n.iter} argument
-of [psych::fa()] was set to a realistic number, because otherwise, no
+\item{fa}{The object produced by the \code{\link[psych:fa]{psych::fa()}} function from the
+\link[psych:psych]{psych::psych} package. It is important that the \code{n.iter} argument
+of \code{\link[psych:fa]{psych::fa()}} was set to a realistic number, because otherwise, no
 confidence intervals will be available.}
 
 \item{xlab}{The label for the x axis.}
 
 \item{colors}{The colors used for the factors. The default uses the discrete
-\code{\link{viridis}} palette, which is optimized for perceptual uniformity,
+\code{\link[=viridis]{viridis()}} palette, which is optimized for perceptual uniformity,
 maintaining its properties when printed in grayscale, and designed for
 colourblind readers. A vector can also be supplied; the colors must be valid
-arguments to \code{\link{colorRamp}} (and therefore, to
-\code{\link{col2rgb}}).}
+arguments to \code{\link[=colorRamp]{colorRamp()}} (and therefore, to
+\code{\link[=col2rgb]{col2rgb()}}).}
 
 \item{labels}{The labels to use for the items (on the Y axis).}
 
 \item{theme}{The ggplot2 theme to use.}
 
 \item{\dots}{Additional arguments will be passed to
-\code{\link{ggDiamondLayer}}. This can be used to set, for example, the
+\code{\link[=ggDiamondLayer]{ggDiamondLayer()}}. This can be used to set, for example, the
 transparency (alpha value) of the diamonds to a lower value using e.g.
 \code{alpha=.5}.}
 }
 \value{
-A [ggplot2::ggplot()] plot with several
-\code{\link{ggDiamondLayer}}s is returned.
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} plot with several
+\code{\link[=ggDiamondLayer]{ggDiamondLayer()}}s is returned.
 }
 \description{
-This function uses the \code{\link{diamondPlot}} to visualise the results of
+This function uses the \code{\link[=diamondPlot]{diamondPlot()}} to visualise the results of
 a factor analyses. Because the factor loadings computed in factor analysis
 are point estimates, they may vary from sample to sample. The factor
 loadings for any given sample are usually not relevant; samples are but
@@ -73,13 +73,13 @@ factorLoadingDiamondCIplot(psych::fa(Bechtoldt,
 
 }
 \seealso{
-[psych::fa()]ss, \code{\link{meansDiamondPlot}},
-\code{\link{meanSDtoDiamondPlot}}, \code{\link{diamondPlot}},
-\code{\link{ggDiamondLayer}}
+\code{\link[psych:fa]{psych::fa()}}ss, \code{\link[=meansDiamondPlot]{meansDiamondPlot()}},
+\code{\link[=meanSDtoDiamondPlot]{meanSDtoDiamondPlot()}}, \code{\link[=diamondPlot]{diamondPlot()}},
+\code{\link[=ggDiamondLayer]{ggDiamondLayer()}}
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{hplot}

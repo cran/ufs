@@ -7,16 +7,16 @@
 isTrue(x, na = FALSE)
 }
 \arguments{
-\item{x}{The vector to check for `TRUE`, `FALSE`, and `NA` values.}
+\item{x}{The vector to check for \code{TRUE}, \code{FALSE}, and \code{NA} values.}
 
-\item{na}{What to return for `NA` values.}
+\item{na}{What to return for \code{NA} values.}
 }
 \value{
 A logical vector.
 }
 \description{
-Returns `TRUE` for `TRUE` elements, `FALSE` for `FALSE` elements,
-and whatever is specified in `na` for `NA` items.
+Returns \code{TRUE} for \code{TRUE} elements, \code{FALSE} for \code{FALSE} elements,
+and whatever is specified in \code{na} for \code{NA} items.
 }
 \examples{
 isTrue(c(TRUE, FALSE, NA));

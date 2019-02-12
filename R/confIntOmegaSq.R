@@ -1,7 +1,7 @@
 #' Confidence intervals for Omega Squared
 #'
-#' This function used the MBESS function [MBESS::conf.limits.ncf()]
-#' and [MBESS::convert.ncf.to.omegasq()] to compute the point estimate and
+#' This function uses the MBESS function [MBESS::conf.limits.ncf()]
+#' and [convert.ncf.to.omegasq()] to compute the point estimate and
 #' confidence interval for Omega Squared (which have been lifted out of MBESS to
 #' avoid importing the whole package)
 #'
@@ -15,14 +15,14 @@
 #' round to, and any additonal arguments to pass on to the `print` function.
 #' @return
 #'
-#' A \code{confIntOmegaSq} object is returned, with as elements:
+#' A `confIntOmegaSq` object is returned, with as elements:
 #'
 #' \item{input}{The input arguments} \item{intermediate}{Objects generated
 #' while computing the output} \item{output}{The output of the function,
 #' consisting of:} \item{output$es}{The point estimate} \item{output$ci}{The
 #' confidence interval}
 #' @note Formula 16 in Steiger (2004) is used for the conversion in
-#' \code{\link{convert.ncf.to.omegasq}}.
+#' [convert.ncf.to.omegasq()].
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>

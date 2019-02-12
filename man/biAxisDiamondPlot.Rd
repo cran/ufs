@@ -51,7 +51,7 @@ datapoints.  Value between 0 and 1, where 0 signifies complete transparency
 
 \item{diamondColors}{The colours to use for the diamonds. If NULL, the
 \code{generateColors} argument can be used which will then be passed to
-\code{\link{diamondPlot}}.}
+\code{\link[=diamondPlot]{diamondPlot()}}.}
 
 \item{jitterWidth}{How much to jitter the individual datapoints
 horizontally.}
@@ -59,10 +59,10 @@ horizontally.}
 \item{jitterHeight}{How much to jitter the individual datapoints vertically.}
 
 \item{xbreaks}{Which breaks to use on the X axis (can be useful to override
-\code{\link{ggplot}}'s defaults).}
+\code{\link[=ggplot]{ggplot()}}'s defaults).}
 
 \item{xLabels}{Which labels to use for those breaks (can be useful to
-override \code{\link{ggplot}}'s defaults; especially useful in combination
+override \code{\link[=ggplot]{ggplot()}}'s defaults; especially useful in combination
 with \code{xBreaks} of course).}
 
 \item{xAxisLab}{Axis label for the X axis.}
@@ -93,20 +93,20 @@ centimeters by default, see \code{ggsaveParams}).}
 \item{\dots}{These arguments are passed on to diamondPlot].}
 }
 \value{
-Either just a plot (a [gtable::gtable()] object) or an object with
+Either just a plot (a \code{\link[gtable:gtable]{gtable::gtable()}} object) or an object with
 all produced objects and that plot.
 }
 \description{
-This is basically a [meansDiamondPlot()], but extended to allow
+This is basically a \code{\link[=meansDiamondPlot]{meansDiamondPlot()}}, but extended to allow
 specifying subquestions and anchors at the left and right side. This is
 convenient for psychological questionnaires when the anchors or dimensions
 were different from item to item. This function is used to function the left
-panel of the [behaviorchange::CIBER()] plot.
+panel of the \code{\link[behaviorchange:CIBER]{behaviorchange::CIBER()}} plot.
 }
 \details{
 This is a diamondplot that can be used for items/questions where the anchors
 of the response scales could be different for every item. For the rest, it
-is very similar to [meansDiamondPlot()].
+is very similar to \code{\link[=meansDiamondPlot]{meansDiamondPlot()}}.
 }
 \examples{
 
@@ -119,11 +119,11 @@ biAxisDiamondPlot(dat=mtcars,
 
 }
 \seealso{
-[behaviorchange::CIBER()], \code{\link{associationsDiamondPlot}}
+\code{\link[behaviorchange:CIBER]{behaviorchange::CIBER()}}, \code{\link[=associationsDiamondPlot]{associationsDiamondPlot()}}
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{hplot}

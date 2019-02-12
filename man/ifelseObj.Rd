@@ -18,7 +18,7 @@ One of the two objects
 }
 \description{
 The ifelseObj function just evaluates a condition, returning
-  one object if it's true, and another if it's false.
+one object if it's true, and another if it's false.
 }
 \examples{
 dat <- ifelseObj(sample(c(TRUE, FALSE), 1), mtcars, Orange);

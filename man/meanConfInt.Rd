@@ -19,16 +19,16 @@ or a mean and then either an sd and n or an se.}
 \item{sd, n}{A standard deviation and sample size; can be specified
 to compute the standard error.}
 
-\item{se}{The standard error (cna be specified instead of `sd` and `n`).}
+\item{se}{The standard error (cna be specified instead of \code{sd} and \code{n}).}
 
 \item{conf.level}{The confidence level of the interval.}
 
 \item{x, digits, \dots}{Respectively the object to print, the number of digits to
-round to, and any additonal arguments to pass on to the `print` function.}
+round to, and any additonal arguments to pass on to the \code{print} function.}
 }
 \value{
-And object with elements `input`, `intermediate`, and `output`,
-where `output` holds the result in list `ci`.
+And object with elements \code{input}, \code{intermediate}, and \code{output},
+where \code{output} holds the result in list \code{ci}.
 }
 \description{
 A confidence interval for the mean

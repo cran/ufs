@@ -18,7 +18,7 @@ with the least unique values and change it into a factor.}
 \item{conf.level}{Level of confidence for the confidence interval.}
 
 \item{x, digits, \dots}{Respectively the object to print, the number of digits to
-round to, and any additonal arguments to pass on to the `print` function.}
+round to, and any additonal arguments to pass on to the \code{print} function.}
 }
 \value{
 A \code{confIntOmegaSq} object is returned, with as elements:
@@ -29,14 +29,14 @@ consisting of:} \item{output$es}{The point estimate} \item{output$ci}{The
 confidence interval}
 }
 \description{
-This function used the MBESS function [MBESS::conf.limits.ncf()]
-and [MBESS::convert.ncf.to.omegasq()] to compute the point estimate and
+This function uses the MBESS function \code{\link[MBESS:conf.limits.ncf]{MBESS::conf.limits.ncf()}}
+and \code{\link[=convert.ncf.to.omegasq]{convert.ncf.to.omegasq()}} to compute the point estimate and
 confidence interval for Omega Squared (which have been lifted out of MBESS to
 avoid importing the whole package)
 }
 \note{
 Formula 16 in Steiger (2004) is used for the conversion in
-\code{\link{convert.ncf.to.omegasq}}.
+\code{\link[=convert.ncf.to.omegasq]{convert.ncf.to.omegasq()}}.
 }
 \examples{
 
@@ -52,6 +52,6 @@ https://doi.org/10.1037/1082-989X.9.2.164
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{bivar}

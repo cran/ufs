@@ -25,7 +25,7 @@ considered 'an event'.}
 The converted value.
 }
 \description{
-These two functions are used by [behaviorchange::nnc()] to compute the Numbers
+These two functions are used by \code{\link[behaviorchange:nnc]{behaviorchange::nnc()}} to compute the Numbers
 Needed for Change.
 }
 \examples{
@@ -37,14 +37,14 @@ convert.d.to.nnc(d=.5, cer=.25);
 \references{
 Gruijters, S. L., & Peters, G. Y. (2019). Gauging the
 impact of behavior change interventions: A tutorial on the Numbers
-Needed to Treat. *PsyArXiv.* doi:[10.31234/osf.io/2bau7](https://doi.org/10.31234/osf.io/2bau7)
+Needed to Treat. \emph{PsyArXiv.} doi:\href{https://doi.org/10.31234/osf.io/2bau7}{10.31234/osf.io/2bau7}
 }
 \seealso{
-[behaviorchange::nnc()]
+\code{\link[behaviorchange:nnc]{behaviorchange::nnc()}}
 }
 \author{
 Gjalt-Jorn Peters & Stefan Gruijters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{utilities}

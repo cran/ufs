@@ -2,7 +2,7 @@
 % Please edit documentation in R/attenuate.d.R
 \name{attenuate.d}
 \alias{attenuate.d}
-\title{Attentuate a Cohen's d estimate for unreliability in the continuous variable}
+\title{Attenuate a Cohen's d estimate for unreliability in the continuous variable}
 \usage{
 attenuate.d(d, reliability)
 }
@@ -15,7 +15,7 @@ attenuate.d(d, reliability)
 The attenuated value of Cohen's d
 }
 \description{
-Attentuate a Cohen's d estimate for unreliability in the continuous variable
+Attenuate a Cohen's d estimate for unreliability in the continuous variable
 }
 \examples{
 attenuate.d(.5, .8);

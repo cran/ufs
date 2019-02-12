@@ -12,7 +12,7 @@
 #'   reach 1 or more.
 #'
 #' @return A character vector of one element.
-#' @seealso \code{\link{noZero}}, \code{\link{formatR}}, \code{\link{formatPvalue}}
+#' @seealso [noZero()], [formatR()], [formatPvalue()]
 #' @export
 #'
 #' @examples ### With leading zero ...

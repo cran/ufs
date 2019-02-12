@@ -10,7 +10,7 @@ convertToNumeric(vector, byFactorLabel = FALSE)
 \item{vector}{The vector to convert.}
 
 \item{byFactorLabel}{When converting factors, whether to do this
-by their label value (`TRUE`) or their level value (`FALSE`).}
+by their label value (\code{TRUE}) or their level value (\code{FALSE}).}
 }
 \value{
 The converted vector.

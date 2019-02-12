@@ -41,8 +41,8 @@ pwr.cohensdCI(d, w = 0.1, conf.level = 0.95, extensive = FALSE,
 }
 \arguments{
 \item{n, n1, n2}{Desired number of Cohen's \emph{d} values for \code{rCohensd} and
-\code{rd} (`n`), and the number of participants/datapoints in total (`n`) or in each
-group (`n1` and `n2`) for `dd`, `dCohensd`, \code{pdExtreme},
+\code{rd} (\code{n}), and the number of participants/datapoints in total (\code{n}) or in each
+group (\code{n1} and \code{n2}) for \code{dd}, \code{dCohensd}, \code{pdExtreme},
 \code{pdMild}, \code{pdInterval}, and \code{cohensdCI}.}
 
 \item{conf.level}{The level of confidence of the confidence interval.}
@@ -53,7 +53,7 @@ one value for \code{d}, \code{n}, and \code{conf.level}.}
 
 \item{silent}{Whether to provide \code{FALSE} or suppress (\code{TRUE})
 warnings.  This is useful because function 'qt', which is used under the
-hood (see \code{\link{qt}} for more information), warns that 'full precision
+hood (see \code{\link[=qt]{qt()}} for more information), warns that 'full precision
 may not have been achieved' when the density of the distribution is very
 close to zero. This is normally no cause for concern, because with sample
 sizes this big, small deviations have little impact.}
@@ -76,7 +76,7 @@ specified value.}
 
 \item{ds}{A vector with two Cohen's \emph{d} values.}
 
-\item{w}{The desired 'half-width' or margin of error of the confidence
+\item{w}{The desired maximum 'half-width' or margin of error of the confidence
 interval.}
 
 \item{extensive}{Whether to only return the required sample size, or more
@@ -117,8 +117,12 @@ Cohen's \emph{d} estimate with a specified accuracy (\code{pwr.cohensdCI}
 and its alias \code{pwr.confIntd}).
 }
 \details{
-The functions use \code{\link{convert.d.to.t}} and
-\code{\link{convert.t.to.d}} to provide the Cohen's \emph{d} distribution.
+The functions use \code{\link[=convert.d.to.t]{convert.d.to.t()}} and
+\code{\link[=convert.t.to.d]{convert.t.to.d()}} to provide the Cohen's \emph{d} distribution.
+
+The confidence interval functions, \code{cohensdCI} and \code{pwr.cohensdCI},
+now use the same method as MBESS (a slightly adapted version of
+\code{\link[MBESS:conf.limits.nct]{MBESS::conf.limits.nct()}} is used).
 
 More details about \code{cohensdCI} and \code{pwr.cohensdCI} are provided in
 Peters & Crutzen (2017).
@@ -181,12 +185,15 @@ Cumming, G. (2013). The New Statistics: Why and How. Psychological Science,
 (November). https://doi.org/10.1177/0956797613504966
 }
 \seealso{
-\code{\link{convert.d.to.t}}, \code{\link{convert.t.to.d}},
-\code{\link{dt}}, \code{\link{pt}}, \code{\link{qt}}, \code{\link{rt}}
+\code{\link[=convert.d.to.t]{convert.d.to.t()}}, \code{\link[=convert.t.to.d]{convert.t.to.d()}},
+\code{\link[=dt]{dt()}}, \code{\link[=pt]{pt()}}, \code{\link[=qt]{qt()}}, \code{\link[=rt]{rt()}}
 }
 \author{
-Gjalt-Jorn Peters
+Gjalt-Jorn Peters (Open University of the Netherlands), with
+the exported MBESS function conf.limits.nct written by Ken Kelley
+(University of Notre Dame), and with an error noticed by Guy Prochilo
+(University of Melbourne).
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{univar}

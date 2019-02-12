@@ -115,6 +115,6 @@ Educational Research Association (43rd, Orlando, FL, November 2-4, 1998).
 \author{
 Gjalt-Jorn Peters and Peter Verboon
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{utilities}

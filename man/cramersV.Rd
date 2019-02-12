@@ -27,7 +27,7 @@ vector, y must also be a vector.}
 \item{digits}{Minimum number of digits after the decimal point to show in
 the result.}
 
-\item{\dots}{Any additional arguments are passed on to the `print` function.}
+\item{\dots}{Any additional arguments are passed on to the \code{print} function.}
 
 \item{conf.level}{Level of confidence for the confidence interval.}
 

@@ -15,7 +15,7 @@ meansDiamondPlot(data, items = NULL, labels = NULL,
 }
 \arguments{
 \item{data, dat}{The dataframe containing the variables (\code{items}) to show in
-the diamond plot (the name `dat` for this argument is deprecated but still
+the diamond plot (the name \code{dat} for this argument is deprecated but still
 works for backward compatibility).}
 
 \item{items}{Optionally, the names (or numeric indices) of the variables
@@ -34,7 +34,7 @@ decreasing (TRUE), increasing (FALSE), or not at all (NULL).}
 
 \item{dataAlpha}{This determines the alpha (transparency) of the data
 points. Note that argument \code{alpha} can be used to set the alpha of the
-diamonds; this is eventually passed on to \code{\link{ggDiamondLayer}}.}
+diamonds; this is eventually passed on to \code{\link[=ggDiamondLayer]{ggDiamondLayer()}}.}
 
 \item{dataSize}{The size of the data points.}
 
@@ -49,7 +49,7 @@ horizontally.}
 \item{jitterHeight}{How much to jitter the individual datapoints vertically.}
 
 \item{returnLayerOnly}{Set this to TRUE to only return the
-\code{\link{ggplot}} layer of the diamondplot, which can be useful to
+\code{\link[=ggplot]{ggplot()}} layer of the diamondplot, which can be useful to
 include it in other plots.}
 
 \item{xlab, ylab}{The labels of the X and Y axes.}
@@ -66,13 +66,13 @@ centimeters by default, see \code{ggsaveParams}).}
 
 \item{ggsaveParams}{Parameters to pass to ggsave when saving the plot.}
 
-\item{\dots}{Additional arguments are passed to \code{\link{diamondPlot}}
-and eventually to \code{\link{ggDiamondLayer}}. This can be used to, for
+\item{\dots}{Additional arguments are passed to \code{\link[=diamondPlot]{diamondPlot()}}
+and eventually to \code{\link[=ggDiamondLayer]{ggDiamondLayer()}}. This can be used to, for
 example, specify two or more colors to use to generate a gradient (using
 \code{generateColors} and maybe \code{fullColorRange}).}
 }
 \value{
-A \code{\link{ggplot}} plot with a \code{\link{ggDiamondLayer}} is
+A \code{\link[=ggplot]{ggplot()}} plot with a \code{\link[=ggDiamondLayer]{ggDiamondLayer()}} is
 returned.
 }
 \description{
@@ -111,13 +111,12 @@ meansDiamondPlot(tmpDf,
 
 }
 \seealso{
-\code{\link{diamondPlot}}, \code{\link{meanSDtoDiamondPlot}},
-\code{\link{ggDiamondLayer}}
-## \code{\link{factorLoadingDiamondCIplot}}
+\code{\link[=diamondPlot]{diamondPlot()}}, \code{\link[=meanSDtoDiamondPlot]{meanSDtoDiamondPlot()}},
+\code{\link[=ggDiamondLayer]{ggDiamondLayer()}}factorLoadingDiamondCIplot()
 }
 \author{
 Gjalt-Jorn Peters
 
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@userfriendlyscience.com>
+Maintainer: Gjalt-Jorn Peters \href{mailto:gjalt-jorn@userfriendlyscience.com}{gjalt-jorn@userfriendlyscience.com}
 }
 \keyword{hplot}
