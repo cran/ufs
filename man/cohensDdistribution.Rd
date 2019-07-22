@@ -122,7 +122,7 @@ The functions use \code{\link[=convert.d.to.t]{convert.d.to.t()}} and
 
 The confidence interval functions, \code{cohensdCI} and \code{pwr.cohensdCI},
 now use the same method as MBESS (a slightly adapted version of
-\code{\link[MBESS:conf.limits.nct]{MBESS::conf.limits.nct()}} is used).
+the \code{MBESS} function \code{conf.limits.nct} is used).
 
 More details about \code{cohensdCI} and \code{pwr.cohensdCI} are provided in
 Peters & Crutzen (2017).

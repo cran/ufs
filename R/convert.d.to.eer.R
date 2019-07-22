@@ -1,3 +1,4 @@
+#' @rdname nncConversion
 #' @export
 convert.d.to.eer <- function(d, cer, eventDesirable=TRUE, eventIfHigher=TRUE) {
   if (eventIfHigher) {

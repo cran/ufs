@@ -21,7 +21,7 @@ respectively.}
 
 \item{populationOmegaSq}{The value of Omega Squared in the population; this
 determines the center of the Omega Squared distribution. This has not been
-implemented yet in this version of \code{userfriendlyscience}. If anybody
+implemented yet in this version of \code{ufs}. If anybody
 has the inverse of \code{\link[=convert.ncf.to.omegasq]{convert.ncf.to.omegasq()}} for me, I'll happily
 integrate this.}
 

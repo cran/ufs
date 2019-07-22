@@ -33,7 +33,7 @@
 faConfInt <- function(fa) {
 
   if (('psych' %in% tolower(class(fa))) &&
-      ('fa' %in% tolower(class(fa)))) {
+      ('fa.ci' %in% tolower(class(fa)))) {
     ### Combine both confidence intervals and factor loadings, using
     ### the code from the 'psych:::print.psych.fa.ci' function
     lc <- data.frame(unclass(fa$loadings), fa$ci$ci);

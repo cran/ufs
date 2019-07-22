@@ -12,11 +12,12 @@ duoComparisonDiamondPlot(dat, items = NULL, compareBy = NULL,
   dataSize = 3, comparisonColors = viridis::viridis(length(unique(dat[,
   compareBy]))), associationsColor = "grey", alpha = 0.33,
   jitterWidth = 0.5, jitterHeight = 0.4, xlab = c("Scores and means",
-  "Effect size estimates"), ylab = c(NULL, NULL),
-  theme = ggplot2::theme_bw(), showLegend = TRUE, lineSize = 1,
-  drawPlot = TRUE, xbreaks = "auto", outputFile = NULL,
-  outputWidth = 10, outputHeight = 10, ggsaveParams = list(units =
-  "cm", dpi = 300, type = "cairo"), ...)
+  "Effect size estimates"), ylab = c(NULL, NULL), plotTitle = NULL,
+  theme = ggplot2::theme_bw(), showLegend = TRUE,
+  legend.position = "top", lineSize = 1, drawPlot = TRUE,
+  xbreaks = "auto", outputFile = NULL, outputWidth = 10,
+  outputHeight = 10, ggsaveParams = list(units = "cm", dpi = 300, type
+  = "cairo"), ...)
 
 meansComparisonDiamondPlot(dat, items = NULL, compareBy = NULL,
   labels = NULL, compareByLabels = NULL, decreasing = NULL,
@@ -24,11 +25,11 @@ meansComparisonDiamondPlot(dat, items = NULL, compareBy = NULL,
   dataAlpha = 0.1, dataSize = 3,
   comparisonColors = viridis::viridis(length(unique(dat[, compareBy]))),
   alpha = 0.33, jitterWidth = 0.5, jitterHeight = 0.4,
-  xlab = "Scores and means", ylab = NULL,
-  theme = ggplot2::theme_bw(), showLegend = TRUE, lineSize = 1,
-  xbreaks = "auto", outputFile = NULL, outputWidth = 10,
-  outputHeight = 10, ggsaveParams = list(units = "cm", dpi = 300, type
-  = "cairo"), ...)
+  xlab = "Scores and means", ylab = NULL, plotTitle = NULL,
+  theme = ggplot2::theme_bw(), showLegend = TRUE,
+  legend.position = "top", lineSize = 1, xbreaks = "auto",
+  outputFile = NULL, outputWidth = 10, outputHeight = 10,
+  ggsaveParams = list(units = "cm", dpi = 300, type = "cairo"), ...)
 }
 \arguments{
 \item{dat}{The dataframe containing the relevant variables.}
@@ -81,10 +82,20 @@ directions.}
 \code{duoComparisonDiamondPlot}, must be vectors of two elements). Use
 \code{NULL} to not use a label.}
 
+\item{plotTitle}{Optionally, for \code{meansComparisonDiamondPlot}, a title
+for the plot (can also be specified for \code{duoComparisonDiamondPlot}, in
+which case it's passed on to \code{meansComparisonDiamondPlot} for the left panel -
+but note that this messes up the alignment of the two panels).}
+
 \item{theme}{The theme to use for the plots.}
 
 \item{showLegend}{Whether to show the legend (which color represents which
 subgroup/sample).}
+
+\item{legend.position}{Where to place the legend in \code{meansComparisonDiamondPlot}
+(can also be specified for \code{duoComparisonDiamondPlot}, in
+which case it's passed on to \code{meansComparisonDiamondPlot} for the left panel -
+but note that this messes up the alignment of the two panels).}
 
 \item{lineSize}{The thickness of the lines (the diamonds' strokes).}
 
@@ -108,7 +119,7 @@ by \code{duoComparisonDiamondPlot}.}
 \item{sortBy}{If the variables should be sorted (see \code{decreasing}),
 this variable specified which subgroup should be sorted by. Therefore, the
 value specified here must be a value label ('level label') of the
-\code{comparisonBy} variable.}
+\code{compareBy} variable.}
 }
 \value{
 A Diamond plots: a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} plot

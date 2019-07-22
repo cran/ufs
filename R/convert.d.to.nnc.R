@@ -1,11 +1,12 @@
 #' Helper functions for Numbers Needed for Change
 #'
-#' These two functions are used by [behaviorchange::nnc()] to compute the Numbers
-#' Needed for Change.
+#' These functions are used by [behaviorchange::nnc()] to compute the Numbers
+#' Needed for Change, but are also available for manual use.
 #'
-#' @aliases convert.d.to.nnc convert.d.to.eer
+#' @aliases convert.d.to.nnc convert.d.to.eer convert.cer.to.d convert.eer.to.d
 #' @param d The value of Cohen's *d*.
 #' @param cer The Control Event Rate.
+#' @param eer The Experimental Event Rate.
 #' @param r The correlation between the determinant and behavior (for mediated
 #' Numbers Needed for Change).
 #' @param eventDesirable Whether an event is desirable or undesirable.
@@ -20,6 +21,7 @@
 #' impact of behavior change interventions: A tutorial on the Numbers
 #' Needed to Treat. *PsyArXiv.* doi:[10.31234/osf.io/2bau7](https://doi.org/10.31234/osf.io/2bau7)
 #' @keywords utilities
+#' @rdname nncConversion
 #' @examples
 #'
 #' convert.d.to.eer(d=.5, cer=.25);

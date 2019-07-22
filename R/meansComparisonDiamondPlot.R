@@ -30,7 +30,7 @@
 #' @param sortBy If the variables should be sorted (see `decreasing`),
 #' this variable specified which subgroup should be sorted by. Therefore, the
 #' value specified here must be a value label ('level label') of the
-#' `comparisonBy` variable.
+#' `compareBy` variable.
 #' @param conf.level The confidence level of the confidence intervals specified
 #' by the diamonds for the means (for `meansComparisonDiamondPlot`) and
 #' for both the means and effect sizes (for `duoComparisonDiamondPlot`).
@@ -53,9 +53,17 @@
 #' @param xlab,ylab The label to use for the x and y axes (for
 #' `duoComparisonDiamondPlot`, must be vectors of two elements). Use
 #' `NULL` to not use a label.
+#' @param plotTitle Optionally, for `meansComparisonDiamondPlot`, a title
+#' for the plot (can also be specified for `duoComparisonDiamondPlot`, in
+#' which case it's passed on to `meansComparisonDiamondPlot` for the left panel -
+#' but note that this messes up the alignment of the two panels).
 #' @param theme The theme to use for the plots.
 #' @param showLegend Whether to show the legend (which color represents which
 #' subgroup/sample).
+#' @param legend.position Where to place the legend in `meansComparisonDiamondPlot`
+#' (can also be specified for `duoComparisonDiamondPlot`, in
+#' which case it's passed on to `meansComparisonDiamondPlot` for the left panel -
+#' but note that this messes up the alignment of the two panels).
 #' @param lineSize The thickness of the lines (the diamonds' strokes).
 #' @param drawPlot Whether to draw the plot, or only (invisibly) return it.
 #' @param xbreaks Where the breaks (major grid lines, ticks, and labels) on the
@@ -112,8 +120,10 @@ meansComparisonDiamondPlot <- function(dat, items = NULL,
                                        jitterHeight = .4,
                                        xlab='Scores and means',
                                        ylab=NULL,
+                                       plotTitle = NULL,
                                        theme=ggplot2::theme_bw(),
                                        showLegend=TRUE,
+                                       legend.position = "top",
                                        lineSize=1,
                                        xbreaks = "auto",
                                        outputFile = NULL,
@@ -218,6 +228,11 @@ meansComparisonDiamondPlot <- function(dat, items = NULL,
     ggplot2::xlab(xlab) +
     ggplot2::theme(panel.grid.minor.y=ggplot2::element_blank());
 
+  if (!is.null(plotTitle)) {
+    plot <-
+      plot + ggplot2::ggtitle(plotTitle);
+  }
+
   if (showLegend) {
     ### First have to add a ribbon layer so that we can actually
     ### map the fill aesthetic to something in the plot
@@ -230,9 +245,10 @@ meansComparisonDiamondPlot <- function(dat, items = NULL,
                                      fill='colorColumn'),
                   show.legend=TRUE) +
       ### Override the colors and legend position
-      ggplot2::guides(fill=ggplot2::guide_legend(override.aes=list(fill=comparisonColors[1:length(compareByLabels)]),
+#      ggplot2::guides(fill=ggplot2::guide_legend(override.aes=list(fill=comparisonColors[1:length(compareByLabels)]),
+      ggplot2::guides(fill=ggplot2::guide_legend(override.aes=list(fill=comparisonColors[order(compareByLabels)]),
                                title=NULL)) +
-      ggplot2::theme(legend.position="top");
+      ggplot2::theme(legend.position=legend.position);
   }
 
   if (!is.null(xbreaks) &&

@@ -16,7 +16,7 @@
 #'
 #' The confidence interval functions, `cohensdCI` and `pwr.cohensdCI`,
 #' now use the same method as MBESS (a slightly adapted version of
-#' [MBESS::conf.limits.nct()] is used).
+#' the `MBESS` function `conf.limits.nct` is used).
 #'
 #' More details about `cohensdCI` and `pwr.cohensdCI` are provided in
 #' Peters & Crutzen (2017).

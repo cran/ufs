@@ -29,7 +29,8 @@ consisting of:} \item{output$es}{The point estimate} \item{output$ci}{The
 confidence interval}
 }
 \description{
-This function uses the MBESS function \code{\link[MBESS:conf.limits.ncf]{MBESS::conf.limits.ncf()}}
+This function uses the MBESS functions \code{conf.limits.ncf()} (which has been
+copied into this package to avoid the dependency on \code{MBESS})
 and \code{\link[=convert.ncf.to.omegasq]{convert.ncf.to.omegasq()}} to compute the point estimate and
 confidence interval for Omega Squared (which have been lifted out of MBESS to
 avoid importing the whole package)
