@@ -1,0 +1,45 @@
+---
+title: "Conceptual Independence Matrix"
+author: "Gjalt-Jorn Peters"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Conceptual Independence Matrix}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+```{r, fig.width=12, fig.height=6}
+
+### Load data from psych package
+data(bfi, package= 'psych');
+
+### Specify scales
+bfiScales <-
+  list(Agreeableness     = paste0("Agreeableness_item_", 1:5),
+       Conscientiousness = paste0("Conscientiousness_item_", 1:5),
+       Extraversion      = paste0("Extraversion_item_", 1:5),
+       Neuroticism       = paste0("Neuroticism_item_", 1:5),
+       Openness          = paste0("Openness_item_", 1:5));
+
+names(bfi) <- c(unlist(bfiScales),
+                c('gender', 'education', 'age'));
+
+### Only select first two and the first three items to
+### keep it quick; just pass the full 'bfiScales'
+### object to run for all five the full scales
+ufs::CIM(bfi,
+         scales=lapply(bfiScales, head, 3)[1:2],
+         n.iter=10);
+
+```
+

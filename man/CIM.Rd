@@ -2,11 +2,16 @@
 % Please edit documentation in R/CIM.R
 \name{CIM}
 \alias{CIM}
+\alias{knit_print.CIM}
 \title{Conceptual Independence Matrix}
 \usage{
 CIM(data, scales, outputFile = NULL, outputWidth = 100,
   outputHeight = 100, outputUnits = "cm", faMethod = "minres",
-  n.iter = 100, skipRegex = NULL)
+  n.iter = 100, skipRegex = NULL, headingLevel = 2,
+  printAbbreviations = TRUE, drawPlot = TRUE, returnPlotOnly = TRUE)
+
+\method{knit_print}{CIM}(x, headingLevel = x$input$headingLevel,
+  quiet = TRUE, echoPartial = FALSE, partialFile = NULL, ...)
 }
 \arguments{
 \item{data}{The dataframe containing the variables.}
@@ -27,6 +32,26 @@ and units for the output file.}
 \item{skipRegex}{A character vector of length 2 containing two
 regular expressions; if the two scales both match one or both
 of those regular expressions, that cell is skipped.}
+
+\item{headingLevel}{The level for the heading; especially useful when
+knitting an Rmd partial.}
+
+\item{printAbbreviations}{Whether to print a table with the abbreviations
+that are used.}
+
+\item{drawPlot}{Whether to draw the plot or only return it.}
+
+\item{returnPlotOnly}{Whether to return the plot only, or the entire object.}
+
+\item{x}{The object to print.}
+
+\item{quiet}{Whether to be quiet or chatty.}
+
+\item{echoPartial}{Whether to \code{echo} the code in the Rmd partial.}
+
+\item{partialFile}{Can be used to override the Rmd partial file.}
+
+\item{...}{Additional arguments are passed on the respective default methods.}
 }
 \value{
 A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} plot.
@@ -36,15 +61,18 @@ Conceptual Independence Matrix
 }
 \examples{
 ### Load data from psych package
-data(bfi,package= 'psych');
+data(bfi, package= 'psych');
 
 ### Specify scales
 bfiScales <-
-  list(Agree = paste0("A", 1:5),
-       Consc = paste0("C", 1:5),
-       Extra = paste0("E", 1:5),
-       Neuro = paste0("N", 1:5),
-       Openn = paste0("O", 1:5));
+  list(Agreeableness     = paste0("Agreeableness_item_", 1:5),
+       Conscientiousness = paste0("Conscientiousness_item_", 1:5),
+       Extraversion      = paste0("Extraversion_item_", 1:5),
+       Neuroticism       = paste0("Neuroticism_item_", 1:5),
+       Openness          = paste0("Openness_item_", 1:5));
+
+names(bfi) <- c(unlist(bfiScales),
+                c('gender', 'education', 'age'));
 
 ### Only select first two and the first three items to
 ### keep it quick; just pass the full 'bfiScales'

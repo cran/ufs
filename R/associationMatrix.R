@@ -82,7 +82,8 @@ computeStatistic_t <- function(var1, var2, conf.level=.95,
 
   res <- list();
   res$object <- stats::t.test(interval ~ dichotomous,
-                              var.equal = var.equal);
+                              var.equal = var.equal,
+                              conf.level=conf.level);
   res$statistic <- res$object$statistic;
   res$statistic.type <- "t";
   res$parameter <- res$object$parameter;
@@ -96,7 +97,8 @@ computeStatistic_t <- function(var1, var2, conf.level=.95,
 computeStatistic_r <- function(var1, var2, conf.level=.95,
                                ...) {
   res <- list();
-  res$object <- stats::cor.test(var1, var2, use="complete.obs");
+  res$object <- stats::cor.test(var1, var2, use="complete.obs",
+                                conf.level=conf.level);
   res$statistic <- res$object$statistic;
   res$statistic.type <- "r";
   res$parameter <- res$object$parameter;
@@ -198,7 +200,8 @@ computeEffectSize_d <- function(var1, var2, conf.level=.95,
 computeEffectSize_r <- function(var1, var2, conf.level=.95,
                                 ...) {
   res <- list();
-  res$object <- stats::cor.test(var1, var2, use="complete.obs");
+  res$object <- stats::cor.test(var1, var2, use="complete.obs",
+                                conf.level=conf.level);
   res$es <- res$object$estimate;
   res$es.type <- "r";
   res$ci <- res$object$conf.int;
@@ -296,7 +299,8 @@ computeEffectSize_v <- function(var1, var2, conf.level=.95,
   if (bootstrap) {
     res$object <- ufs::confIntV(var1, var2,
                                 method="bootstrap",
-                                samples=samples);
+                                samples=samples,
+                                conf.level=conf.level);
     res$ci <- res$object$output$confIntV.bootstrap;
   } else {
     res$object <- ufs::confIntV(var1, var2, method="fisher");
@@ -673,13 +677,24 @@ associationMatrix <- function(dat=NULL, x=NULL, y=NULL, conf.level = .95,
         ### Call the function to compute the statistic.
         ### Which function this is, depends on the preferences
         ### of the user (or the defaults).
-        tmpFun <- match.fun(statistic[[measurementLevelsX[xCounter]]]
-                                     [[measurementLevelsY[yCounter]]]);
+        statisticFunctionName <-
+          statistic[[measurementLevelsX[xCounter]]][[measurementLevelsY[yCounter]]];
+
+        tmpFun <-
+          get(statisticFunctionName, envir=environment(eval(parse(text=statisticFunctionName))));
+        #  match.fun(statisticFunctioName);
+
         res$intermediate$statistics[[curXvar]][[curYvar]] <-
           tmpFun(dat[,curXvar], dat[,curYvar], conf.level = conf.level);
+
         ### We repeat the same trick for the effect sizes.
-        tmpFun <- match.fun(effectSize[[measurementLevelsX[xCounter]]]
-                                      [[measurementLevelsY[yCounter]]]);
+        effectSizeFunctioName <-
+          effectSize[[measurementLevelsX[xCounter]]][[measurementLevelsY[yCounter]]];
+
+        tmpFun <-
+          get(effectSizeFunctioName, envir=environment(eval(parse(text=effectSizeFunctioName))));
+        #   match.fun(effectSizeFunctioName);
+
         res$intermediate$effectSizes[[curXvar]][[curYvar]] <-
           tmpFun(dat[,curXvar], dat[,curYvar], conf.level = conf.level,
                  var.equal = var.equal);

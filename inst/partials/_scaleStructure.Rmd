@@ -1,4 +1,4 @@
-```{r setup,eval=TRUE, echo=FALSE}
+```{r,eval=TRUE, echo=FALSE}
 
 digits <- x$input$digits;
 

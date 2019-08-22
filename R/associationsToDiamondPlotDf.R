@@ -8,7 +8,8 @@ associationsToDiamondPlotDf <- function(dat, covariates, criterion,
 
   if (is.null(labels)) labels <- covariates;
 
-  assocMatrix <- ufs::associationMatrix(dat, x=covariates, y=criterion);
+  assocMatrix <- ufs::associationMatrix(dat, x=covariates, y=criterion,
+                                        conf.level=conf.level);
 
   resDf <- data.frame(lo = as.numeric(assocMatrix$output$raw$ci.lo),
                       es = as.numeric(assocMatrix$output$raw$es),

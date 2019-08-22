@@ -551,8 +551,16 @@ knit_print.scaleStructure <- function(x,
                                       echoPartial = FALSE,
                                       partialFile = NULL,
                                       ...) {
-  rmdpartials__partial(system.file("partials", "_scaleStructure.rmd",
-                                   package="ufs"));
+  ### Get filename
+  if (!is.null(partialFile) && file.exists(partialFile)) {
+    rmdPartialFilename <-
+      partialFile;
+  } else {
+    rmdPartialFilename <-
+      system.file("partials", "_scaleStructure.rmd", package="ufs");
+  }
+
+  rmdpartials__partial(input=rmdPartialFilename);
 }
 
 
