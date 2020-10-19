@@ -4,14 +4,18 @@
 \alias{setFigCapNumbering}
 \title{Set caption numbering}
 \usage{
-setFigCapNumbering(captionName = "fig.cap", prefix = "Figure \%s: ",
-  suffix = "", optionName = paste0("setCaptionNumbering_",
-  captionName), resetCounterTo = 1)
+setFigCapNumbering(
+  captionName = "fig.cap",
+  prefix = "Figure \%s: ",
+  suffix = "",
+  optionName = paste0("setCaptionNumbering_", captionName),
+  resetCounterTo = 1
+)
 }
 \arguments{
 \item{captionName}{THe name of the caption; normally \code{fig.cap} or \code{tab.cap}.}
 
-\item{prefix, suffix}{The prefix and suffix; any occurrences of \code{\\\%s} will be replaced by the
+\item{prefix, suffix}{The prefix and suffix; any occurrences of \verb{\\\%s} will be replaced by the
 number.}
 
 \item{optionName}{THe name to use for the option that keeps track of the numbering.}

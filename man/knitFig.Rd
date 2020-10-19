@@ -4,11 +4,17 @@
 \alias{knitFig}
 \title{Easily knit a custom figure fragment}
 \usage{
-knitFig(plotToDraw, template = getOption("ufs.knitFig.template", NULL),
-  figWidth = getOption("ufs.knitFig.figWidth", 16/2.54),
-  figHeight = getOption("ufs.knitFig.figHeight", 16/2.54),
-  figCaption = "A plot.", chunkName = NULL, returnRaw = FALSE,
-  catPlot = getOption("ufs.knitFig.catPlot", FALSE), ...)
+knitFig(
+  plotToDraw,
+  template = getOption("ufs.knitFig.template", NULL),
+  figWidth = ufs::opts$get("ggSaveFigWidth"),
+  figHeight = ufs::opts$get("ggSaveFigHeight"),
+  figCaption = "A plot.",
+  chunkName = NULL,
+  returnRaw = FALSE,
+  catPlot = ufs::opts$get("knitFig.catPlot"),
+  ...
+)
 }
 \arguments{
 \item{plotToDraw}{The plot to draw, e.g. a \code{\link{ggplot}} plot.}
@@ -47,7 +53,7 @@ dynamically generated, widths and heights (and captions) in the same chunk
 when working with R Markdown.
 }
 \examples{
-\donttest{knitFig(ggBoxplot(mtcars, 'mpg'))}
+\dontrun{knitFig(ggBoxplot(mtcars, 'mpg'))}
 }
 \seealso{
 \code{\link{knit_expand}} and \code{\link{knit}}

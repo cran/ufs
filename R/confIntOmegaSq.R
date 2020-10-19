@@ -63,7 +63,7 @@ confIntOmegaSq <- function(var1, var2, conf.level=.95) {
 
   ### Confidence level should be doubled (i.e. unconfidence level
   ### should be doubled to be more precise), so .95 becomes .90 ->
-  ### see http://daniellakens.blogspot.nl/2014/06/calculating-confidence-intervals-for.html
+  ### see https://daniellakens.blogspot.nl/2014/06/calculating-confidence-intervals-for.html
   ### for a brief explanation and links to more extensive explanations.
 
   res$intermediate$realConfidence <- 1 - ((1-conf.level) * 2);

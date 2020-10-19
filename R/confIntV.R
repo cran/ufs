@@ -1,4 +1,4 @@
-### Based on http://sas-and-r.blogspot.nl/2011/06/example-839-calculating-cramers-v.html
+### Based on https://sas-and-r.blogspot.nl/2011/06/example-839-calculating-cramers-v.html
 ### (i.e. see the comments by Nick Horton and thelatemail)
 
 ### Function to compute Cramer's V

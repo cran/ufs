@@ -4,8 +4,7 @@
 \alias{pwr.bootES}
 \title{Estimate required sample size for accuracy in parameter estimation using bootES}
 \usage{
-pwr.bootES(data = data, ci.type = "bca", ..., w = 0.1,
-  silent = TRUE)
+pwr.bootES(data = data, ci.type = "bca", ..., w = 0.1, silent = TRUE)
 }
 \arguments{
 \item{data}{The dataset, as you would normally supply to \code{\link[bootES:bootES]{bootES::bootES()}};

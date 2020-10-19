@@ -2,7 +2,7 @@
 #'
 #' This function by Josh O'Brien checks whether elements of a vector are valid
 #' colors. It has been copied from a Stack Exchange answer (see
-#' <http://stackoverflow.com/questions/13289009/check-if-character-string-is-a-valid-color-representation>).
+#' <https://stackoverflow.com/questions/13289009/check-if-character-string-is-a-valid-color-representation>).
 #'
 #'
 #' @param x The vector.

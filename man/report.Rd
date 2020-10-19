@@ -13,7 +13,7 @@ report(x, headingLevel = 3, quiet = TRUE, ...)
 \item{x}{The object to show.}
 
 \item{headingLevel}{The level of the Markdown heading to provide; basically
-the number of hashes ('\code{#}') to prepend to the headings.}
+the number of hashes ('\verb{#}') to prepend to the headings.}
 
 \item{quiet}{Passed on to \code{\link[knitr:knit]{knitr::knit()}} whether it should b
 chatty (\code{FALSE}) or quiet (\code{TRUE}).}

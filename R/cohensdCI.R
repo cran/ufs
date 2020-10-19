@@ -11,7 +11,7 @@ cohensdCI <- confIntD <- function(d, n, conf.level = .95, plot=FALSE, silent=TRU
   ci.bound.hi <- 1 - (1 - conf.level) / 2;
 
   ### From a post at the R-help mailing list by Luke Tierney, see
-  ### http://stackoverflow.com/questions/3903157/how-can-i-check-whether-a-function-call-results-in-a-warning
+  ### https://stackoverflow.com/questions/3903157/how-can-i-check-whether-a-function-call-results-in-a-warning
   wHandler <- function(w) {
     myWarnings <<- c(myWarnings, list(w));
     invokeRestart("muffleWarning");
@@ -21,7 +21,7 @@ cohensdCI <- confIntD <- function(d, n, conf.level = .95, plot=FALSE, silent=TRU
 
   ### Based on @GuyProchilo's message on Twitter at 2019-02-11
 
-  ### Now following http://home.cc.umanitoba.ca/~kesel/CIl_Kelly.pdf
+  ### Now following https://home.cc.umanitoba.ca/~kesel/CIl_Kelly.pdf
 
   ### Here, the CI isn't found by using Cohen's d's distribution, for the relevant
   ### NCP in the t distribution (as converted from d), but by finding the two

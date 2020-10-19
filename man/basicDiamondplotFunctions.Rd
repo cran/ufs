@@ -8,20 +8,48 @@
 \alias{rawDataDiamondLayer}
 \title{Basic ggplot2 diamond plot layer construction functions}
 \usage{
-diamondCoordinates(values, otherAxisValue = 1,
-  direction = "horizontal", autoSize = NULL, fixedSize = 0.15)
+diamondCoordinates(
+  values,
+  otherAxisValue = 1,
+  direction = "horizontal",
+  autoSize = NULL,
+  fixedSize = 0.15
+)
 
-ggDiamondLayer(data, ciCols = 1:3, colorCol = NULL,
-  generateColors = NULL, fullColorRange = NULL, color = "black",
-  lineColor = NA, otherAxisCol = 1:nrow(data), autoSize = NULL,
-  fixedSize = 0.15, direction = "horizontal", ...)
+ggDiamondLayer(
+  data,
+  ciCols = 1:3,
+  colorCol = NULL,
+  generateColors = NULL,
+  fullColorRange = NULL,
+  color = "black",
+  lineColor = NA,
+  otherAxisCol = 1:nrow(data),
+  autoSize = NULL,
+  fixedSize = 0.15,
+  direction = "horizontal",
+  ...
+)
 
-rawDataDiamondLayer(dat, items = NULL, itemOrder = 1:length(items),
-  dataAlpha = 0.1, dataColor = "#444444", jitterWidth = 0.5,
-  jitterHeight = 0.4, size = 3, ...)
+rawDataDiamondLayer(
+  dat,
+  items = NULL,
+  itemOrder = 1:length(items),
+  dataAlpha = 0.1,
+  dataColor = "#444444",
+  jitterWidth = 0.5,
+  jitterHeight = 0.4,
+  size = 3,
+  ...
+)
 
-varsToDiamondPlotDf(dat, items = NULL, labels = NULL,
-  decreasing = NULL, conf.level = 0.95)
+varsToDiamondPlotDf(
+  dat,
+  items = NULL,
+  labels = NULL,
+  decreasing = NULL,
+  conf.level = 0.95
+)
 }
 \arguments{
 \item{values}{A vector of 2 or more values that are used to construct the

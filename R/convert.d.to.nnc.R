@@ -12,6 +12,12 @@
 #' @param eventDesirable Whether an event is desirable or undesirable.
 #' @param eventIfHigher Whether scores above or below the threshold are
 #' considered 'an event'.
+#' @param dist,distArgs,distNS Used to specify the distribution to use to convert
+#' between Cohen's d and the CER and EER. distArgs can be used to specify
+#' additional arguments to the corresponding `q` and `p` functions, and
+#' distNS to specify the namespace (i.e. package) from where to get the
+#' distribution functions.
+#'
 #' @return The converted value.
 #' @author Gjalt-Jorn Peters & Stefan Gruijters
 #'
@@ -30,8 +36,8 @@
 #' @export convert.d.to.nnc
 convert.d.to.nnc <- function(d, cer, r = 1, eventDesirable=TRUE, eventIfHigher=TRUE) {
 
-  ### Based on http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0019070
-  ### Consistent with http://rpsychologist.com/d3/cohend/
+  ### Based on https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0019070
+  ### Consistent with https://rpsychologist.com/d3/cohend/
 
   d <- convert.r.to.d(convert.d.to.r(d) * r);
 

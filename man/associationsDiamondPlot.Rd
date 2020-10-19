@@ -6,19 +6,42 @@
 \alias{associationsToDiamondPlotDf}
 \title{A diamondplot with confidence intervals for associations}
 \usage{
-associationsDiamondPlot(dat, covariates, criteria, labels = NULL,
-  criteriaLabels = NULL, decreasing = NULL, sortBy = NULL,
+associationsDiamondPlot(
+  dat,
+  covariates,
+  criteria,
+  labels = NULL,
+  criteriaLabels = NULL,
+  decreasing = NULL,
+  sortBy = NULL,
   conf.level = 0.95,
   criteriaColors = viridis::viridis(length(criteria)),
-  criterionColor = "black", returnLayerOnly = FALSE, esMetric = "r",
-  multiAlpha = 0.33, singleAlpha = 1, showLegend = TRUE,
-  xlab = "Effect size estimates", ylab = "",
-  theme = ggplot2::theme_bw(), lineSize = 1, outputFile = NULL,
-  outputWidth = 10, outputHeight = 10, ggsaveParams = list(units =
-  "cm", dpi = 300, type = "cairo"), ...)
+  criterionColor = "black",
+  returnLayerOnly = FALSE,
+  esMetric = "r",
+  multiAlpha = 0.33,
+  singleAlpha = 1,
+  showLegend = TRUE,
+  xlab = "Effect size estimates",
+  ylab = "",
+  theme = ggplot2::theme_bw(),
+  lineSize = 1,
+  outputFile = NULL,
+  outputWidth = 10,
+  outputHeight = 10,
+  ggsaveParams = list(units = "cm", dpi = 300, type = "cairo"),
+  ...
+)
 
-associationsToDiamondPlotDf(dat, covariates, criterion, labels = NULL,
-  decreasing = NULL, conf.level = 0.95, esMetric = "r")
+associationsToDiamondPlotDf(
+  dat,
+  covariates,
+  criterion,
+  labels = NULL,
+  decreasing = NULL,
+  conf.level = 0.95,
+  esMetric = "r"
+)
 }
 \arguments{
 \item{dat}{The dataframe containing the relevant variables.}
@@ -124,8 +147,7 @@ associationsDiamondPlot(mtcars,
 
 }
 \seealso{
-\code{\link[=diamondPlot]{diamondPlot()}}, \code{\link[=ggDiamondLayer]{ggDiamondLayer()}},
-\code{\link[behaviorchange:CIBER]{behaviorchange::CIBER()}}
+\code{\link[=diamondPlot]{diamondPlot()}}, \code{\link[=ggDiamondLayer]{ggDiamondLayer()}}
 }
 \author{
 Gjalt-Jorn Peters

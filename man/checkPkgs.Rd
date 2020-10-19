@@ -4,8 +4,12 @@
 \alias{checkPkgs}
 \title{Check for presence of a package}
 \usage{
-checkPkgs(..., install = FALSE, load = FALSE,
-  repos = "https://cran.rstudio.com")
+checkPkgs(
+  ...,
+  install = FALSE,
+  load = FALSE,
+  repos = "https://cran.rstudio.com"
+)
 }
 \arguments{
 \item{...}{A vector with packages. If this is a names vector, the
@@ -31,8 +35,11 @@ syntax for addressing functions; you can make sure required packages
 are installed, but their namespace won't attach to the search path.
 }
 \examples{
-\donttest{
-checkPkgs('justifier');
-checkPkgs(justifier = "99");
-}
+checkPkgs('base');
+
+### This will show the error message
+tryCatch(
+  checkPkgs(base = "99"),
+  error = print
+);
 }

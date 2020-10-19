@@ -27,12 +27,12 @@
 #' *Psychometrika, 65*, 23-28.
 #'
 #' Bonett, D. G. (2014). CIcorr.R and sizeCIcorr.R
-#' http://people.ucsc.edu/~dgbonett/psyc181.html
+#' https://people.ucsc.edu/~dgbonett/psyc181.html
 #'
 #' Moinester, M., & Gottfried, R. (2014). Sample size estimation for
 #' correlations with pre-specified confidence interval. *The Quantitative
 #' Methods of Psychology, 10*(2), 124-130.
-#' http://www.tqmp.org/RegularArticles/vol10-2/p124/p124.pdf
+#' https://www.tqmp.org/RegularArticles/vol10-2/p124/p124.pdf
 #'
 #' Peters, G. J. Y. & Crutzen, R. (forthcoming) An easy and foolproof method
 #' for establishing how effective an intervention or behavior change method is:
@@ -91,7 +91,7 @@ confIntR <- function(r, N, conf.level = .95, plot=FALSE) {
       df <- data.frame(r = seq(-1, 1, .001));
 
       ### From a post at the R-help mailig list by Luke Tierney, see
-      ### http://stackoverflow.com/questions/3903157/how-can-i-check-whether-a-function-call-results-in-a-warning
+      ### https://stackoverflow.com/questions/3903157/how-can-i-check-whether-a-function-call-results-in-a-warning
       wHandler <- function(w) {
         myWarnings <<- c(myWarnings, list(w));
         invokeRestart("muffleWarning");

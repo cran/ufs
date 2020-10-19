@@ -6,15 +6,28 @@
 \alias{grid.draw.ggProportionPlot}
 \title{Sample distribution based plotting of proportions}
 \usage{
-ggProportionPlot(dat, items = NULL, loCategory = NULL,
-  hiCategory = NULL, subQuestions = NULL, leftAnchors = NULL,
-  rightAnchors = NULL, compareHiToLo = TRUE, showDiamonds = FALSE,
-  diamonds.conf.level = 0.95, diamonds.alpha = 1, na.rm = TRUE,
-  barHeight = 0.4, conf.steps = seq(from = 0.001, to = 0.999, by =
-  0.001), scale_color = viridis::viridis(option = "viridis", 2, begin =
-  0.5, end = 1), scale_fill = viridis::viridis(option = "viridis", 2,
-  begin = 0.5, end = 1), rank.conf = FALSE, linetype = 1,
-  theme = ggplot2::theme_bw(), returnPlotOnly = TRUE)
+ggProportionPlot(
+  dat,
+  items = NULL,
+  loCategory = NULL,
+  hiCategory = NULL,
+  subQuestions = NULL,
+  leftAnchors = NULL,
+  rightAnchors = NULL,
+  compareHiToLo = TRUE,
+  showDiamonds = FALSE,
+  diamonds.conf.level = 0.95,
+  diamonds.alpha = 1,
+  na.rm = TRUE,
+  barHeight = 0.4,
+  conf.steps = seq(from = 0.001, to = 0.999, by = 0.001),
+  scale_color = viridis::viridis(option = "viridis", 2, begin = 0.5, end = 1),
+  scale_fill = viridis::viridis(option = "viridis", 2, begin = 0.5, end = 1),
+  rank.conf = FALSE,
+  linetype = 1,
+  theme = ggplot2::theme_bw(),
+  returnPlotOnly = TRUE
+)
 
 \method{print}{ggProportionPlot}(x, ...)
 
@@ -148,7 +161,7 @@ ggProportionPlot(mtcars, items=c('cyl'),
                  loCategory=8,
                  subQuestions='Cylinders',
                  leftAnchors="Eight",
-                 rightAnchors="Four\\nor\\nsix",
+                 rightAnchors="Four\nor\nsix",
                  compareHiToLo=FALSE);
 
 ### ... And showing the diamonds for the confidence intervals
@@ -156,7 +169,7 @@ ggProportionPlot(mtcars, items=c('cyl'),
                  loCategory=8,
                  subQuestions='Cylinders',
                  leftAnchors="Eight",
-                 rightAnchors="Four\\nor\\nsix",
+                 rightAnchors="Four\nor\nsix",
                  compareHiToLo=FALSE,
                  showDiamonds=TRUE);
 }

@@ -51,9 +51,7 @@
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso [diamondPlot()], [meanSDtoDiamondPlot()],
-#' [ggDiamondLayer()]
-#####'## [factorLoadingDiamondCIplot()]
+#' @seealso See [diamondPlot()], [meanSDtoDiamondPlot()], [ggDiamondLayer()], [factorLoadingDiamondCIplot()]
 #' @keywords hplot
 #' @examples
 #'

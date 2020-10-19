@@ -4,8 +4,13 @@
 \alias{multiResponse}
 \title{Generate a table for multiple response questions}
 \usage{
-multiResponse(data, items = NULL, regex = NULL, perlRegex = TRUE,
-  endorsedOption = 1)
+multiResponse(
+  data,
+  items = NULL,
+  regex = NULL,
+  perlRegex = TRUE,
+  endorsedOption = 1
+)
 }
 \arguments{
 \item{data}{Dataframe containing the variables to display.}
@@ -21,11 +26,11 @@ provided, all variables in the dataframe are processed.}
 \item{endorsedOption}{Which value represents the endorsed option (note that
 producing this kind of table requires dichotomous items, where each variable
 is either endorsed or not endorsed, so this is also a way to treat other
-variables as dichotomour).}
+variables as dichotomous).}
 }
 \value{
 A dataframe with columns \code{Option}, \code{Frequency},
-\code{Percentage}, and \code{Percentage of (X) cases}, where X is the number
+\code{Percentage}, and \verb{Percentage of (X) cases}, where X is the number
 of cases.
 }
 \description{

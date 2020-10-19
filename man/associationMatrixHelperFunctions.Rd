@@ -14,8 +14,7 @@
 \alias{computeEffectSize_omegasq}
 \title{associationMatrix Helper Functions}
 \usage{
-computeStatistic_t(var1, var2, conf.level = 0.95, var.equal = TRUE,
-  ...)
+computeStatistic_t(var1, var2, conf.level = 0.95, var.equal = TRUE, ...)
 
 computeStatistic_r(var1, var2, conf.level = 0.95, ...)
 
@@ -23,8 +22,7 @@ computeStatistic_f(var1, var2, conf.level = 0.95, ...)
 
 computeStatistic_chisq(var1, var2, conf.level = 0.95, ...)
 
-computeEffectSize_d(var1, var2, conf.level = 0.95, var.equal = TRUE,
-  ...)
+computeEffectSize_d(var1, var2, conf.level = 0.95, var.equal = TRUE, ...)
 
 computeEffectSize_r(var1, var2, conf.level = 0.95, ...)
 
@@ -32,8 +30,14 @@ computeEffectSize_etasq(var1, var2, conf.level = 0.95, ...)
 
 computeEffectSize_omegasq(var1, var2, conf.level = 0.95, ...)
 
-computeEffectSize_v(var1, var2, conf.level = 0.95, bootstrap = FALSE,
-  samples = 5000, ...)
+computeEffectSize_v(
+  var1,
+  var2,
+  conf.level = 0.95,
+  bootstrap = FALSE,
+  samples = 5000,
+  ...
+)
 }
 \arguments{
 \item{var1}{One of the two variables for which to compute a statistic or
@@ -46,8 +50,7 @@ size}
 size}
 
 \item{var.equal}{Whether to test for equal variances (\code{test}), assume
-equality (\code{yes}), or assume unequality (\code{no}). See \code{\link[userfriendlyscience:meanDiff]{userfriendlyscience::meanDiff()}}
-for more information.}
+equality (\code{yes}), or assume unequality (\code{no}).}
 
 \item{...}{Any additonal arguments are sometimes used to specify exactly
 how statistics and effect sizes should be computed.}
@@ -89,9 +92,6 @@ associationMatrix.
 computeStatistic_f(Orange$Tree, Orange$circumference)
 computeEffectSize_etasq(Orange$Tree, Orange$circumference)
 
-}
-\seealso{
-\code{\link[userfriendlyscience:meanDiff]{userfriendlyscience::meanDiff()}}, \code{\link[=associationMatrix]{associationMatrix()}}
 }
 \author{
 Gjalt-Jorn Peters

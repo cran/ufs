@@ -5,10 +5,17 @@
 \alias{getDat}
 \title{Basic SPSS translation functions}
 \usage{
-getData(filename = NULL, file = NULL,
-  errorMessage = "[defaultErrorMessage]", applyRioLabels = TRUE,
-  use.value.labels = FALSE, to.data.frame = TRUE,
-  stringsAsFactors = FALSE, silent = FALSE, ...)
+getData(
+  filename = NULL,
+  file = NULL,
+  errorMessage = "[defaultErrorMessage]",
+  applyRioLabels = TRUE,
+  use.value.labels = FALSE,
+  to.data.frame = TRUE,
+  stringsAsFactors = FALSE,
+  silent = FALSE,
+  ...
+)
 
 getDat(..., dfName = "dat", backup = TRUE)
 }
@@ -19,7 +26,7 @@ here. If not specified, the default R file selection dialogue is shown.
 eventually be phased out.}
 
 \item{errorMessage}{The error message that is shown if the file does not
-exist or does not have the right extension; \code{[defaultErrorMessage]} is
+exist or does not have the right extension; \verb{[defaultErrorMessage]} is
 replaced with a default error message (and can be included in longer
 messages).}
 
@@ -55,12 +62,7 @@ the parent environment, by default with the name 'dat'. Therefore, calling
 \code{getDat()} in the console will allow the user to select a file, and the
 data from the file will then be read and be available as 'dat'. If an object
 with \code{dfName} (i.e. 'dat' by default) already exists, it will be backed
-up with a warning. \code{getDat()} therefore returns nothing.
-
-mediaan returns the median, or, in the case of a factor where the median is
-in between two categories, both categories.
-
-modus returns the mode.
+up with a warning. \code{getDat()} also invisibly returns the data.frame.
 }
 \description{
 Basic functons to make working with R easier for SPSS users: getData and
@@ -74,7 +76,7 @@ getData() currently can't read from LibreOffice or OpenOffice files.
 There doesn't seem to be a platform-independent package that allows this.
 Non-CRAN package ROpenOffice from OmegaHat should be able to do the trick,
 but fails to install (manual download and installation using
-http://www.omegahat.org produces "ERROR: dependency 'Rcompression' is not
+https://www.omegahat.org produces "ERROR: dependency 'Rcompression' is not
 available for package 'ROpenOffice'" - and manual download and installation
 of RCompression produces "Please define LIB_ZLIB; ERROR: configuration
 failed for package 'Rcompression'"). If you have any suggestions, please let

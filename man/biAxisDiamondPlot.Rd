@@ -4,17 +4,35 @@
 \alias{biAxisDiamondPlot}
 \title{Diamondplot with two Y axes}
 \usage{
-biAxisDiamondPlot(dat, items = NULL, leftAnchors = NULL,
-  rightAnchors = NULL, subQuestions = NULL, decreasing = NULL,
-  conf.level = 0.95, showData = TRUE, dataAlpha = 0.1,
-  dataColor = "#444444", diamondColors = NULL, jitterWidth = 0.45,
-  jitterHeight = 0.45, xbreaks = NULL, xLabels = NA,
+biAxisDiamondPlot(
+  dat,
+  items = NULL,
+  leftAnchors = NULL,
+  rightAnchors = NULL,
+  subQuestions = NULL,
+  decreasing = NULL,
+  conf.level = 0.95,
+  showData = TRUE,
+  dataAlpha = 0.1,
+  dataColor = "#444444",
+  diamondColors = NULL,
+  jitterWidth = 0.45,
+  jitterHeight = 0.45,
+  xbreaks = NULL,
+  xLabels = NA,
   xAxisLab = paste0("Scores and ", round(100 * conf.level, 2), "\% CIs"),
-  drawPlot = TRUE, returnPlotOnly = TRUE, baseSize = 1,
-  dotSize = baseSize, baseFontSize = 10 * baseSize,
+  drawPlot = TRUE,
+  returnPlotOnly = TRUE,
+  baseSize = 1,
+  dotSize = baseSize,
+  baseFontSize = 10 * baseSize,
   theme = ggplot2::theme_bw(base_size = baseFontSize),
-  outputFile = NULL, outputWidth = 10, outputHeight = 10,
-  ggsaveParams = list(units = "cm", dpi = 300, type = "cairo"), ...)
+  outputFile = NULL,
+  outputWidth = 10,
+  outputHeight = 10,
+  ggsaveParams = list(units = "cm", dpi = 300, type = "cairo"),
+  ...
+)
 }
 \arguments{
 \item{dat}{The dataframe containing the variables.}

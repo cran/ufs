@@ -6,19 +6,29 @@
 \alias{pander.associationMatrix}
 \title{associationMatrix}
 \usage{
-associationMatrix(dat = NULL, x = NULL, y = NULL,
-  conf.level = 0.95, correction = "fdr", bootstrapV = FALSE,
-  info = c("full", "ci", "es"), includeSampleSize = "depends",
-  bootstrapV.samples = 5000, digits = 2, pValueDigits = digits + 1,
-  colNames = FALSE, type = c("R", "html", "latex"), file = "",
+associationMatrix(
+  dat = NULL,
+  x = NULL,
+  y = NULL,
+  conf.level = 0.95,
+  correction = "fdr",
+  bootstrapV = FALSE,
+  info = c("full", "ci", "es"),
+  includeSampleSize = "depends",
+  bootstrapV.samples = 5000,
+  digits = 2,
+  pValueDigits = digits + 1,
+  colNames = FALSE,
+  type = c("R", "html", "latex"),
+  file = "",
   statistic = associationMatrixStatDefaults,
-  effectSize = associationMatrixESDefaults, var.equal = TRUE)
+  effectSize = associationMatrixESDefaults,
+  var.equal = TRUE
+)
 
-\method{print}{associationMatrix}(x, type = x$input$type,
-  info = x$input$info, file = x$input$file, ...)
+\method{print}{associationMatrix}(x, type = x$input$type, info = x$input$info, file = x$input$file, ...)
 
-\method{pander}{associationMatrix}(x, info = x$input$info,
-  file = x$input$file, ...)
+\method{pander}{associationMatrix}(x, info = x$input$info, file = x$input$file, ...)
 }
 \arguments{
 \item{dat}{A dataframe with the variables of interest. All variables in this
@@ -84,8 +94,7 @@ value, associationMatrixESDefaults, works for everyday use. Again, see the
 'Notes' section below if you want to customize.}
 
 \item{var.equal}{Whether to test for equal variances ('test'), assume
-equality ('yes'), or assume unequality ('no'). See \code{\link[userfriendlyscience:meanDiff]{userfriendlyscience::meanDiff()}}
-for more information.}
+equality ('yes'), or assume unequality ('no').}
 
 \item{...}{Addition arguments are passed on to the \code{\link[=print]{print()}} amd \code{\link[pander:pander]{pander::pander()}}
 functions.}

@@ -4,8 +4,12 @@
 \alias{massConvertToNumeric}
 \title{Converting many dataframe columns to numeric}
 \usage{
-massConvertToNumeric(dat, byFactorLabel = FALSE,
-  ignoreCharacter = TRUE, stringsAsFactors = FALSE)
+massConvertToNumeric(
+  dat,
+  byFactorLabel = FALSE,
+  ignoreCharacter = TRUE,
+  stringsAsFactors = FALSE
+)
 }
 \arguments{
 \item{dat}{The dataframe with the columns.}

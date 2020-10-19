@@ -15,7 +15,7 @@ A logical vector.
 \description{
 This function by Josh O'Brien checks whether elements of a vector are valid
 colors. It has been copied from a Stack Exchange answer (see
-\url{http://stackoverflow.com/questions/13289009/check-if-character-string-is-a-valid-color-representation}).
+\url{https://stackoverflow.com/questions/13289009/check-if-character-string-is-a-valid-color-representation}).
 }
 \examples{
 

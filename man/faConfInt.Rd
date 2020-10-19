@@ -8,7 +8,7 @@ faConfInt(fa)
 }
 \arguments{
 \item{fa}{The object produced by the \code{\link[psych:fa]{psych::fa()}} function from the
-\link[psych:psych-package]{psych::psych-package} package. It is important that the \code{n.iter} argument
+\link[psych:00.psych-package]{psych::psych-package} package. It is important that the \code{n.iter} argument
 of\code{\link[psych:fa]{psych::fa()}} was set to a realistic number, because otherwise, no
 confidence intervals will be available.}
 }
@@ -19,7 +19,7 @@ dataframe three variables: \item{lo}{lower bound of the confidence interval}
 the confidence interval}
 }
 \description{
-This function contains some code from a function in \link[psych:psych-package]{psych::psych-package}
+This function contains some code from a function in \link[psych:00.psych-package]{psych::psych-package}
 that's not exported \code{print.psych.fa.ci} but useful nonetheless. It
 basically takes the outcomes of a factor analysis and extracted the
 confidence intervals.
@@ -27,7 +27,7 @@ confidence intervals.
 \details{
 THis function extract confidence interval bounds and combines them with
 factor loadings using the code from the \code{print.psych.fa.ci} in
-\link[psych:psych-package]{psych::psych-package}.
+\link[psych:00.psych-package]{psych::psych-package}.
 }
 \examples{
 

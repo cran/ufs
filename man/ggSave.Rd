@@ -4,9 +4,18 @@
 \alias{ggSave}
 \title{Save a ggplot with specific defaults}
 \usage{
-ggSave(file = NULL, plot = ggplot2::last_plot(), height = 8,
-  width = 8, units = "in", dpi = 300, device = NULL, type = NULL,
-  bg = "transparent", ...)
+ggSave(
+  file = NULL,
+  plot = ggplot2::last_plot(),
+  width = ufs::opts$get("ggSaveFigWidth"),
+  height = ufs::opts$get("ggSaveFigHeight"),
+  units = ufs::opts$get("ggSaveUnits"),
+  dpi = ufs::opts$get("ggSaveDPI"),
+  device = NULL,
+  type = NULL,
+  bg = "transparent",
+  ...
+)
 }
 \arguments{
 \item{file}{The file where to save to.}

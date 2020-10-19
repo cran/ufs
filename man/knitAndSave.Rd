@@ -4,9 +4,18 @@
 \alias{knitAndSave}
 \title{knitAndSave}
 \usage{
-knitAndSave(plotToDraw, figCaption, file = NULL, path = NULL,
-  figWidth = 8, figHeight = 8,
-  catPlot = getOption("ufs.knitAndSave.catPlot", FALSE), ...)
+knitAndSave(
+  plotToDraw,
+  figCaption,
+  file = NULL,
+  path = NULL,
+  figWidth = ufs::opts$get("ggSaveFigWidth"),
+  figHeight = ufs::opts$get("ggSaveFigHeight"),
+  units = ufs::opts$get("ggSaveUnits"),
+  dpi = ufs::opts$get("ggSaveDPI"),
+  catPlot = ufs::opts$get("knitAndSave.catPlot"),
+  ...
+)
 }
 \arguments{
 \item{plotToDraw}{The plot to knit using \code{\link[=knitFig]{knitFig()}} and save using \code{\link[=ggSave]{ggSave()}}.}
@@ -18,6 +27,8 @@ file if no filename is provided (if \code{path} is also omitted, \code{getWd()} 
 
 \item{figWidth, figHeight}{The plot dimensions, by default specified in inches (but 'units' can
 be set which is then passed on to \code{\link[=ggSave]{ggSave()}}.}
+
+\item{units, dpi}{The units and DPI of the image which are then passed on to \code{\link[=ggSave]{ggSave()}}.}
 
 \item{catPlot}{Whether to use \code{\link[=cat]{cat()}} to print the knitr fragment.}
 
@@ -31,6 +42,6 @@ The \code{\link[=knitFig]{knitFig()}} result, visibly.
 knitAndSave
 }
 \examples{
-\donttest{plot <- ggBoxplot(mtcars, 'mpg');
+\dontrun{plot <- ggBoxplot(mtcars, 'mpg');
 knitAndSave(plot, figCaption="a boxplot", file=tempfile(fileext=".png"));}
 }

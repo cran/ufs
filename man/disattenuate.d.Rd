@@ -2,12 +2,13 @@
 % Please edit documentation in R/disattenuate.d.R
 \name{disattenuate.d}
 \alias{disattenuate.d}
-\title{Disattentuate a Cohen's d estimate for unreliability in the continuous variable}
+\title{Disattenuate a Cohen's d estimate for unreliability in the continuous variable}
 \usage{
 disattenuate.d(d, reliability)
 }
 \arguments{
-\item{d}{The (attenuated) value of Cohen's d}
+\item{d}{The (attenuated) value of Cohen's d (i.e. the value as observed in the sample,
+and therefore attenuated (decreased) by measurement error in the continuous variable).}
 
 \item{reliability}{The reliability of the measurements of the continuous variable}
 }
@@ -15,8 +16,18 @@ disattenuate.d(d, reliability)
 The disattenuated value of Cohen's d
 }
 \description{
-Disattentuate a Cohen's d estimate for unreliability in the continuous variable
+Measurement error (i.e. the complement of reliability) results in a downward bias
+of observed effect sizes. This attenuation can be reversed by disattenuation.
 }
 \examples{
 disattenuate.d(.5, .8);
+}
+\references{
+Bobko, P., Roth, P. L., & Bobko, C. (2001). Correcting
+the Effect Size of d for Range Restriction and Unreliability.
+\emph{Organizational Research Methods, 4}(1), 46–61.
+\url{https://doi.org/10.1177/109442810141003}
+}
+\author{
+Gjalt-Jorn Peters & Stefan Gruijters
 }

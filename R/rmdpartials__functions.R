@@ -80,7 +80,7 @@ rmdpartials__partial <- function(input = NULL, text = NULL, ...,
   res <- knitr::knit(input = input, text = text, ...,
                      quiet = quiet, tangle = knitr::opts_knit$get("tangle"),
                      envir = envir, encoding = encode)
-  knitr::asis_output(paste(c("", res), collapse = "\n"))
+  knitr::asis_output(paste(c("", res, ""), collapse = "\n"))
 }
 
 

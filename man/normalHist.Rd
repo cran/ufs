@@ -5,13 +5,26 @@
 \alias{print.normalHist}
 \title{normalHist}
 \usage{
-normalHist(vector, histColor = "#0000CC",
-  distributionColor = "#0000CC", normalColor = "#00CC00",
-  distributionLineSize = 1, normalLineSize = 1, histAlpha = 0.25,
-  xLabel = NULL, yLabel = NULL, normalCurve = TRUE,
-  distCurve = TRUE, breaks = 30, theme = ggplot2::theme_minimal(),
-  rug = NULL, jitteredRug = TRUE, rugSides = "b", rugAlpha = 0.2,
-  returnPlotOnly = FALSE)
+normalHist(
+  vector,
+  histColor = "#0000CC",
+  distributionColor = "#0000CC",
+  normalColor = "#00CC00",
+  distributionLineSize = 1,
+  normalLineSize = 1,
+  histAlpha = 0.25,
+  xLabel = NULL,
+  yLabel = NULL,
+  normalCurve = TRUE,
+  distCurve = TRUE,
+  breaks = 30,
+  theme = ggplot2::theme_minimal(),
+  rug = NULL,
+  jitteredRug = TRUE,
+  rugSides = "b",
+  rugAlpha = 0.2,
+  returnPlotOnly = FALSE
+)
 
 \method{print}{normalHist}(x, ...)
 }

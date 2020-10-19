@@ -1,14 +1,27 @@
 #' Conceptual Independence Matrix
 #'
 #' @param data The dataframe containing the variables.
-#' @param scales The scales: a names list of character vectors,
+#' @param scales The scales: a named list of character vectors,
 #' where the character vectors specify the variable names, and the
 #' names of each character vector specifies the relevant scale.
+#' @param conf.level The confidence level for the confidence intervals.
+#' @param colors The colors used for the factors. The default uses the
+#' discrete viridis() palette, which is optimized for perceptual
+#' uniformity, maintaining its properties when printed in grayscale,
+#' and designed for colourblind readers. A vector can also be supplied;
+#' the colors must be valid arguments to [colorRamp()] (and therefore,
+#' to [col2rgb()]).
 #' @param outputFile The file to write the output to.
 #' @param outputWidth,outputHeight,outputUnits The width, height,
 #' and units for the output file.
 #' @param faMethod The method to pass on to [psych::fa()].
 #' @param n.iter The number of iterations to pass on to [psych::fa()].
+#' @param n.repeatOnWarning How often to repeat on warnings (in the
+#' hopes of getting a run without warnings).
+#' @param warningTolerance How many warnings are accepted.
+#' @param silentRepeatOnWarning Whether to be chatty or silent when
+#' repeating after warnings.
+#' @param showWarnings Whether to show the warnings.
 #' @param skipRegex A character vector of length 2 containing two
 #' regular expressions; if the two scales both match one or both
 #' of those regular expressions, that cell is skipped.
@@ -25,8 +38,8 @@
 #' @param ... Additional arguments are passed on the respective default methods.
 #'
 #' @return A [ggplot2::ggplot()] plot.
-#' @examples ### Load data from psych package
-#' data(bfi, package= 'psych');
+#' @examples ### Load dataset `bfi`, originally from psychTools package
+#' data(bfi, package= 'ufs');
 #'
 #' ### Specify scales
 #' bfiScales <-
@@ -42,19 +55,26 @@
 #' ### Only select first two and the first three items to
 #' ### keep it quick; just pass the full 'bfiScales'
 #' ### object to run for all five the full scales
+#' \donttest{
 #' CIM(bfi,
 #'     scales=lapply(bfiScales, head, 3)[1:2],
 #'     n.iter=10);
-#'
+#' }
 #' @export
 CIM <- function(data,
                 scales,
+                conf.level=.95,
+                colors = c("#440154FF", "#7AD151FF"), #viridis::viridis(2, end = .8),
                 outputFile = NULL,
                 outputWidth = 100,
                 outputHeight = 100,
                 outputUnits = "cm",
                 faMethod = "minres",
                 n.iter = 100,
+                n.repeatOnWarning = 50,
+                warningTolerance = 2,
+                silentRepeatOnWarning = FALSE,
+                showWarnings = FALSE,
                 skipRegex = NULL,
                 headingLevel=2,
                 printAbbreviations = TRUE,
@@ -87,7 +107,7 @@ CIM <- function(data,
 
   ### Generate tableGrob with headers for the
   ### table with factor loadings (see
-  ### http://stackoverflow.com/questions/33214671/merging-table-header-cells-using-tablegrob
+  ### https://stackoverflow.com/questions/33214671/merging-table-header-cells-using-tablegrob
   ### and https://github.com/baptiste/gridextra/wiki/tableGrob
   makeHeaderTable <- function(vector, startCol=2, colSpan=3) {
     nCol <- length(vector);
@@ -116,6 +136,8 @@ CIM <- function(data,
 
   ### Create objects for output
   grobsList <- list();
+  factorLoadingCIs <- list();
+  ciSummaryList <- list();
   errorsList <- list();
   warningsList <- list();
   messagesList <- list();
@@ -154,33 +176,44 @@ CIM <- function(data,
   ###--------------------------------------------------------------------------
 
   res$intermediate <- list(efas = list(),
+                           cfa1s = list(),
+                           cfa2s = list(),
                            cfas = list(),
                            diamondplots = list(),
+                           faDfs = list(),
                            scales = scales,
                            abbrScales = abbrScales,
                            abbrScaleNames = abbrScaleNames,
                            abbreviationLegend = abbreviationLegend);
 
-  if (!isTRUE(getOption('knitr.in.progress'))) {
+  if ((!isTRUE(getOption('knitr.in.progress'))) && interactive()) {
     ### Initialize progress bar
     pb <- utils::txtProgressBar(style=3,
                                 min = 1,
                                 max = length(scales) ^ 2);
   }
 
+  #on.exit({cat("\nPrematurely interrupted during factor analyses!\n");});
+
   for (rowVar in names(scales)) {
 
     res$intermediate$efas[[rowVar]] <- list();
+    res$intermediate$cfa1s[[rowVar]] <- list();
+    res$intermediate$cfa2s[[rowVar]] <- list();
     res$intermediate$cfas[[rowVar]] <- list();
     res$intermediate$diamondplots[[rowVar]] <- list();
+    res$intermediate$faDfs[[rowVar]] <- list();
 
     ### Get index of this row
     rowIndex <- which(names(scales) == rowVar);
+
     ### Generate object to store the columns of this row in
-    grobsList[[rowIndex]] <-list();
-    errorsList[[rowIndex]] <-list();
-    warningsList[[rowIndex]] <-list();
-    messagesList[[rowIndex]] <-list();
+    grobsList[[rowIndex]] <- list();
+    errorsList[[rowIndex]] <- list();
+    warningsList[[rowIndex]] <- list();
+    messagesList[[rowIndex]] <- list();
+    ciSummaryList[[rowIndex]] <- list();
+    factorLoadingCIs[[rowIndex]] <- list();
 
     for (colVar in names(scales)) {
 
@@ -197,8 +230,9 @@ CIM <- function(data,
       messagesList[[rowIndex]][[colIndex]] <- list(efa = character(),
                                                    cfa1 = character(),
                                                    cfa2 = character());
+      ciSummaryList[[rowIndex]][[colIndex]] <- list();
 
-      if (!isTRUE(getOption('knitr.in.progress'))) {
+      if ((!isTRUE(getOption('knitr.in.progress'))) && interactive()) {
         progressIndex <- ((rowIndex - 1) * length(scales)) + colIndex;
         ### Update progress bar
         utils::setTxtProgressBar(pb,
@@ -227,213 +261,249 @@ CIM <- function(data,
         ### Otherwise, do the factor analyses
         } else {
 
-          ### Get a convenient list of the items in both scales
-          vars <- c(scales[[rowVar]],
-                    scales[[colVar]]);
+          if (rowIndex < colIndex) {
 
-          ### Get both measurement models
-          oneFactor <- paste0(' variable =~ ',
-                              paste0(vars, collapse=" + "));
-          twoFactor <- paste0(' ', rowVar, ' =~ ',
-                              paste0(scales[[rowVar]], collapse=" + "),
-                              '\n',
-                              ' ', colVar, ' =~ ',
-                              paste0(scales[[colVar]], collapse=" + "));
+            ### Get a convenient list of the items in both scales
+            vars <- c(scales[[rowVar]],
+                      scales[[colVar]]);
 
-          ### Check the extremely useful explanation at
-          ### https://cran.r-project.org/web/packages/tryCatchLog/vignettes/tryCatchLog-intro.html
+            ### Get both measurement models
+            oneFactor <- paste0(' variable =~ ',
+                                paste0(vars, collapse=" + "));
+            twoFactor <- paste0(
+              ' ',
+              'var1', #rowVar,
+              ' =~ ',
+              paste0(scales[[rowVar]], collapse=" + "),
+              '\n',
+              ' ',
+              'var', #colVar,
+              ' =~ ',
+              paste0(scales[[colVar]], collapse=" + ")
+            );
 
+            if (ufs::opts$get('debug')) {
+              cat0("\n\nOne factor CFA model: ", oneFactor, "\n",
+                   "Two factor CFA model: ", twoFactor, "\n\n");
+            }
 
-          ### First do an EFA
-          abbrVarsDat <- data[, rev(vars)];
-          abbrVarNames <- c(abbrScales[[abbrScaleNames[rowVar]]],
-                            abbrScales[[abbrScaleNames[colVar]]]);
-          names(abbrVarsDat) <- abbrVarNames;
+            ### Check the extremely useful explanation at
+            ### https://cran.r-project.org/web/packages/tryCatchLog/vignettes/tryCatchLog-intro.html
 
-          ### Store original warning level
-          oldWarn <- getOption('warn', 0);
-
-          ### Throw warnings as messages
-          options(warn=1);
-
-          warningsList[[rowVar]][[colVar]]$efa <-
-            utils::capture.output({
-              res$intermediate$efas[[rowVar]][[colVar]] <-
-                efa <-
-                psych::fa(abbrVarsDat,
-                          nfactors=2,
-                          fm=faMethod,
-                          n.iter=n.iter)
-            }, type="message");
-
-          # res$intermediate$efas[[rowVar]][[colVar]] <-
-          #   efa <-
-          #
-          #   # psych::fa(abbrVarsDat,
-          #   #           nfactors=2,
-          #   #           fm=faMethod,
-          #   #           n.iter=n.iter)
-          #
-          #
-          #
-          #   tryCatch(withCallingHandlers(psych::fa(abbrVarsDat,
-          #                                          nfactors=2,
-          #                                          fm=faMethod,
-          #                                          n.iter=n.iter),
-          #                            error = function(e) {
-          #                              errorsList[[rowVar]][[colVar]]$efa <-
-          #                                c(errorsList[[rowVar]][[colVar]]$efa,
-          #                                  e$message);
-          #                            },
-          #                            warning = function(w) {
-          #                              warningsList[[rowVar]][[colVar]]$efa <-
-          #                                c(warningsList[[rowVar]][[colVar]]$efa,
-          #                                  w$message);
-          #                              invokeRestart("muffleWarning");
-          #                            },
-          #                            message - function(m) {
-          #                              messagesList[[rowVar]][[colVar]]$efa <-
-          #                                c(messagesList[[rowVar]][[colVar]]$efa,
-          #                                  m$message);
-          #                              invokeRestart("muffleMessage");
-          #                            }),
-          #        error = function(e) {
-          #          errorsList[[rowVar]][[colVar]]$efa <-
-          #            c(errorsList[[rowVar]][[colVar]]$efa,
-          #              e$message);
-          #        });
-
-          ### Then the CFA for one factor
-          # oneFactorCFA <-
-          #   lavaan::cfa(oneFactor, data=data)
-
-          warningsList[[rowVar]][[colVar]]$cfa1 <-
-            utils::capture.output({
-              oneFactorCFA <-
-                lavaan::cfa(oneFactor, data=data)
-            }, type="message");
-
-            # tryCatch(withCallingHandlers(lavaan::cfa(oneFactor, data=data),
-            #                              error = function(e) {
-            #                                errorsList[[rowVar]][[colVar]]$cfa1 <-
-            #                                  c(errorsList[[rowVar]][[colVar]]$cfa1,
-            #                                    e$message);
-            #                              },
-            #                              warning = function(w) {
-            #                                warningsList[[rowVar]][[colVar]]$cfa1 <-
-            #                                  c(warningsList[[rowVar]][[colVar]]$cfa1,
-            #                                    w$message);
-            #                                invokeRestart("muffleWarning");
-            #                              },
-            #                              message - function(m) {
-            #                                messagesList[[rowVar]][[colVar]]$cfa1 <-
-            #                                  c(messagesList[[rowVar]][[colVar]]$cfa1,
-            #                                    m$message);
-            #                                invokeRestart("muffleMessage");
-            #                              }),
-            #          error = function(e) {
-            #            errorsList[[rowVar]][[colVar]]$cfa1 <-
-            #              c(errorsList[[rowVar]][[colVar]]$cfa1,
-            #                e$message);
-            #          });
-
-          ### Then the CFA for two factors
-          warningsList[[rowVar]][[colVar]]$cfa2 <-
-            utils::capture.output({
-              twoFactorCFA <-
-                lavaan::cfa(twoFactor, data=data)
-            }, type="message");
-
-          # twoFactorCFA <-
-          #   lavaan::cfa(twoFactor, data=data)
-
-            # tryCatch(withCallingHandlers(lavaan::cfa(twoFactor, data=data),
-            #                              error = function(e) {
-            #                                errorsList[[rowVar]][[colVar]]$cfa1 <-
-            #                                  c(errorsList[[rowVar]][[colVar]]$cfa1,
-            #                                    e$message);
-            #                              },
-            #                              warning = function(w) {
-            #                                warningsList[[rowVar]][[colVar]]$cfa1 <-
-            #                                  c(warningsList[[rowVar]][[colVar]]$cfa1,
-            #                                    w$message);
-            #                                invokeRestart("muffleWarning");
-            #                              },
-            #                              message - function(m) {
-            #                                messagesList[[rowVar]][[colVar]]$cfa1 <-
-            #                                  c(messagesList[[rowVar]][[colVar]]$cfa1,
-            #                                    m$message);
-            #                                invokeRestart("muffleMessage");
-            #                              }),
-            #          error = function(e) {
-            #            errorsList[[rowVar]][[colVar]]$cfa1 <-
-            #              c(errorsList[[rowVar]][[colVar]]$cfa1,
-            #                e$message);
-            #          });
-
-          ### Then run and compare the two CFAs
-          if (("lavaan" %in% class('oneFactorCFA')) && ('lavaan' %in% class('twoFactorCFA'))) {
-            res$intermediate$cfas[[rowVar]][[colVar]] <-
-              cfa <-
-              lavaan::anova(oneFactorCFA, twoFactorCFA);
-
-            ### In cfa$Chisq, the first number is the chi square of the
-            ### TWO-factor model, and the second one of the ONE-factor model!
-            bestFittingModel <- ifelse(cfa$Chisq[1] < cfa$Chisq[2],
-                                       '2-factor', '1-factor');
-
-            fitText <- paste0(bestFittingModel, ' fits better; ',
-                              'Chisq[',
-                              cfa[2, 'Df diff'],
-                              ']=', round(cfa[2, 'Chisq diff'], 2),
-                              ", ",
-                              ufs::formatPvalue(cfa[2, 'Pr(>Chisq)']));
-
-            ### Set options back to original setting
-            options(warn=oldWarn);
-
-          } else {
-            res$intermediate$cfas[[rowVar]][[colVar]] <-
-              cfa <-
-              NA;
-            bestFittingModel <- "not computed";
-            fitText <- "Not computed which model fits better."
-          }
-
-          ### Make dataframe with factor loading confidence intervals
-          if ('psych' %in% class(efa)) {
-            faDf <- matrix(unlist(ufs::faConfInt(efa)), ncol=6);
-          } else {
-            faDf <- matrix(rep(NA, 6*ncol(abbrVarsDat)),
-                           ncol=6);
-          }
-
-          ### Get abbreviated scale names
-          abbr <- abbreviate(names(scales));
-
-          ### Set row and column names
-          rownames(faDf) <- c(abbrScales[[abbrScaleNames[rowVar]]],
+            ### First do an EFA
+            abbrVarsDat <- data[, rev(vars)];
+            abbrVarNames <- c(abbrScales[[abbrScaleNames[rowVar]]],
                               abbrScales[[abbrScaleNames[colVar]]]);
-                              # paste0(abbr[rowVar], 1:length(scales[[rowVar]])),
-                              # paste0(abbr[colVar], 1:length(scales[[colVar]])));
-          colnames(faDf) <- c(rep(c('lo', 'est', 'hi'), 2));
+            names(abbrVarsDat) <- abbrVarNames;
 
-          ###------------------------------------------------------------------
-          ###------------------------------------------------------------------
-          ### To do: add explained variance per factor
-          ###------------------------------------------------------------------
-          ###------------------------------------------------------------------
+            ### Store final factor analysis
+            res$intermediate$efas[[rowVar]][[colVar]] <-
+              fa_failsafe(abbrVarsDat,
+                          nfactors = 2,
+                          fm = faMethod,
+                          p = 1-conf.level,
+                          n.iter=n.iter,
+                          n.repeatOnWarning = n.repeatOnWarning,
+                          warningTolerance = warningTolerance,
+                          silentRepeatOnWarning = silentRepeatOnWarning,
+                          showWarnings = showWarnings);
+
+            warningsList[[rowIndex]][[colIndex]]$efa <-
+              res$intermediate$efas[[rowVar]][[colVar]]$warnings;
+            errorsList[[rowIndex]][[colIndex]]$efa <-
+              res$intermediate$efas[[rowVar]][[colVar]]$errors;
+            res$intermediate$efas[[rowVar]][[colVar]] <-
+              efa <-
+              res$intermediate$efas[[rowVar]][[colVar]]$fa;
+
+            if (ufs::opts$get('debug')) {
+              cat("\n\nDid EFA. Moving on to one-factor CFA.\n\n");
+            }
+
+            ### Set warnings to appear as messages (first save original value)
+            oldWarn <- getOption("warn", 0);
+            options(warn=1);
+
+            ### First the CFA for one factor
+            tryCatch(
+              withCallingHandlers(
+                moreCapturedWarnings <-
+                  utils::capture.output(
+                    {
+                      warningsList[[rowIndex]][[colIndex]]$cfa1 <-
+                        oneFactorCFA <-
+                        lavaan::cfa(oneFactor, data=data);
+                    },
+                    type="message"
+                  ),
+                warning = function(w) {
+                  options(ufs.CIM.warnings = c(getOption("ufs.CIM.warnings"),
+                                               w$message));
+                  invokeRestart("muffleWarning");
+                }
+              ),
+              error = function(e) {
+                options(ufs.CIM.errors = c(getOption("ufs.CIM.errors"),
+                                           e$message));
+                stop("Error encountered in one factor CFA: ", e$message);
+              }
+            );
+
+            res$intermediate$cfa1s[[rowVar]][[colVar]] <-
+              oneFactorCFA;
+
+            if (ufs::opts$get('debug')) {
+              cat("\n\nDid one-factor CFA. Moving on to two-factor CFA.\n\n");
+            }
+
+            ### Then the CFA for two factors
+            tryCatch(
+              withCallingHandlers(
+                moreCapturedWarnings <-
+                  utils::capture.output(
+                    {
+                      warningsList[[rowIndex]][[colIndex]]$cfa2 <-
+                        twoFactorCFA <-
+                        lavaan::cfa(twoFactor, data=data);
+                    },
+                    type="message"
+                  ),
+                warning = function(w) {
+                  options(ufs.CIM.warnings = c(getOption("ufs.CIM.warnings"),
+                                               w$message));
+                  invokeRestart("muffleWarning");
+                }
+              ),
+              error = function(e) {
+                options(ufs.CIM.errors = c(getOption("ufs.CIM.errors"),
+                                           e$message));
+                stop("Error encountered in two factor CFA: ", e$message);
+              }
+            );
+
+            res$intermediate$cfa2s[[rowVar]][[colVar]] <-
+              twoFactorCFA;
+
+            if (ufs::opts$get('debug')) {
+              cat("\n\nDid two-factor CFA.\n");
+              cat0("  Class of 'oneFactorCFA' is: ", class(oneFactorCFA), "\n");
+              cat0("  Class of 'twoFactorCFA' is: ", class(twoFactorCFA), "\n\n");
+            }
+
+            ### Then run and compare the two CFAs
+            if (("lavaan" %in% class(oneFactorCFA)) && ('lavaan' %in% class(twoFactorCFA))) {
+              res$intermediate$cfas[[rowVar]][[colVar]] <-
+                cfa <-
+                lavaan::anova(oneFactorCFA, twoFactorCFA);
+
+              ### In cfa$Chisq, the first number is the chi square of the
+              ### TWO-factor model, and the second one of the ONE-factor model!
+              bestFittingModel <- ifelse(cfa$Chisq[1] < cfa$Chisq[2],
+                                         '2-factor', '1-factor');
+
+              fitText <- paste0(bestFittingModel, ' fits better; ',
+                                'Chisq[',
+                                cfa[2, 'Df diff'],
+                                ']=', round(cfa[2, 'Chisq diff'], 2),
+                                ", ",
+                                ufs::formatPvalue(cfa[2, 'Pr(>Chisq)']));
+
+              ### Set options back to original setting
+              options(warn=oldWarn);
+
+            } else {
+              res$intermediate$cfas[[rowVar]][[colVar]] <-
+                cfa <-
+                NA;
+              bestFittingModel <- "not computed";
+              fitText <- "Not computed which model fits better."
+            }
+
+            ### Make dataframe with factor loading confidence intervals
+            if ('psych' %in% class(efa)) {
+
+              factorLoadingCIs[[rowVar]][[colVar]] <-
+                ufs::faConfInt(res$intermediate$efas[[rowVar]][[colVar]]);
+              loadingCIs <-
+                factorLoadingCIs[[rowVar]][[colVar]];
+
+              ciSummaryList[[rowIndex]][[colIndex]] <-
+                (loadingCIs[[1]]$hi < loadingCIs[[2]]$lo) |
+                (loadingCIs[[2]]$hi < loadingCIs[[1]]$lo);
+
+              faDf <- matrix(unlist(factorLoadingCIs[[rowVar]][[colVar]]),
+                             ncol=6);
+            } else {
+              faDf <- matrix(rep(NA, 6*ncol(abbrVarsDat)),
+                             ncol=6);
+            }
+
+            ### Get abbreviated scale names
+            abbr <- abbreviate(names(scales));
+
+            ### Set row and column names
+            rownames(faDf) <- c(abbrScales[[abbrScaleNames[rowVar]]],
+                                abbrScales[[abbrScaleNames[colVar]]]);
+                                # paste0(abbr[rowVar], 1:length(scales[[rowVar]])),
+                                # paste0(abbr[colVar], 1:length(scales[[colVar]])));
+            colnames(faDf) <- c(rep(c('lo', 'est', 'hi'), 2));
+
+            faDfReordered <- faDf[order(rownames(faDf)),
+                                  ];
+            res$intermediate$faDfs[[rowVar]][[colVar]] <-
+              list(faDf_raw = faDf,
+                   faDf = faDfReordered,
+                   faDf_rounded = round(faDfReordered, 2));
+
+            if (ufs::opts$get('debug')) {
+              cat0("\n\nJust stored this dataframe to create a gTable later on:\n\n");
+              print(res$intermediate$faDfs[[rowVar]][[colVar]]$faDf_rounded);
+              cat0("\n\n");
+            }
+
+            ###------------------------------------------------------------------
+            ###------------------------------------------------------------------
+            ### To do: add explained variance per factor
+            ###------------------------------------------------------------------
+            ###------------------------------------------------------------------
+
+          } else {
+
+            ### Get everything from the top diagonal
+
+            res$intermediate$efas[[rowVar]][[colVar]] <-
+              res$intermediate$efas[[colVar]][[rowVar]];
+            res$intermediate$cfa1s[[rowVar]][[colVar]] <-
+              res$intermediate$cfa1s[[colVar]][[rowVar]];
+            res$intermediate$cfa2s[[rowVar]][[colVar]] <-
+              res$intermediate$cfa2s[[colVar]][[rowVar]];
+            res$intermediate$cfas[[rowVar]][[colVar]] <-
+              res$intermediate$cfas[[colVar]][[rowVar]];
+
+            factorLoadingCIs[[rowVar]][[colVar]] <-
+              factorLoadingCIs[[colVar]][[rowVar]];
+            ciSummaryList[[rowIndex]][[colIndex]] <-
+              ciSummaryList[[colIndex]][[rowIndex]];
+            res$intermediate$faDfs[[rowVar]][[colVar]] <-
+              res$intermediate$faDfs[[colVar]][[rowVar]];
+
+          }
 
           if (rowIndex < colIndex) {
             ### Upper diagonal
 
-            if ('psych' %in% class(efa)) {
+            if ('psych' %in% class(res$intermediate$efas[[rowVar]][[colVar]])) {
+              titleString <-
+                sort(c(rowVar, colVar));
+              titleString <- paste0(titleString[1], ' & ', titleString[2], "\n",
+                                    fitText);
               grobsList[[rowIndex]][[colIndex]] <-
                 res$intermediate$diamondplots[[rowVar]][[colVar]] <-
-                  factorLoadingDiamondCIplot(efa) +
+                  factorLoadingDiamondCIplot(res$intermediate$efas[[rowVar]][[colVar]],
+                                             colors=colors,
+                                             sortAlphabetically=TRUE) +
               #faDfDiamondCIplot(faDf, xlab=NULL) +
-                  ggplot2::ggtitle(paste0(rowVar, ' & ', colVar, "\n",
-                                          fitText));
+                  ggplot2::ggtitle(titleString);
             #           textGrob(paste0("Upper diag:\n", rowVar,
             #                           " and ", colVar));
             } else {
@@ -444,8 +514,18 @@ CIM <- function(data,
           } else {
             ### Lower diagonal
 
+            ### Note: we get the factor loadings that were generated by the
+            ### upper diagonal commands, to retain consistency with the
+            ### diamond plot
+
             grobsList[[rowIndex]][[colIndex]] <-
-              gridExtra::tableGrob(round(faDf, 2));
+              gridExtra::tableGrob(res$intermediate$faDfs[[colVar]][[rowVar]]$faDf_rounded);
+
+            if (ufs::opts$get('debug')) {
+              cat0("\n\nJust created a tableGrob for dataframe:\n\n");
+              print(res$intermediate$faDfs[[colVar]][[rowVar]]$faDf_rounded);
+              cat0("\n\n");
+            }
 
             grobsList[[rowIndex]][[colIndex]] <-
               gridExtra::gtable_combine(headerTable,
@@ -455,8 +535,11 @@ CIM <- function(data,
             prevWidths <- grobsList[[rowIndex]][[colIndex]]$widths;
 
             ### Add variable names
+            titleString <-
+              sort(c(rowVar, colVar));
+            titleString <- paste0(titleString[1], ' & ', titleString[2]);
             grobsList[[rowIndex]][[colIndex]] <-
-              gridExtra::gtable_combine(makeHeaderTable(paste0(rowVar, ' & ', colVar),
+              gridExtra::gtable_combine(makeHeaderTable(titleString,
                                                         colSpan=6),
                                         grobsList[[rowIndex]][[colIndex]],
                                         along=2);
@@ -476,10 +559,12 @@ CIM <- function(data,
     }
   }
 
-  if (!isTRUE(getOption('knitr.in.progress'))) {
+  if ((!isTRUE(getOption('knitr.in.progress'))) && interactive()) {
     ### Close progress indicator;
     close(pb);
   }
+
+  on.exit();
 
   CIM <- gridExtra::arrangeGrob(grobs=unlist(grobsList,
                                              recursive=FALSE),
@@ -489,11 +574,13 @@ CIM <- function(data,
     res <- CIM;
   } else {
     res$output <- list(CIM = CIM);
-    res$intermediate <- list(grobsList = grobsList,
-                             abbreviationLegend = abbreviationLegend,
-                             errorsList = errorsList,
-                             warningsList = warningsList,
-                             messagesList = messagesList);
+    res$intermediate$grobsList <- grobsList;
+    res$intermediate$factorLoadingCIs <- factorLoadingCIs;
+    res$intermediate$ciSummaryList <- ciSummaryList;
+    res$intermediate$abbreviationLegend <- abbreviationLegend;
+    res$intermediate$errorsList <- errorsList;
+    res$intermediate$warningsList <- warningsList;
+    res$intermediate$messagesList <- messagesList;
     class(res) <-
       "CIM";
   }
@@ -505,6 +592,9 @@ CIM <- function(data,
 
   ### Return and/or save conceptual independence matrix
   if (drawPlot && (!isTRUE(getOption('knitr.in.progress')))) {
+    if (ufs::opts$get('debug')) {
+      cat("\n\nDebugging message from the `ufs::CIM` function: going to print the CIM using `grid.draw`!\n\n");
+    }
     grid::grid.newpage();
     grid::grid.draw(CIM)
   }

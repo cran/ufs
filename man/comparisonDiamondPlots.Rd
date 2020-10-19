@@ -6,30 +6,68 @@
 \alias{meansComparisonDiamondPlot}
 \title{meansComparisonDiamondPlot and duoComparisonDiamondPlot}
 \usage{
-duoComparisonDiamondPlot(dat, items = NULL, compareBy = NULL,
-  labels = NULL, compareByLabels = NULL, decreasing = NULL,
-  conf.level = c(0.95, 0.95), showData = TRUE, dataAlpha = 0.1,
-  dataSize = 3, comparisonColors = viridis::viridis(length(unique(dat[,
-  compareBy]))), associationsColor = "grey", alpha = 0.33,
-  jitterWidth = 0.5, jitterHeight = 0.4, xlab = c("Scores and means",
-  "Effect size estimates"), ylab = c(NULL, NULL), plotTitle = NULL,
-  theme = ggplot2::theme_bw(), showLegend = TRUE,
-  legend.position = "top", lineSize = 1, drawPlot = TRUE,
-  xbreaks = "auto", outputFile = NULL, outputWidth = 10,
-  outputHeight = 10, ggsaveParams = list(units = "cm", dpi = 300, type
-  = "cairo"), ...)
-
-meansComparisonDiamondPlot(dat, items = NULL, compareBy = NULL,
-  labels = NULL, compareByLabels = NULL, decreasing = NULL,
-  sortBy = NULL, conf.level = 0.95, showData = TRUE,
-  dataAlpha = 0.1, dataSize = 3,
+duoComparisonDiamondPlot(
+  dat,
+  items = NULL,
+  compareBy = NULL,
+  labels = NULL,
+  compareByLabels = NULL,
+  decreasing = NULL,
+  conf.level = c(0.95, 0.95),
+  showData = TRUE,
+  dataAlpha = 0.1,
+  dataSize = 3,
   comparisonColors = viridis::viridis(length(unique(dat[, compareBy]))),
-  alpha = 0.33, jitterWidth = 0.5, jitterHeight = 0.4,
-  xlab = "Scores and means", ylab = NULL, plotTitle = NULL,
-  theme = ggplot2::theme_bw(), showLegend = TRUE,
-  legend.position = "top", lineSize = 1, xbreaks = "auto",
-  outputFile = NULL, outputWidth = 10, outputHeight = 10,
-  ggsaveParams = list(units = "cm", dpi = 300, type = "cairo"), ...)
+  associationsColor = "grey",
+  alpha = 0.33,
+  jitterWidth = 0.5,
+  jitterHeight = 0.4,
+  xlab = c("Scores and means", "Effect size estimates"),
+  ylab = c(NULL, NULL),
+  plotTitle = NULL,
+  theme = ggplot2::theme_bw(),
+  showLegend = TRUE,
+  legend.position = "top",
+  lineSize = 1,
+  drawPlot = TRUE,
+  xbreaks = "auto",
+  outputFile = NULL,
+  outputWidth = 10,
+  outputHeight = 10,
+  ggsaveParams = list(units = "cm", dpi = 300, type = "cairo"),
+  ...
+)
+
+meansComparisonDiamondPlot(
+  dat,
+  items = NULL,
+  compareBy = NULL,
+  labels = NULL,
+  compareByLabels = NULL,
+  decreasing = NULL,
+  sortBy = NULL,
+  conf.level = 0.95,
+  showData = TRUE,
+  dataAlpha = 0.1,
+  dataSize = 3,
+  comparisonColors = viridis::viridis(length(unique(dat[, compareBy]))),
+  alpha = 0.33,
+  jitterWidth = 0.5,
+  jitterHeight = 0.4,
+  xlab = "Scores and means",
+  ylab = NULL,
+  plotTitle = NULL,
+  theme = ggplot2::theme_bw(),
+  showLegend = TRUE,
+  legend.position = "top",
+  lineSize = 1,
+  xbreaks = "auto",
+  outputFile = NULL,
+  outputWidth = 10,
+  outputHeight = 10,
+  ggsaveParams = list(units = "cm", dpi = 300, type = "cairo"),
+  ...
+)
 }
 \arguments{
 \item{dat}{The dataframe containing the relevant variables.}

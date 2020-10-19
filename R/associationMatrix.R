@@ -29,8 +29,7 @@
 #' @param samples If bootstrapping, the number of samples to generate (of
 #' course, more samples means more accuracy and longer processing time).
 #' @param var.equal Whether to test for equal variances (`test`), assume
-#' equality (`yes`), or assume unequality (`no`). See [userfriendlyscience::meanDiff()]
-#' for more information.
+#' equality (`yes`), or assume unequality (`no`).
 #' @param ... Any additonal arguments are sometimes used to specify exactly
 #' how statistics and effect sizes should be computed.
 #' @return
@@ -57,7 +56,6 @@
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso [userfriendlyscience::meanDiff()], [associationMatrix()]
 #' @rdname associationMatrixHelperFunctions
 #' @keywords utilities bivar
 #' @examples
@@ -181,8 +179,10 @@ computeEffectSize_d <- function(var1, var2, conf.level=.95,
   tTest <- stats::t.test(interval ~ dichotomous,
                          var.equal = var.equal)$statistic;
   dValue <- ufs::convert.t.to.d(tTest,
-                                n1 = sum(as.numeric(dichotomous)==min(as.numeric(dichotomous))),
-                                n2 = sum(as.numeric(dichotomous)==max(as.numeric(dichotomous))));
+                                n1 = sum(as.numeric(dichotomous)==min(as.numeric(dichotomous),
+                                                                      na.rm=TRUE), na.rm=TRUE),
+                                n2 = sum(as.numeric(dichotomous)==max(as.numeric(dichotomous),
+                                                                      na.rm=TRUE), na.rm=TRUE));
 
   res$object <- ufs::confIntD(dValue,
                               n=sum(!is.na(interval)),
@@ -235,7 +235,7 @@ computeEffectSize_etasq <- function(var1, var2, conf.level=.95,
 
   ### Confidence level should be doubled (i.e. unconfidence level
   ### should be doubled to be more precise), so .95 becomes .90 ->
-  ### see http://daniellakens.blogspot.nl/2014/06/calculating-confidence-intervals-for.html
+  ### see https://daniellakens.blogspot.nl/2014/06/calculating-confidence-intervals-for.html
   ### for a brief explanation and links to more extensive explanations.
 
   res$realConfidence <- 1 - ((1-conf.level) * 2);
@@ -247,7 +247,7 @@ computeEffectSize_etasq <- function(var1, var2, conf.level=.95,
   f_val <- summary(res$object.aov)[[1]][1,4];
 
   ### This is suggested by the page at
-  ### http://yatani.jp/HCIstats/ANOVA#RCodeOneWay
+  ### https://yatani.jp/HCIstats/ANOVA#RCodeOneWay
   ### (capture.output used because this function for
   ###  some reason very tenaciously outputs results)
   ### (also note that we double the 'unconfidence' level,
@@ -421,8 +421,7 @@ associationMatrixESDefaults <- list(dichotomous =
 #' value, associationMatrixESDefaults, works for everyday use. Again, see the
 #' 'Notes' section below if you want to customize.
 #' @param var.equal Whether to test for equal variances ('test'), assume
-#' equality ('yes'), or assume unequality ('no'). See [userfriendlyscience::meanDiff()]
-#' for more information.
+#' equality ('yes'), or assume unequality ('no').
 #' @param ... Addition arguments are passed on to the [print()] amd [pander::pander()]
 #' functions.
 #' @return

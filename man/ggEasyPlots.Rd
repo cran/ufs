@@ -6,14 +6,31 @@
 \alias{ggEasyRidge}
 \title{Convenience functions for ggplots based on multiple variables}
 \usage{
-ggEasyBar(data, items = NULL, labels = NULL, sortByMean = TRUE,
-  xlab = NULL, ylab = NULL, scale_fill_function = NULL,
-  fontColor = "white", fontSize = 2, labelMinPercentage = 1,
-  showInLegend = "both", legendRows = 2, legendValueLabels = NULL,
-  biAxisLabels = NULL)
+ggEasyBar(
+  data,
+  items = NULL,
+  labels = NULL,
+  sortByMean = TRUE,
+  xlab = NULL,
+  ylab = NULL,
+  scale_fill_function = NULL,
+  fontColor = "white",
+  fontSize = 2,
+  labelMinPercentage = 1,
+  showInLegend = "both",
+  legendRows = 2,
+  legendValueLabels = NULL,
+  biAxisLabels = NULL
+)
 
-ggEasyRidge(data, items = NULL, labels = NULL, sortByMean = TRUE,
-  xlab = NULL, ylab = NULL)
+ggEasyRidge(
+  data,
+  items = NULL,
+  labels = NULL,
+  sortByMean = TRUE,
+  xlab = NULL,
+  ylab = NULL
+)
 }
 \arguments{
 \item{data}{The dataframe containing the variables.}

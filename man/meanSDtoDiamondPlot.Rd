@@ -4,11 +4,21 @@
 \alias{meanSDtoDiamondPlot}
 \title{A diamond plot based on means, standard deviations, and sample sizes}
 \usage{
-meanSDtoDiamondPlot(dat = NULL, means = 1, sds = 2, ns = 3,
-  labels = NULL, colorCol = NULL, conf.level = 0.95,
-  xlab = "Means", outputFile = NULL, outputWidth = 10,
-  outputHeight = 10, ggsaveParams = list(units = "cm", dpi = 300, type
-  = "cairo"), ...)
+meanSDtoDiamondPlot(
+  dat = NULL,
+  means = 1,
+  sds = 2,
+  ns = 3,
+  labels = NULL,
+  colorCol = NULL,
+  conf.level = 0.95,
+  xlab = "Means",
+  outputFile = NULL,
+  outputWidth = 10,
+  outputHeight = 10,
+  ggsaveParams = list(units = "cm", dpi = 300, type = "cairo"),
+  ...
+)
 }
 \arguments{
 \item{dat}{The dataset containing the means, standard deviations, sample

@@ -11,8 +11,15 @@ cramersV(x, y = NULL, digits = 2)
 
 \method{print}{CramersV}(x, digits = x$input$digits, ...)
 
-confIntV(x, y = NULL, conf.level = 0.95, samples = 500, digits = 2,
-  method = c("bootstrap", "fisher"), storeBootstrappingData = FALSE)
+confIntV(
+  x,
+  y = NULL,
+  conf.level = 0.95,
+  samples = 500,
+  digits = 2,
+  method = c("bootstrap", "fisher"),
+  storeBootstrappingData = FALSE
+)
 
 \method{print}{confIntV}(x, digits = x$input$digits, ...)
 }

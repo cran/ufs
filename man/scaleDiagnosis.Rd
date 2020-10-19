@@ -6,15 +6,32 @@
 \alias{knit_print.scaleDiagnosis}
 \title{scaleDiagnosis}
 \usage{
-scaleDiagnosis(data = NULL, items = NULL, plotSize = 180,
-  sizeMultiplier = 1, axisLabels = "none",
-  scaleReliability.ci = FALSE, conf.level = 0.95, normalHist = TRUE,
-  digits = 3, headingLevel = 3, scaleName = NULL, ...)
+scaleDiagnosis(
+  data = NULL,
+  items = NULL,
+  plotSize = 180,
+  sizeMultiplier = 1,
+  axisLabels = "none",
+  scaleReliability.ci = FALSE,
+  conf.level = 0.95,
+  normalHist = TRUE,
+  poly = TRUE,
+  digits = 3,
+  headingLevel = 3,
+  scaleName = NULL,
+  ...
+)
 
 \method{print}{scaleDiagnosis}(x, digits = x$digits, ...)
 
-\method{knit_print}{scaleDiagnosis}(x, headingLevel = x$headingLevel,
-  quiet = TRUE, echoPartial = FALSE, partialFile = NULL, ...)
+\method{knit_print}{scaleDiagnosis}(
+  x,
+  headingLevel = x$headingLevel,
+  quiet = TRUE,
+  echoPartial = FALSE,
+  partialFile = NULL,
+  ...
+)
 }
 \arguments{
 \item{data}{A dataframe containing the items in the scale. All variables in
@@ -39,6 +56,9 @@ estimates (if requested with scaleReliability.ci).}
 
 \item{normalHist}{Whether to use the default ggpairs histogram on the
 diagonal of the scattermatrix, or whether to use the \code{\link[=normalHist]{normalHist()}} version.}
+
+\item{poly}{Whether to also request the estimates based on the polychoric
+correlation matrix when calling \code{\link[=scaleStructure]{scaleStructure()}}.}
 
 \item{digits}{The number of digits to pass to the \code{print} method for the
 descriptives dataframe.}

@@ -76,7 +76,7 @@
 #'
 NULL
 
-### See http://statistiki.eu/wiki/Converting_Effect_Sizes for some formulae
+### See https://statistiki.eu/wiki/Converting_Effect_Sizes for some formulae
 
 ###########################################################################
 ### Converting from: Cohen's d
@@ -105,7 +105,7 @@ convert.d.to.r <- function(d, n1 = NULL, n2 = NULL, akfEq8='if (n1 + n2) < 50') 
 convert.d.to.t <- function(d, df=NULL, n1=NULL, n2=NULL, proportion=.5) {
   ### Obsolete; not basing computation on
   ### reversal of formula used in e.g.
-  ### http://journal.frontiersin.org/article/10.3389/fpsyg.2013.00863/full
+  ### https://journal.frontiersin.org/article/10.3389/fpsyg.2013.00863/full
   #   return(ifelse(d < 0,
   #                 -1 * sqrt(sqrt(n) * abs(d)),
   #                 sqrt(sqrt(n) * abs(d))));
@@ -239,7 +239,7 @@ convert.t.to.d <- function(t, df=NULL, n1=NULL, n2=NULL, proportion=.5) {
     return(NA);
   }
 
-  ### Updated to reflect http://journal.frontiersin.org/article/10.3389/fpsyg.2013.00863/full
+  ### Updated to reflect https://journal.frontiersin.org/article/10.3389/fpsyg.2013.00863/full
   # multiplier <- sqrt(((groupSize1 + groupSize2) / (groupSize1 * groupSize2)) *
   #                      ((groupSize1 + groupSize2) / (groupSize1 + groupSize2 - 2)));
   multiplier <- sqrt((1 / groupSize1) + (1 / groupSize2));

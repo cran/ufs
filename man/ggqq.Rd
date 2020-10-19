@@ -4,10 +4,20 @@
 \alias{ggqq}
 \title{Easy ggplot Q-Q plot}
 \usage{
-ggqq(x, distribution = "norm", ..., ci = TRUE, line.estimate = NULL,
-  conf.level = 0.95, sampleSizeOverride = NULL, observedOnX = TRUE,
-  scaleExpected = TRUE, theoryLab = "Theoretical quantiles",
-  observeLab = "Observed quantiles", theme = ggplot2::theme_bw())
+ggqq(
+  x,
+  distribution = "norm",
+  ...,
+  ci = TRUE,
+  line.estimate = NULL,
+  conf.level = 0.95,
+  sampleSizeOverride = NULL,
+  observedOnX = TRUE,
+  scaleExpected = TRUE,
+  theoryLab = "Theoretical quantiles",
+  observeLab = "Observed quantiles",
+  theme = ggplot2::theme_bw()
+)
 }
 \arguments{
 \item{x}{A vector containing the values to plot.}
@@ -59,10 +69,10 @@ This function creates a qq-plot with a confidence interval.
 \details{
 This is strongly based on the answer by user Floo0 to a Stack Overflow
 question at Stack Exchange (see
-\url{http://stackoverflow.com/questions/4357031/qqnorm-and-qqline-in-ggplot2/27191036#27191036}),
+\url{https://stackoverflow.com/questions/4357031/qqnorm-and-qqline-in-ggplot2/27191036#27191036}),
 also posted at GitHub (see
 \url{https://gist.github.com/rentrop/d39a8406ad8af2a1066c}). That code is in
-turn based on the \code{\link[car:qqPlot]{car::qqPlot()}} function from the \code{car} package.
+turn based on the \code{qqPlot()} function from the \code{car} package.
 }
 \examples{
 

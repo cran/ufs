@@ -46,7 +46,7 @@
 #' @seealso \code{\link{summary}}, [psych::describe()
 #' @references Hartigan, J. A.; Hartigan, P. M. The Dip Test of Unimodality.
 #' Ann. Statist. 13 (1985), no. 1, 70--84. doi:10.1214/aos/1176346577.
-#' http://projecteuclid.org/euclid.aos/1176346577.
+#' https://projecteuclid.org/euclid.aos/1176346577.
 #' @keywords univariate
 #' @rdname descriptives
 #' @examples

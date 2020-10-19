@@ -59,8 +59,7 @@
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso [diamondPlot()], [ggDiamondLayer()],
-#' [behaviorchange::CIBER()]
+#' @seealso [diamondPlot()], [ggDiamondLayer()]
 #' @keywords hplot
 #' @examples
 #'

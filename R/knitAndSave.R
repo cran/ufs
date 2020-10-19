@@ -6,6 +6,7 @@
 #' file if no filename is provided (if `path` is also omitted, `getWd()` is used).
 #' @param figWidth,figHeight The plot dimensions, by default specified in inches (but 'units' can
 #' be set which is then passed on to [ggSave()].
+#' @param units,dpi The units and DPI of the image which are then passed on to [ggSave()].
 #' @param catPlot Whether to use [cat()] to print the knitr fragment.
 #' @param ... Additional arguments are passed on to [ggSave()]. Note that file (and ...) are
 #' vectorized (see the [ggSave()] manual page).
@@ -13,15 +14,17 @@
 #' @return The [knitFig()] result, visibly.
 #' @export
 #'
-#' @examples \donttest{plot <- ggBoxplot(mtcars, 'mpg');
+#' @examples \dontrun{plot <- ggBoxplot(mtcars, 'mpg');
 #' knitAndSave(plot, figCaption="a boxplot", file=tempfile(fileext=".png"));}
 knitAndSave <- function(plotToDraw,
                         figCaption,
                         file = NULL,
                         path=NULL,
-                        figWidth=8,
-                        figHeight=8,
-                        catPlot = getOption("ufs.knitAndSave.catPlot", FALSE),
+                        figWidth=ufs::opts$get("ggSaveFigWidth"),
+                        figHeight=ufs::opts$get("ggSaveFigHeight"),
+                        units=ufs::opts$get("ggSaveUnits"),
+                        dpi=ufs::opts$get("ggSaveDPI"),
+                        catPlot = ufs::opts$get("knitAndSave.catPlot"),
                         ...) {
   if (substr(figCaption,
              start=nchar(figCaption),
@@ -49,7 +52,10 @@ knitAndSave <- function(plotToDraw,
   ggSave(plotToDraw,
          file=file,
          width=figWidth,
-         height=figHeight);
+         height=figHeight,
+         units=units,
+         dpi=dpi,
+         ...);
 
   ### Knit (and return) figure
   knitFig(plotToDraw,

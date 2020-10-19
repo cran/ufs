@@ -8,7 +8,7 @@ dataShape <- function(sampleVector, na.rm=TRUE, type=2, digits=2,
   ### Note: this is adapted from the 'skewness' and 'kurtosis' functions
   ### in 'e1071' and the way they're computed in 'describe' in 'psych', and
   ### for the variances, also based on Stan Browns page at
-  ### http://www.tc3.edu/instruct/sbrown/stat/shape.htm, as well as of course
+  ### https://www.tc3.edu/instruct/sbrown/stat/shape.htm, as well as of course
   ### on Joanes & Gill (1998)
 
   res <- list(input = as.list(environment()),
@@ -104,7 +104,7 @@ dataShape <- function(sampleVector, na.rm=TRUE, type=2, digits=2,
                              ((n-1) / n) ^ 4;
 
   ### And the standard error for the skewness and the kurtosis,
-  ### based on the formulas on http://www.tc3.edu/instruct/sbrown/stat/shape.htm
+  ### based on the formulas on https://www.tc3.edu/instruct/sbrown/stat/shape.htm
   res$intermediate$se.G1 <- sqrt( ( 6 * n * (n-1) ) /
                                   ( (n-2) * (n+1) * (n+3) ) );
   res$intermediate$se.G2 <- 2 * res$intermediate$se.G1 *

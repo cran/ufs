@@ -1,4 +1,7 @@
-#' Case insensitive version of \%in\%
+#' Case insensitive version of %in%
+#'
+#' This is simply 'in', but applies [base::toupper()] to both
+#' arguments, first.
 #'
 #' @param find The element(s) to look up in the vector or matrix.
 #' @param table The vector or matrix in which to look up the element(s).
@@ -7,6 +10,7 @@
 #'
 #' @return A logical vector.
 #' @rdname IN
+#' @aliases %IN%
 #' @examples letters[1:4] %IN% LETTERS
 #'
 #' @export

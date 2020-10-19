@@ -243,6 +243,11 @@ ggProportionPlot <- function(dat,
                          seq_along(conf.steps),
                          length(conf.steps)+seq_along(conf.steps));
 
+  if (ufs::opts$get('debug')) {
+    cat("\nconf.steps.adjusted=", vecTxtQ(conf.steps.adjusted), "\n\n",
+        "\nconf.steps.adjusted=", vecTxtQ(conf.steps.Ranked), "\n");
+  }
+
   ### Get the beginning and end positions for the rectangles
   percentages.x1 <- rbind(0, 100*confidences);
   percentages.x2 <- rbind(100*confidences, 100);

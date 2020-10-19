@@ -58,7 +58,7 @@
 #
 # }
 #
-# ### http://jrgraphix.net/r/Unicode/2600-26FF
+# ### https://jrgraphix.net/r/Unicode/2600-26FF
 #
 # print(ggSmallSampleFreqs(data=mtcars,
 #                    category='vs',

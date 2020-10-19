@@ -1,3 +1,8 @@
+
+------
+
+<div style="display:block;clear:both;" class="scale-structure-start"></div>
+
 ```{r,eval=TRUE, echo=FALSE}
 
 digits <- x$input$digits;
@@ -197,3 +202,6 @@ if (!exists('headingLevel') || !is.numeric(headingLevel) || (length(headingLevel
 
 ```
 
+<div style="display:block;clear:both;" class="scale-structure-end"></div>
+
+------

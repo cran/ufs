@@ -18,10 +18,13 @@
 #' @return Invisibly, a vector of the available packages.
 #' @export
 #'
-#' @examples \donttest{
-#' checkPkgs('justifier');
-#' checkPkgs(justifier = "99");
-#' }
+#' @examples checkPkgs('base');
+#'
+#' ### This will show the error message
+#' tryCatch(
+#'   checkPkgs(base = "99"),
+#'   error = print
+#' );
 checkPkgs <- function(...,
                       install = FALSE,
                       load = FALSE,

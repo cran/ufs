@@ -4,13 +4,26 @@
 \alias{diamondPlot}
 \title{Basic diamond plot construction function}
 \usage{
-diamondPlot(data, ciCols = 1:3, colorCol = NULL, otherAxisCol = NULL,
-  yValues = NULL, yLabels = NULL, ylab = NULL, autoSize = NULL,
-  fixedSize = 0.15, xlab = "Effect Size Estimate",
-  theme = ggplot2::theme_bw(), color = "black",
-  returnLayerOnly = FALSE, outputFile = NULL, outputWidth = 10,
-  outputHeight = 10, ggsaveParams = list(units = "cm", dpi = 300, type
-  = "cairo"), ...)
+diamondPlot(
+  data,
+  ciCols = 1:3,
+  colorCol = NULL,
+  otherAxisCol = NULL,
+  yValues = NULL,
+  yLabels = NULL,
+  ylab = NULL,
+  autoSize = NULL,
+  fixedSize = 0.15,
+  xlab = "Effect Size Estimate",
+  theme = ggplot2::theme_bw(),
+  color = "black",
+  returnLayerOnly = FALSE,
+  outputFile = NULL,
+  outputWidth = 10,
+  outputHeight = 10,
+  ggsaveParams = list(units = "cm", dpi = 300, type = "cairo"),
+  ...
+)
 }
 \arguments{
 \item{data}{A dataframe (or matrix) containing lower bounds, centers (e.g.

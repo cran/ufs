@@ -10,23 +10,41 @@
 \alias{descr.data.frame}
 \title{descr (or descriptives)}
 \usage{
-descr(x, digits = 4, errorOnFactor = FALSE,
-  include = c("central tendency", "spread", "range",
-  "distribution shape", "sample size"), maxModes = 1, t = FALSE,
-  conf.level = 0.95, quantileType = 2)
+descr(
+  x,
+  digits = 4,
+  errorOnFactor = FALSE,
+  include = c("central tendency", "spread", "range", "distribution shape",
+    "sample size"),
+  maxModes = 1,
+  t = FALSE,
+  conf.level = 0.95,
+  quantileType = 2
+)
 
-\method{descr}{default}(x, digits = 4, errorOnFactor = FALSE,
-  include = c("central tendency", "spread", "range",
-  "distribution shape", "sample size"), maxModes = 1, t = FALSE,
-  conf.level = 0.95, quantileType = 2)
+\method{descr}{default}(
+  x,
+  digits = 4,
+  errorOnFactor = FALSE,
+  include = c("central tendency", "spread", "range", "distribution shape",
+    "sample size"),
+  maxModes = 1,
+  t = FALSE,
+  conf.level = 0.95,
+  quantileType = 2
+)
 
-\method{print}{descr}(x, digits = attr(x, "digits"), t = attr(x,
-  "transpose"), row.names = FALSE, ...)
+\method{print}{descr}(
+  x,
+  digits = attr(x, "digits"),
+  t = attr(x, "transpose"),
+  row.names = FALSE,
+  ...
+)
 
 \method{pander}{descr}(x, headerPrefix = "", headerStyle = "**", ...)
 
-\method{as.data.frame}{descr}(x, row.names = NULL, optional = FALSE,
-  ...)
+\method{as.data.frame}{descr}(x, row.names = NULL, optional = FALSE, ...)
 
 \method{descr}{data.frame}(x, ...)
 }
@@ -59,7 +77,7 @@ interquartile range (IQR). See \code{\link{quantile}} for more information.}
 \code{pander} methods.}
 
 \item{headerPrefix}{The prefix for the heading; can be used to insert
-hashes (\code{#}) to create Markdown headings.}
+hashes (\verb{#}) to create Markdown headings.}
 
 \item{headerStyle}{A string to insert before and after the heading (to
 make stuff bold or italic in Markdown).}
@@ -77,7 +95,7 @@ what SPSS's DESCRIPTIVES (often called with DESCR) does.
 \details{
 Note that R (of course) has many similar functions, such as
 \code{\link{summary}}, \code{\link[psych:describe]{psych::describe()}} in the excellent
-\link[psych:psych]{psych::psych} package.
+\link[psych:00.psych-package]{psych::psych} package.
 
 The Hartigans' Dip Test may be unfamiliar to users; it is a measure of uni-
 vs. multidimensionality, computed by \code{\link[diptest:dip.test]{diptest::dip.test()}} from the
@@ -95,7 +113,7 @@ descr(mtcars$mpg);
 \references{
 Hartigan, J. A.; Hartigan, P. M. The Dip Test of Unimodality.
 Ann. Statist. 13 (1985), no. 1, 70--84. doi:10.1214/aos/1176346577.
-http://projecteuclid.org/euclid.aos/1176346577.
+https://projecteuclid.org/euclid.aos/1176346577.
 }
 \seealso{
 \code{\link{summary}}, [psych::describe()

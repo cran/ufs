@@ -21,8 +21,15 @@
 \usage{
 cohensdCI(d, n, conf.level = 0.95, plot = FALSE, silent = TRUE)
 
-dCohensd(x, df = NULL, populationD = 0, n = NULL, n1 = NULL,
-  n2 = NULL, silent = FALSE)
+dCohensd(
+  x,
+  df = NULL,
+  populationD = 0,
+  n = NULL,
+  n1 = NULL,
+  n2 = NULL,
+  silent = FALSE
+)
 
 pCohensd(q, df, populationD = 0, lower.tail = TRUE)
 
@@ -36,8 +43,7 @@ pdExtreme(d, n, populationD = 0)
 
 pdMild(d, n, populationD = 0)
 
-pwr.cohensdCI(d, w = 0.1, conf.level = 0.95, extensive = FALSE,
-  silent = TRUE)
+pwr.cohensdCI(d, w = 0.1, conf.level = 0.95, extensive = FALSE, silent = TRUE)
 }
 \arguments{
 \item{n, n1, n2}{Desired number of Cohen's \emph{d} values for \code{rCohensd} and
@@ -174,7 +180,7 @@ pdExtreme(.5, 64, populationD = .2);
 Peters, G. J. Y. & Crutzen, R. (2017) Knowing exactly how effective an
 intervention, treatment, or manipulation is and ensuring that a study
 replicates: accuracy in parameter estimation as a partial solution to the
-replication crisis. http://dx.doi.org/
+replication crisis. https://dx.doi.org/
 
 Maxwell, S. E., Kelley, K., & Rausch, J. R. (2008). Sample size planning for
 statistical power and accuracy in parameter estimation. Annual Review of

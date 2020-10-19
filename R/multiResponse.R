@@ -14,7 +14,7 @@
 #' @param endorsedOption Which value represents the endorsed option (note that
 #' producing this kind of table requires dichotomous items, where each variable
 #' is either endorsed or not endorsed, so this is also a way to treat other
-#' variables as dichotomour).
+#' variables as dichotomous).
 #' @return A dataframe with columns `Option`, `Frequency`,
 #' `Percentage`, and `Percentage of (X) cases`, where X is the number
 #' of cases.

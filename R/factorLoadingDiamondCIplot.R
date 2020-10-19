@@ -25,6 +25,7 @@
 #' [col2rgb()]).
 #' @param labels The labels to use for the items (on the Y axis).
 #' @param theme The ggplot2 theme to use.
+#' @param sortAlphabetically Whether to sort the items alphabetically.
 #' @param \dots Additional arguments will be passed to
 #' [ggDiamondLayer()]. This can be used to set, for example, the
 #' transparency (alpha value) of the diamonds to a lower value using e.g.
@@ -67,6 +68,7 @@ factorLoadingDiamondCIplot <- function(fa,
                                        colors = viridis::viridis_pal()(max(2, fa$factors)),
                                        labels=NULL,
                                        theme=ggplot2::theme_bw(),
+                                       sortAlphabetically = FALSE,
                                        ...) {
 
   ### Create list for CIs per factor
@@ -80,8 +82,20 @@ factorLoadingDiamondCIplot <- function(fa,
     alpha <- 1;
   }
 
-  ### Create empty
-  res <- ggplot2::ggplot(data.frame(Factor=as.factor(1:length(CIs))),
+  if (is.null(labels)) {
+    labels <- rownames(unclass(fa$loadings));
+  }
+
+  if (sortAlphabetically) {
+    sortOrder <- order(labels);
+  } else {
+    sortOrder <- seq_along(labels);
+  }
+
+  tmpDf <- data.frame(Factor=as.factor(1:length(CIs)));
+
+  ### Create empty plot
+  res <- ggplot2::ggplot(tmpDf,
                          ggplot2::aes_string(x=-Inf, ymin=-Inf, ymax=-Inf,
                                              color='Factor', fill='Factor')) +
     ggplot2::geom_ribbon() +
@@ -89,19 +103,25 @@ factorLoadingDiamondCIplot <- function(fa,
     ggplot2::scale_color_manual(values=colors) +
     ggplot2::scale_fill_manual(values=ggplot2::alpha(colors, alpha));
 
+  ### Add factor loadings
   for (currentFactor in 1:length(CIs)) {
-    res <- res + ggDiamondLayer(CIs[[currentFactor]],
+    sortedCIdf <-
+      CIs[[currentFactor]][sortOrder, ];
+
+    if (ufs::opts$get('debug')) {
+      cat0("\n\nPassing this dataframe on to ggDiamondLayer:\n");
+      print(sortedCIdf);
+      cat0("\n\n");
+    }
+
+    res <- res + ggDiamondLayer(sortedCIdf,
                                 color = colors[currentFactor],
                                 ...);
   }
 
-  if (is.null(labels)) {
-    labels <- rownames(unclass(fa$loadings));
-  }
-
   res <- res +
-    ggplot2::scale_y_continuous(breaks=1:nrow(unclass(fa$loadings)),
-                                labels=labels) +
+    ggplot2::scale_y_reverse(breaks=seq_along(labels),
+                             labels=labels[sortOrder]) +
     ggplot2::ylab(NULL) +
     ggplot2::xlab(xlab) +
     theme;

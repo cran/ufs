@@ -8,16 +8,32 @@
 \alias{knit_print.scaleStructure}
 \title{scaleStructure}
 \usage{
-scaleStructure(data = NULL, items = "all", digits = 2, ci = TRUE,
-  interval.type = "normal-theory", conf.level = 0.95, silent = FALSE,
-  samples = 1000, bootstrapSeed = NULL, omega.psych = TRUE,
-  poly = TRUE, suppressSuggestedPkgsMsg = FALSE, headingLevel = 3)
+scaleStructure(
+  data = NULL,
+  items = "all",
+  digits = 2,
+  ci = TRUE,
+  interval.type = "normal-theory",
+  conf.level = 0.95,
+  silent = FALSE,
+  samples = 1000,
+  bootstrapSeed = NULL,
+  omega.psych = TRUE,
+  poly = TRUE,
+  suppressSuggestedPkgsMsg = FALSE,
+  headingLevel = 3
+)
 
 \method{print}{scaleStructure}(x, digits = x$input$digits, ...)
 
-\method{knit_print}{scaleStructure}(x,
-  headingLevel = x$input$headingLevel, quiet = TRUE,
-  echoPartial = FALSE, partialFile = NULL, ...)
+\method{knit_print}{scaleStructure}(
+  x,
+  headingLevel = x$input$headingLevel,
+  quiet = TRUE,
+  echoPartial = FALSE,
+  partialFile = NULL,
+  ...
+)
 }
 \arguments{
 \item{data}{A dataframe containing the items in the scale. All variables in
@@ -72,7 +88,7 @@ sufficiently few categories).}
 suggested \code{MBESS} and \code{psych} packages.}
 
 \item{headingLevel}{The level of the Markdown heading to provide; basically
-the number of hashes ('\code{#}') to prepend to the headings.}
+the number of hashes ('\verb{#}') to prepend to the headings.}
 
 \item{x}{The object to print}
 
@@ -160,40 +176,41 @@ scaleStructure(ordinalExampleData, ci=FALSE);
 Crutzen, R., & Peters, G.-J. Y. (2015). Scale quality: alpha is
 an inadequate estimate and factor-analytic evidence is needed first of all.
 \emph{Health Psychology Review.}
-http://dx.doi.org/10.1080/17437199.2015.1124240
+\url{https://doi.org/10.1080/17437199.2015.1124240}
 
 Dunn, T. J., Baguley, T., & Brunsden, V. (2014). From alpha to omega: A
 practical solution to the pervasive problem of internal consistency
 estimation. \emph{British Journal of Psychology}, 105(3), 399-412.
-doi:10.1111/bjop.12046
+\url{https://doi.org/10.1111/bjop.12046}
 
 Eisinga, R., Grotenhuis, M. Te, & Pelzer, B. (2013). The reliability of a
 two-item scale: Pearson, Cronbach, or Spearman-Brown? \emph{International
-Journal of Public Health}, 58(4), 637-42. doi:10.1007/s00038-012-0416-3
+Journal of Public Health}, 58(4), 637-42.
+\url{https://doi.org/10.1007/s00038-012-0416-3}
 
 Gadermann, A. M., Guhn, M., Zumbo, B. D., & Columbia, B. (2012). Estimating
 ordinal reliability for Likert-type and ordinal item response data: A
 conceptual, empirical, and practical guide. \emph{Practical Assessment,
-Research & Evaluation}, 17(3), 1-12.
+Research & Evaluation}, 17(3), 1-12. \url{https://doi.org/10.7275/n560-j767}
 
 Peters, G.-J. Y. (2014). The alpha and the omega of scale reliability and
 validity: why and how to abandon Cronbach's alpha and the route towards more
 comprehensive assessment of scale quality. \emph{European Health
 Psychologist}, 16(2), 56-69.
-\url{http://ehps.net/ehp/index.php/contents/article/download/ehp.v16.i2.p56/1}
+\url{https://doi.org/10.31234/osf.io/h47fv}
 
 Revelle, W., & Zinbarg, R. E. (2009). Coefficients Alpha, Beta, Omega, and
 the glb: Comments on Sijtsma. \emph{Psychometrika}, 74(1), 145-154.
-doi:10.1007/s11336-008-9102-z
+\url{https://doi.org/10.1007/s11336-008-9102-z}
 
 Sijtsma, K. (2009). On the Use, the Misuse, and the Very Limited Usefulness
 of Cronbach's Alpha. \emph{Psychometrika}, 74(1), 107-120.
-doi:10.1007/s11336-008-9101-0
+\url{https://doi.org/10.1007/s11336-008-9101-0}
 
 Zinbarg, R. E., Revelle, W., Yovel, I., & Li, W. (2005). Cronbach's alpha,
 Revelle's beta and McDonald's omega H: Their relations with each other and
 two alternative conceptualizations of reliability. \emph{Psychometrika},
-70(1), 123-133. doi:10.1007/s11336-003-0974-7
+70(1), 123-133. \url{https://doi.org/10.1007/s11336-003-0974-7}
 }
 \seealso{
 \code{\link[psych:omega]{psych::omega()}}, \code{\link[psych:alpha]{psych::alpha()}}, and

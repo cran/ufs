@@ -5,8 +5,14 @@
 \alias{print.meanConfInt}
 \title{A confidence interval for the mean}
 \usage{
-meanConfInt(vector = NULL, mean = NULL, sd = NULL, n = NULL,
-  se = NULL, conf.level = 0.95)
+meanConfInt(
+  vector = NULL,
+  mean = NULL,
+  sd = NULL,
+  n = NULL,
+  se = NULL,
+  conf.level = 0.95
+)
 
 \method{print}{meanConfInt}(x, digits = 2, ...)
 }

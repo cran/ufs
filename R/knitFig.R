@@ -30,16 +30,16 @@
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
 #' @seealso \code{\link{knit_expand}} and \code{\link{knit}}
 #' @keywords utilities
-#' @examples \donttest{knitFig(ggBoxplot(mtcars, 'mpg'))}
+#' @examples \dontrun{knitFig(ggBoxplot(mtcars, 'mpg'))}
 #' @export knitFig
 knitFig <- function(plotToDraw,
                     template = getOption("ufs.knitFig.template", NULL),
-                    figWidth = getOption("ufs.knitFig.figWidth", 16 / 2.54),
-                    figHeight = getOption("ufs.knitFig.figHeight", 16 / 2.54),
+                    figWidth=ufs::opts$get("ggSaveFigWidth"),
+                    figHeight=ufs::opts$get("ggSaveFigHeight"),
                     figCaption = "A plot.",
                     chunkName = NULL,
                     returnRaw = FALSE,
-                    catPlot=getOption("ufs.knitFig.catPlot", FALSE),
+                    catPlot=ufs::opts$get("knitFig.catPlot"),
                     ...) {
   if (is.null(template)) {
     template <- "\n\n```{r {{chunkName}}, fig.height={{figHeight}}, fig.width={{figWidth}}, fig.cap='{{figCaption}}', echo=FALSE, cache=FALSE, message=FALSE, results='asis' }

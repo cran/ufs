@@ -187,16 +187,17 @@ biAxisDiamondPlot <- function(dat, items = NULL,
   suppressMessages(subQuestionLabelplot <- subQuestionLabelplot +
                      ggplot2::scale_y_continuous(breaks=1:length(leftAnchors),
                                                  labels=leftAnchors[itemOrder],
-                                                 sec.axis = ggplot2::sec_axis(~., breaks=1:length(rightAnchors), labels=subQuestions[itemOrder])) +
+                                                 sec.axis = ggplot2::dup_axis(labels=subQuestions[itemOrder])) +
+                                                   #ggplot2::sec_axis(~., breaks=1:length(itemOrder), labels=subQuestions[itemOrder])) +
                      ggplot2::theme(axis.text.y = ggplot2::element_text(size=ggplot2::rel(1.25), color="black"),
                                     axis.ticks.y = ggplot2::element_blank()));
 
   res$intermediate$subQuestionLabelplot <- subQuestionLabelplot;
 
-  ### http://stackoverflow.com/questions/12409960/ggplot2-annotate-outside-of-plot
-  ### http://stackoverflow.com/questions/17492230/how-to-place-grobs-with-annotation-custom-at-precise-areas-of-the-plot-region/17493256#17493256
+  ### https://stackoverflow.com/questions/12409960/ggplot2-annotate-outside-of-plot
+  ### https://stackoverflow.com/questions/17492230/how-to-place-grobs-with-annotation-custom-at-precise-areas-of-the-plot-region/17493256#17493256
   ### https://github.com/baptiste/gridextra/wiki/gtable
-  ### http://stackoverflow.com/questions/37984000/how-to-manage-the-t-b-l-r-coordinates-of-gtable-to-plot-the-secondary-y-axi
+  ### https://stackoverflow.com/questions/37984000/how-to-manage-the-t-b-l-r-coordinates-of-gtable-to-plot-the-secondary-y-axi
 
   ### Extract grob with axis labels of secondary axis (at the right-hand side),
   ### which are the subquestions

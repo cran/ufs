@@ -40,23 +40,20 @@
 #' `getDat()` in the console will allow the user to select a file, and the
 #' data from the file will then be read and be available as 'dat'. If an object
 #' with `dfName` (i.e. 'dat' by default) already exists, it will be backed
-#' up with a warning. `getDat()` therefore returns nothing.
+#' up with a warning. `getDat()` also invisibly returns the data.frame.
 #'
-#' mediaan returns the median, or, in the case of a factor where the median is
-#' in between two categories, both categories.
-#'
-#' modus returns the mode.
 #' @note getData() currently can't read from LibreOffice or OpenOffice files.
 #' There doesn't seem to be a platform-independent package that allows this.
 #' Non-CRAN package ROpenOffice from OmegaHat should be able to do the trick,
 #' but fails to install (manual download and installation using
-#' http://www.omegahat.org produces "ERROR: dependency 'Rcompression' is not
+#' https://www.omegahat.org produces "ERROR: dependency 'Rcompression' is not
 #' available for package 'ROpenOffice'" - and manual download and installation
 #' of RCompression produces "Please define LIB_ZLIB; ERROR: configuration
 #' failed for package 'Rcompression'"). If you have any suggestions, please let
 #' me know!
 #' @rdname getData
 #' @keywords utilities file univar
+#' @export
 #' @examples
 #'
 #'
@@ -123,7 +120,7 @@ getData <- function(filename=NULL, file=NULL,
 
   }
 
-  extension <- tolower(gsub(".*\\.(.*)$", '\\1', filenameArgument));
+  extension <- tolower(tools::file_ext(filenameArgument));
 
   #   ### Set error message
   #   errorMessage <- sub("\\[defaultErrorMessage\\]",
@@ -207,9 +204,9 @@ getData <- function(filename=NULL, file=NULL,
 
   #       if (!is.element('ROpenOffice', installed.packages()[, 1])) {
   #          stop("To load OpenOffice or LibreOffice files, I need package 'ROpenOffice', ",
-  #               "which is not on CRAN. Please visit http://omegahat.org for instructions, ",
+  #               "which is not on CRAN. Please visit https://omegahat.org for instructions, ",
   #               "or you can try to downloads and install it yourself directly using:\n\n",
-  #               "install.packages('ROpenOffice', repos = 'http://www.omegahat.org/R', type = 'source');\n\n",
+  #               "install.packages('ROpenOffice', repos = 'https://www.omegahat.org/R', type = 'source');\n\n",
   #               "Note that you might need specific tools to compile this source package ",
   #               "(see Details in the install.packages() help, displayed with:\n\n?install.packages;");
   #       }
@@ -269,4 +266,5 @@ getDat <- function(..., dfName="dat", backup=TRUE) {
       "store the dataframe with the same name, you have to use:\n\n",
       dfName, " <- getData('", attributes(dat)$getDataCall, "');\n\n",
       sep="");
+  return(invisible(dat));
 }

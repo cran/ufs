@@ -5,9 +5,18 @@
 \alias{print.scatterMatrix}
 \title{scatterMatrix}
 \usage{
-scatterMatrix(dat, items = NULL, plotSize = 180, sizeMultiplier = 1,
-  axisLabels = "none", normalHist = TRUE, progress = NULL,
-  theme = ggplot2::theme_minimal(), hideGrid = TRUE, ...)
+scatterMatrix(
+  dat,
+  items = NULL,
+  plotSize = 180,
+  sizeMultiplier = 1,
+  axisLabels = "none",
+  normalHist = TRUE,
+  progress = NULL,
+  theme = ggplot2::theme_minimal(),
+  hideGrid = TRUE,
+  ...
+)
 
 \method{print}{scatterMatrix}(x, ...)
 }

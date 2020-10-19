@@ -6,7 +6,7 @@
 #'
 #' This function is based on JasonAizkalns' answer to a question on Stack
 #' Exchange (Cross Validated; see
-#' \url{http://stackoverflow.com/questions/33524669/labeling-outliers-of-boxplots-in-r}).
+#' \url{https://stackoverflow.com/questions/33524669/labeling-outliers-of-boxplots-in-r}).
 #'
 #' @param dat Either a vector of values (to display in the box plot) or a
 #' dataframe containing variables to display in the box plot.
@@ -134,7 +134,7 @@ ggBoxplot <- function(dat, y = NULL, x = NULL,
       }
 
       ### Based on JasonAizkalns' answer at
-      ### http://stackoverflow.com/questions/33524669/labeling-outliers-of-boxplots-in-r
+      ### https://stackoverflow.com/questions/33524669/labeling-outliers-of-boxplots-in-r
 
       dat <-
         plyr::ddply(dat, x,

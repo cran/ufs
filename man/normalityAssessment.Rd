@@ -11,30 +11,50 @@
 \alias{pander.normalityAssessment}
 \title{normalityAssessment and samplingDistribution}
 \usage{
-dataShape(sampleVector, na.rm = TRUE, type = 2, digits = 2,
-  conf.level = 0.95, plots = TRUE, xLabs = NA, yLabs = NA,
-  qqCI = TRUE, labelOutliers = TRUE, sampleSizeOverride = NULL)
+dataShape(
+  sampleVector,
+  na.rm = TRUE,
+  type = 2,
+  digits = 2,
+  conf.level = 0.95,
+  plots = TRUE,
+  xLabs = NA,
+  yLabs = NA,
+  qqCI = TRUE,
+  labelOutliers = TRUE,
+  sampleSizeOverride = NULL
+)
 
-\method{print}{dataShape}(x, digits = x$input$digits,
-  extraNotification = TRUE, ...)
+\method{print}{dataShape}(x, digits = x$input$digits, extraNotification = TRUE, ...)
 
-\method{pander}{dataShape}(x, digits = x$input$digits,
-  extraNotification = TRUE, ...)
+\method{pander}{dataShape}(x, digits = x$input$digits, extraNotification = TRUE, ...)
 
-normalityAssessment(sampleVector, samples = 10000, digits = 2,
-  samplingDistColor = "#2222CC", normalColor = "#00CC00",
-  samplingDistLineSize = 2, normalLineSize = 1,
-  xLabel.sampleDist = NULL, yLabel.sampleDist = NULL,
-  xLabel.samplingDist = NULL, yLabel.samplingDist = NULL,
-  sampleSizeOverride = TRUE)
+normalityAssessment(
+  sampleVector,
+  samples = 10000,
+  digits = 2,
+  samplingDistColor = "#2222CC",
+  normalColor = "#00CC00",
+  samplingDistLineSize = 2,
+  normalLineSize = 1,
+  xLabel.sampleDist = NULL,
+  yLabel.sampleDist = NULL,
+  xLabel.samplingDist = NULL,
+  yLabel.samplingDist = NULL,
+  sampleSizeOverride = TRUE
+)
 
 \method{print}{normalityAssessment}(x, ...)
 
-\method{pander}{normalityAssessment}(x, headerPrefix = "#####",
-  suppressPlot = FALSE, ...)
+\method{pander}{normalityAssessment}(x, headerPrefix = "#####", suppressPlot = FALSE, ...)
 
-samplingDistribution(popValues = c(0, 1), popFrequencies = c(50, 50),
-  sampleSize = NULL, sampleFromPop = FALSE, ...)
+samplingDistribution(
+  popValues = c(0, 1),
+  popFrequencies = c(50, 50),
+  sampleSize = NULL,
+  sampleFromPop = FALSE,
+  ...
+)
 }
 \arguments{
 \item{sampleVector}{Numeric vector containing the sample data.}

@@ -21,8 +21,11 @@
 #' @examples plot <- ufs::ggBoxplot(mtcars, 'mpg');
 #' ggSave(file=tempfile(fileext=".png"), plot=plot);
 ggSave <- function(file=NULL, plot = ggplot2::last_plot(),
-                   height=8, width=8, units="in",
-                   dpi = 300, device=NULL, type=NULL, bg="transparent", ...) {
+                   width=ufs::opts$get("ggSaveFigWidth"),
+                   height=ufs::opts$get("ggSaveFigHeight"),
+                   units=ufs::opts$get("ggSaveUnits"),
+                   dpi=ufs::opts$get("ggSaveDPI"),
+                   device=NULL, type=NULL, bg="transparent", ...) {
 
   extension <-
     gsub("^.*\\.(.+)$", "\\1", file);

@@ -8,14 +8,37 @@
 \alias{convert.eer.to.d}
 \title{Helper functions for Numbers Needed for Change}
 \usage{
-convert.cer.to.d(cer, eer, eventDesirable = TRUE, eventIfHigher = TRUE)
+convert.cer.to.d(
+  cer,
+  eer,
+  eventDesirable = TRUE,
+  eventIfHigher = TRUE,
+  dist = "norm",
+  distArgs = NULL,
+  distNS = "stats"
+)
 
-convert.d.to.eer(d, cer, eventDesirable = TRUE, eventIfHigher = TRUE)
+convert.d.to.eer(
+  d,
+  cer,
+  eventDesirable = TRUE,
+  eventIfHigher = TRUE,
+  dist = "norm",
+  distArgs = list(),
+  distNS = "stats"
+)
 
-convert.d.to.nnc(d, cer, r = 1, eventDesirable = TRUE,
-  eventIfHigher = TRUE)
+convert.d.to.nnc(d, cer, r = 1, eventDesirable = TRUE, eventIfHigher = TRUE)
 
-convert.eer.to.d(eer, cer, eventDesirable = TRUE, eventIfHigher = TRUE)
+convert.eer.to.d(
+  eer,
+  cer,
+  eventDesirable = TRUE,
+  eventIfHigher = TRUE,
+  dist = "norm",
+  distArgs = NULL,
+  distNS = "stats"
+)
 }
 \arguments{
 \item{cer}{The Control Event Rate.}
@@ -26,6 +49,12 @@ convert.eer.to.d(eer, cer, eventDesirable = TRUE, eventIfHigher = TRUE)
 
 \item{eventIfHigher}{Whether scores above or below the threshold are
 considered 'an event'.}
+
+\item{dist, distArgs, distNS}{Used to specify the distribution to use to convert
+between Cohen's d and the CER and EER. distArgs can be used to specify
+additional arguments to the corresponding \code{q} and \code{p} functions, and
+distNS to specify the namespace (i.e. package) from where to get the
+distribution functions.}
 
 \item{d}{The value of Cohen's \emph{d}.}
 

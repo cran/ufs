@@ -40,6 +40,8 @@
 #' estimates (if requested with scaleReliability.ci).
 #' @param normalHist Whether to use the default ggpairs histogram on the
 #' diagonal of the scattermatrix, or whether to use the [normalHist()] version.
+#' @param poly Whether to also request the estimates based on the polychoric
+#' correlation matrix when calling [scaleStructure()].
 #' @param scaleName Optionally, a name for the scale to print as heading for
 #' the results.
 #' @param x The object to print.
@@ -91,7 +93,7 @@
 #' @export scaleDiagnosis
 scaleDiagnosis <- function(data=NULL, items=NULL, plotSize=180, sizeMultiplier = 1,
                            axisLabels = "none", scaleReliability.ci=FALSE,
-                           conf.level=.95, normalHist=TRUE,
+                           conf.level=.95, normalHist=TRUE, poly=TRUE,
                            digits=3,
                            headingLevel=3,
                            scaleName=NULL, ...) {
@@ -140,13 +142,17 @@ scaleDiagnosis <- function(data=NULL, items=NULL, plotSize=180, sizeMultiplier =
                      return(as.data.frame(descr(convertToNumeric(x))));
                    }));
 
+  ### --- 2020-09-25
+  ### For some reason these are character columns?
+  res$describe <-
+    massConvertToNumeric(res$describe);
+
   ### Bivariate correlations
   res$cor <- stats::cor(res$dat, use="complete.obs");
 
   res$scatterMatrix <- scatterMatrix(res$dat, plotSize=180, sizeMultiplier = 1,
                                      axisLabels = "none", normalHist=normalHist,
                                      progress=FALSE, ...);
-
 
   ### Exploratory factor analysis
   #pa.out <- factor.pa(r = bfi, nfactors = 5, residuals = FALSE,
@@ -182,6 +188,7 @@ scaleDiagnosis <- function(data=NULL, items=NULL, plotSize=180, sizeMultiplier =
   res$scaleReliability <- scaleStructure(data=res$dat, items=items,
                                          ci=scaleReliability.ci,
                                          conf.level=conf.level,
+                                         poly = poly,
                                          headingLevel=headingLevel+2);
 
   ### Return results

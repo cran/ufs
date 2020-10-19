@@ -15,7 +15,8 @@ find \%IN\% table
 A logical vector.
 }
 \description{
-Case insensitive version of \%in\%
+This is simply 'in', but applies \code{\link[base:chartr]{base::toupper()}} to both
+arguments, first.
 }
 \examples{
 letters[1:4] \%IN\% LETTERS

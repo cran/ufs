@@ -5,7 +5,8 @@
 \alias{testRetestSimData}
 \title{testRetestSimData is a simulated dataframe used to demonstrate the
 testRetestAlpha coefficient function.}
-\format{A data frame with 250 observations on the following 21 variables.
+\format{
+A data frame with 250 observations on the following 21 variables.
 \describe{ \item{trueScore}{The true scores}
 \item{t0_item1}{Score on item 1 at test}
 \item{t0_item2}{Score on item 2 at test}
@@ -26,7 +27,8 @@ testRetestAlpha coefficient function.}
 \item{t1_item7}{Score on item 7 at retest}
 \item{t1_item8}{Score on item 8 at retest}
 \item{t1_item9}{Score on item 9 at retest}
-\item{t1_item10}{Score on item 10 at retest}}}
+\item{t1_item10}{Score on item 10 at retest}}
+}
 \description{
 This dataset contains the true scores of 250 participants on some variable,
 and 10 items of a scale administered twice (at t0 and at t1).

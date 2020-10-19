@@ -10,10 +10,10 @@
 #'
 #' This is strongly based on the answer by user Floo0 to a Stack Overflow
 #' question at Stack Exchange (see
-#' \url{http://stackoverflow.com/questions/4357031/qqnorm-and-qqline-in-ggplot2/27191036#27191036}),
+#' \url{https://stackoverflow.com/questions/4357031/qqnorm-and-qqline-in-ggplot2/27191036#27191036}),
 #' also posted at GitHub (see
 #' \url{https://gist.github.com/rentrop/d39a8406ad8af2a1066c}). That code is in
-#' turn based on the [car::qqPlot()] function from the \code{car} package.
+#' turn based on the `qqPlot()` function from the `car` package.
 #'
 #' @param x A vector containing the values to plot.
 #' @param distribution The distribution to (a 'd' and 'q' are prepended, and

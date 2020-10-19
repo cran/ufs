@@ -5,20 +5,52 @@
 \alias{knit_print.CIM}
 \title{Conceptual Independence Matrix}
 \usage{
-CIM(data, scales, outputFile = NULL, outputWidth = 100,
-  outputHeight = 100, outputUnits = "cm", faMethod = "minres",
-  n.iter = 100, skipRegex = NULL, headingLevel = 2,
-  printAbbreviations = TRUE, drawPlot = TRUE, returnPlotOnly = TRUE)
+CIM(
+  data,
+  scales,
+  conf.level = 0.95,
+  colors = c("#440154FF", "#7AD151FF"),
+  outputFile = NULL,
+  outputWidth = 100,
+  outputHeight = 100,
+  outputUnits = "cm",
+  faMethod = "minres",
+  n.iter = 100,
+  n.repeatOnWarning = 50,
+  warningTolerance = 2,
+  silentRepeatOnWarning = FALSE,
+  showWarnings = FALSE,
+  skipRegex = NULL,
+  headingLevel = 2,
+  printAbbreviations = TRUE,
+  drawPlot = TRUE,
+  returnPlotOnly = TRUE
+)
 
-\method{knit_print}{CIM}(x, headingLevel = x$input$headingLevel,
-  quiet = TRUE, echoPartial = FALSE, partialFile = NULL, ...)
+\method{knit_print}{CIM}(
+  x,
+  headingLevel = x$input$headingLevel,
+  quiet = TRUE,
+  echoPartial = FALSE,
+  partialFile = NULL,
+  ...
+)
 }
 \arguments{
 \item{data}{The dataframe containing the variables.}
 
-\item{scales}{The scales: a names list of character vectors,
+\item{scales}{The scales: a named list of character vectors,
 where the character vectors specify the variable names, and the
 names of each character vector specifies the relevant scale.}
+
+\item{conf.level}{The confidence level for the confidence intervals.}
+
+\item{colors}{The colors used for the factors. The default uses the
+discrete viridis() palette, which is optimized for perceptual
+uniformity, maintaining its properties when printed in grayscale,
+and designed for colourblind readers. A vector can also be supplied;
+the colors must be valid arguments to \code{\link[=colorRamp]{colorRamp()}} (and therefore,
+to \code{\link[=col2rgb]{col2rgb()}}).}
 
 \item{outputFile}{The file to write the output to.}
 
@@ -28,6 +60,16 @@ and units for the output file.}
 \item{faMethod}{The method to pass on to \code{\link[psych:fa]{psych::fa()}}.}
 
 \item{n.iter}{The number of iterations to pass on to \code{\link[psych:fa]{psych::fa()}}.}
+
+\item{n.repeatOnWarning}{How often to repeat on warnings (in the
+hopes of getting a run without warnings).}
+
+\item{warningTolerance}{How many warnings are accepted.}
+
+\item{silentRepeatOnWarning}{Whether to be chatty or silent when
+repeating after warnings.}
+
+\item{showWarnings}{Whether to show the warnings.}
 
 \item{skipRegex}{A character vector of length 2 containing two
 regular expressions; if the two scales both match one or both
@@ -60,8 +102,8 @@ A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} plot.
 Conceptual Independence Matrix
 }
 \examples{
-### Load data from psych package
-data(bfi, package= 'psych');
+### Load dataset `bfi`, originally from psychTools package
+data(bfi, package= 'ufs');
 
 ### Specify scales
 bfiScales <-
@@ -77,8 +119,9 @@ names(bfi) <- c(unlist(bfiScales),
 ### Only select first two and the first three items to
 ### keep it quick; just pass the full 'bfiScales'
 ### object to run for all five the full scales
+\donttest{
 CIM(bfi,
     scales=lapply(bfiScales, head, 3)[1:2],
     n.iter=10);
-
+}
 }

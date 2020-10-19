@@ -1,3 +1,8 @@
+
+------
+
+<div style="display:block;clear:both;" class="conceptual-independence-matrix-start"></div>
+
 ```{r cim-heading, eval=TRUE, echo=FALSE}
 
 digits <- x$input$digits;
@@ -6,9 +11,27 @@ if (!exists('headingLevel') || !is.numeric(headingLevel) || (length(headingLevel
 	headingLevel <- 3;
 }
 
+mainHeadingLevel <- headingLevel;
+varsHeadingLevel <- headingLevel + 1;
+warnHeadingLevel <- headingLevel + 2;
+eachWarnHeadingLevel <- headingLevel + 3;
+
+### Headings in HTML go to max level 6
+if (eachWarnHeadingLevel < 7) {
+  warnTabSet <- "{.tabset}"
+} else {
+  warnTabSet <- ""
+}
+
+if (varsHeadingLevel < 7) {
+  mainTabSet <- "{.tabset}"
+} else {
+  mainTabSet <- ""
+}
+
 ```
 
-`r ufs::repStr("#", headingLevel);` Conceptual Independence Matrix (CIM) {.tabset}
+`r ufs::repStr("#", mainHeadingLevel);` Conceptual Independence Matrix (CIM) `r mainTabSet`
 
 This table shows the scales (which should correspond to constructs) and items within each scale (which should correspond to aspects of that construct) between which this CIM shows the conceptual independence, as well as the abbreviations that are used:
 
@@ -17,7 +40,7 @@ knitr::kable(x$intermediate$abbreviationLegend);
 ```
 
 
-```{r cim-graphs, echo=echoPartial, results='asis', fig.width=16, fig.height=6}
+```{r cim-graphs, echo=echoPartial, results='asis', fig.width=14, fig.height=8}
 
 for (rowVar in names(x$input$scales)) {
   rowIndex <- which(names(x$input$scales) == rowVar);
@@ -29,23 +52,25 @@ for (rowVar in names(x$input$scales)) {
 
     if (colIndex > rowIndex) {
       ufs::cat0("\n\n",
-                ufs::repStr("#", headingLevel + 1),
+                ufs::repStr("#", varsHeadingLevel),
                 " Conceptual (in)dependence of ",
                 rowVar, " and ",
                 colVar, "\n\n");
-      ufs::knitFig(gridExtra::grid.arrange(grobs=list(x$intermediate$grobsList[[rowIndex]][[colIndex]],
-                                                      x$intermediate$grobsList[[colIndex]][[rowIndex]]),
-                                           ncol=2),
-                   figWidth = 10,
-                   figHeight = 6,
-                   figCaption=paste0("Factor loadings for ", rowVar, " and ", colVar),
-                   catPlot=TRUE);
+      ufs::knitFig(
+        gridExtra::arrangeGrob(
+          grobs=list(x$intermediate$grobsList[[rowIndex]][[colIndex]],
+                     x$intermediate$grobsList[[colIndex]][[rowIndex]]),
+          ncol=2),
+        figWidth = 14,
+        figHeight = 8,
+        figCaption=paste0("Factor loadings for ", rowVar, " and ", colVar),
+        catPlot=TRUE);
       cat("\n\n");
       
       ###----------------------------------------------------------------------
       ### EFA error, warning, message printing
       ###----------------------------------------------------------------------
-      
+    
       allErrors_efa <- 
         c(x$intermediate$errorsList[[rowIndex]][[colIndex]]$efa, 
           x$intermediate$errorsList[[colIndex]][[rowIndex]]$efa);
@@ -55,36 +80,11 @@ for (rowVar in names(x$input$scales)) {
       allMessages_efa <- 
         c(x$intermediate$messagesList[[rowIndex]][[colIndex]]$efa, 
           x$intermediate$messagesList[[colIndex]][[rowIndex]]$efa);
-      
-      if (length(allErrors_efa) > 0) {
-        cat("\n\nEncountered the following errors during EFA:\n\n");
-        cat(paste0(paste("-", allErrors_efa), collapse="\n\n"));
-      } else {
-        cat("\n\nNo errors encountered during EFA.\n\n");
-      }
-
-      if (length(allWarnings_efa) > 0) {
-        cat("\n\nEncountered the following warnings during EFA:\n\n");
-        cat(paste0(paste("-", allWarnings_efa), collapse="\n\n"));
-      } else {
-        cat("\n\nNo warnings encountered during EFA.\n\n");
-      }
-
-      if (length(allMessages_efa) > 0) {
-        cat("\n\nEncountered the following messages during EFA:\n\n");
-        cat(paste0(paste("-", allMessages_efa), collapse="\n\n"));
-      } else {
-        cat("\n\nNo messages encountered during EFA.\n\n");
-      }
-
-      cat("\n\n");
-      
+            
       ###----------------------------------------------------------------------
       ### CFA for one factor error, warning, message printing
       ###----------------------------------------------------------------------
 
-      cat("\n\n");
-      
       allErrors_cfa1 <- 
         c(x$intermediate$errorsList[[rowIndex]][[colIndex]]$cfa1, 
           x$intermediate$errorsList[[colIndex]][[rowIndex]]$cfa1);
@@ -95,35 +95,10 @@ for (rowVar in names(x$input$scales)) {
         c(x$intermediate$messagesList[[rowIndex]][[colIndex]]$cfa1, 
           x$intermediate$messagesList[[colIndex]][[rowIndex]]$cfa1);
       
-      if (length(allErrors_cfa1) > 0) {
-        cat("\n\nEncountered the following errors during one-factor CFA:\n\n");
-        cat(paste0(paste("-", allErrors_cfa1), collapse="\n\n"));
-      } else {
-        cat("\n\nNo errors encountered during one-factor CFA\n\n");
-      }
-
-      if (length(allWarnings_cfa1) > 0) {
-        cat("\n\nEncountered the following warnings during one-factor CFA:\n\n");
-        cat(paste0(paste("-", allWarnings_cfa1), collapse="\n\n"));
-      } else {
-        cat("\n\nNo warnings encountered during one-factor CFA\n\n");
-      }
-
-      if (length(allMessages_cfa1) > 0) {
-        cat("\n\nEncountered the following messages during one-factor CFA:\n\n");
-        cat(paste0(paste("-", allMessages_cfa1), collapse="\n\n"));
-      } else {
-        cat("\n\nNo messages encountered during one-factor CFA\n\n");
-      }
-
-      cat("\n\n");
-      
       ###----------------------------------------------------------------------
       ### CFA for two factors error, warning, message printing
       ###----------------------------------------------------------------------
 
-      cat("\n\n");
-      
       allErrors_cfa2 <- 
         c(x$intermediate$errorsList[[rowIndex]][[colIndex]]$cfa2, 
           x$intermediate$errorsList[[colIndex]][[rowIndex]]$cfa2);
@@ -133,26 +108,140 @@ for (rowVar in names(x$input$scales)) {
       allMessages_cfa2 <- 
         c(x$intermediate$messagesList[[rowIndex]][[colIndex]]$cfa2, 
           x$intermediate$messagesList[[colIndex]][[rowIndex]]$cfa2);
+
+      ###----------------------------------------------------------------------
+      ### Processing errors, warnings, messages: removing 'warning' messages
+      ###----------------------------------------------------------------------
       
-      if (length(allErrors_cfa2) > 0) {
-        cat("\n\nEncountered the following errors during two-factor CFA:\n\n");
-        cat(paste0(paste("-", allErrors_cfa2), collapse="\n\n"));
-      } else {
-        cat("\n\nNo errors encountered during two-factor CFA\n\n");
-      }
+      allWarnings_efa <-
+        allWarnings_efa[(seq_along(allWarnings_efa) %% 2) == 0];
+      
+      allWarnings_cfa1 <-
+        allWarnings_cfa1[(seq_along(allWarnings_cfa1) %% 2) == 0];
+      
+      allWarnings_cfa2 <-
+        allWarnings_cfa2[(seq_along(allWarnings_cfa2) %% 2) == 0];
+      
+      ### Reapply logic to messages and warnings, if those also 
+      ### consistently include an 'introduction' line.
 
-      if (length(allWarnings_cfa2) > 0) {
-        cat("\n\nEncountered the following warnings during two-factor CFA:\n\n");
-        cat(paste0(paste("-", allWarnings_cfa2), collapse="\n\n"));
-      } else {
-        cat("\n\nNo warnings encountered during two-factor CFA\n\n");
-      }
+      ###----------------------------------------------------------------------
+      ### Show errors, warnings, messages
+      ###----------------------------------------------------------------------
 
-      if (length(allMessages_cfa2) > 0) {
-        cat("\n\nEncountered the following messages during two-factor CFA:\n\n");
-        cat(paste0(paste("-", allMessages_cfa2), collapse="\n\n"));
+      if (length(c(allErrors_efa, allWarnings_efa, allMessages_efa,
+                   allErrors_cfa1, allWarnings_cfa1, allMessages_cfa1,
+                   allErrors_cfa2, allWarnings_cfa2, allMessages_cfa2)) == 0) {
+        ufs::cat0("\n\n",
+                  ufs::repStr("#", warnHeadingLevel),
+                  " No messages, warnings, or errors encountered at all\n\n");
       } else {
-        cat("\n\nNo messages encountered during two-factor CFA\n\n");
+        ufs::cat0("\n\n",
+                  ufs::repStr("#", warnHeadingLevel),
+                  " Messages, warnings, and errors ",
+                  warnTabSet,
+                  "\n\n");
+        ufs::cat0("Messages, warnings, and/or errors were encountered. ");
+        if (nchar(warnTabSet) > 0) {
+          ufs::cat0("To see the specific messages, warnings, and errors, ",
+                    "click the tabs.");
+        }
+        ufs::cat0("\n\n",
+                  "The following numbers of messages, warnings, and ",
+                  "errors were encountered:\n\n");
+        
+        ufs::cat0("- EFA:\n\n");
+        ufs::cat0("  - Errors: ", length(allErrors_efa), "\n\n");
+        ufs::cat0("  - Warnings: ", length(allWarnings_efa), "\n\n");
+        ufs::cat0("  - Messages: ", length(allMessages_efa), "\n\n");
+        ufs::cat0("- CFA1:\n\n");
+        ufs::cat0("  - Errors: ", length(allErrors_cfa1), "\n\n");
+        ufs::cat0("  - Warnings: ", length(allWarnings_cfa1), "\n\n");
+        ufs::cat0("  - Messages: ", length(allMessages_cfa1), "\n\n");
+        ufs::cat0("- CFA2:\n\n");
+        ufs::cat0("  - Errors: ", length(allErrors_cfa2), "\n\n");
+        ufs::cat0("  - Warnings: ", length(allWarnings_cfa2), "\n\n");
+        ufs::cat0("  - Messages: ", length(allMessages_cfa2), "\n\n");
+
+        if (nchar(warnTabSet) > 0) {
+          ufs::cat0("\n\n",
+                    "The specific errors, warnings, and message that ",
+                    "were encountered are listed in the other tabs.");
+        } else {
+          ufs::cat0("\n\n",
+                    "The specific errors, warnings, and message that ",
+                    "were encountered are listed below.");
+        }
+
+        ### EFA
+
+        if (length(allErrors_efa) > 0) {
+          ufs::cat0("\n\n", ufs::repStr("#", eachWarnHeadingLevel),
+                    " EFA errors\n\n");
+          cat("\n\nEncountered the following errors during EFA:\n\n");
+          print(knitr::kable(table(allErrors_efa)));
+        }
+
+        if (length(allWarnings_efa) > 0) {
+          ufs::cat0("\n\n", ufs::repStr("#", eachWarnHeadingLevel),
+                    " EFA warnings\n\n");
+          cat("\n\nEncountered the following warnings during EFA:\n\n");
+          print(knitr::kable(table(allWarnings_efa)));
+        }
+    
+        if (length(allMessages_efa) > 0) {
+          ufs::cat0("\n\n", ufs::repStr("#", eachWarnHeadingLevel),
+                    " EFA messages\n\n");
+          cat("\n\nEncountered the following messages during EFA:\n\n");
+          print(knitr::kable(table(allMessages_efa)));
+        }
+  
+        ### CFA 1
+  
+        if (length(allErrors_cfa1) > 0) {
+          ufs::cat0("\n\n", ufs::repStr("#", eachWarnHeadingLevel),
+                    " One-factor CFA errors\n\n");
+          cat("\n\nEncountered the following errors during one-factor CFA:\n\n");
+          print(knitr::kable(table(allErrors_cfa1)));
+        }
+    
+        if (length(allWarnings_cfa1) > 0) {
+          ufs::cat0("\n\n", ufs::repStr("#", eachWarnHeadingLevel),
+                    " One-factor CFA warnings\n\n");
+          cat("\n\nEncountered the following warnings during one-factor CFA:\n\n");
+          print(knitr::kable(table(allWarnings_cfa1)));
+        }
+    
+        if (length(allMessages_cfa1) > 0) {
+          ufs::cat0("\n\n", ufs::repStr("#", eachWarnHeadingLevel),
+                    " One-factor CFA messages\n\n");
+          cat("\n\nEncountered the following messages during one-factor CFA:\n\n");
+          print(knitr::kable(table(allMessages_cfa1)));
+        }
+  
+        ### CFA 2
+          
+        if (length(allErrors_cfa2) > 0) {
+          ufs::cat0("\n\n", ufs::repStr("#", eachWarnHeadingLevel),
+                    " Two-factor CFA errors\n\n");
+          cat("\n\nEncountered the following errors during two-factor CFA:\n\n");
+          print(knitr::kable(table(allErrors_cfa2)));
+        }
+
+        if (length(allWarnings_cfa2) > 0) {
+          ufs::cat0("\n\n", ufs::repStr("#", eachWarnHeadingLevel),
+                    " Two-factor CFA warnings\n\n");
+          cat("\n\nEncountered the following warnings during two-factor CFA:\n\n");
+          print(knitr::kable(table(allWarnings_cfa2)));
+        }
+  
+        if (length(allMessages_cfa2) > 0) {
+          ufs::cat0("\n\n", ufs::repStr("#", eachWarnHeadingLevel),
+                    " Two-factor CFA messages\n\n");
+          cat("\n\nEncountered the following messages during two-factor CFA:\n\n");
+          print(knitr::kable(table(allMessages_cfa2)));
+        }
+        
       }
       
       cat("\n\n");
@@ -163,3 +252,6 @@ for (rowVar in names(x$input$scales)) {
 
 ```
 
+<div style="display:block;clear:both;" class="conceptual-independence-matrix-end"></div>
+
+------

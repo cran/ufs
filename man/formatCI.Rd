@@ -4,8 +4,14 @@
 \alias{formatCI}
 \title{Pretty formatting of confidence intervals}
 \usage{
-formatCI(ci, sep = "; ", prefix = "[", suffix = "]", digits = 2,
-  noZero = FALSE)
+formatCI(
+  ci,
+  sep = "; ",
+  prefix = "[",
+  suffix = "]",
+  digits = 2,
+  noZero = FALSE
+)
 }
 \arguments{
 \item{ci}{A confidence interval (a vector of 2 elements; longer

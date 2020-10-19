@@ -4,13 +4,19 @@
 \alias{factorLoadingDiamondCIplot}
 \title{Two-dimensional visualisation of factor analyses}
 \usage{
-factorLoadingDiamondCIplot(fa, xlab = "Factor Loading",
-  colors = (viridis::viridis_pal())(max(2, fa$factors)), labels = NULL,
-  theme = ggplot2::theme_bw(), ...)
+factorLoadingDiamondCIplot(
+  fa,
+  xlab = "Factor Loading",
+  colors = (viridis::viridis_pal())(max(2, fa$factors)),
+  labels = NULL,
+  theme = ggplot2::theme_bw(),
+  sortAlphabetically = FALSE,
+  ...
+)
 }
 \arguments{
 \item{fa}{The object produced by the \code{\link[psych:fa]{psych::fa()}} function from the
-\link[psych:psych]{psych::psych} package. It is important that the \code{n.iter} argument
+\link[psych:00.psych-package]{psych::psych} package. It is important that the \code{n.iter} argument
 of \code{\link[psych:fa]{psych::fa()}} was set to a realistic number, because otherwise, no
 confidence intervals will be available.}
 
@@ -26,6 +32,8 @@ arguments to \code{\link[=colorRamp]{colorRamp()}} (and therefore, to
 \item{labels}{The labels to use for the items (on the Y axis).}
 
 \item{theme}{The ggplot2 theme to use.}
+
+\item{sortAlphabetically}{Whether to sort the items alphabetically.}
 
 \item{\dots}{Additional arguments will be passed to
 \code{\link[=ggDiamondLayer]{ggDiamondLayer()}}. This can be used to set, for example, the
