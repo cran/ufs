@@ -217,6 +217,37 @@ print.scaleDiagnosis <- function(x, digits=x$digits, ...) {
   invisible();
 }
 
+#' @rdname scaleDiagnosis
+#' @export
+scaleDiagnosis_partial <- function(x,
+                                   headingLevel = x$input$headingLevel,
+                                   quiet=TRUE,
+                                   echoPartial = FALSE,
+                                   partialFile = NULL,
+                                   ...) {
+
+  ### Get filename
+  if ((!is.null(partialFile)) && file.exists(partialFile)) {
+    rmdPartialFilename <-
+      partialFile;
+  } else {
+    rmdPartialFilename <-
+      system.file("partials", "_scaleDiagnosis_partial.Rmd", package="ufs");
+  }
+
+  if (!file.exists(rmdPartialFilename)) {
+    stop(
+      "The file with the RMarkdown partial specified to ",
+      "`ufs::scaleStructure_partial()` was not found (this file ",
+      "was '", rmdPartialFilename, "')!"
+    );
+  }
+
+  rmdpartials::partial(rmdPartialFilename);
+
+}
+
+
 
 #' @rdname scaleDiagnosis
 #' @method knit_print scaleDiagnosis
@@ -228,12 +259,14 @@ knit_print.scaleDiagnosis <- function(x,
                                       echoPartial = FALSE,
                                       partialFile = NULL,
                                       ...) {
-  if (is.null(partialFile) || !file.exists(partialFile)) {
-    partialFile <-
-      system.file("partials", "_scaleDiagnosis.rmd",
-                  package="ufs");
-  }
-  rmdpartials__partial(partialFile);
+
+  scaleDiagnosis_partial(x = x,
+                         headingLevel = headingLevel,
+                         quiet = quiet,
+                         echoPartial = echoPartial,
+                         partialFile = partialFile,
+                         ...);
+
 }
 
 

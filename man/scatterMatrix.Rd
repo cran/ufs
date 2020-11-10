@@ -8,13 +8,16 @@
 scatterMatrix(
   dat,
   items = NULL,
+  itemLabels = NULL,
   plotSize = 180,
   sizeMultiplier = 1,
+  pointSize = 1,
   axisLabels = "none",
   normalHist = TRUE,
   progress = NULL,
   theme = ggplot2::theme_minimal(),
   hideGrid = TRUE,
+  conf.level = 0.95,
   ...
 )
 
@@ -27,10 +30,16 @@ this dataframe will be used if items is NULL.}
 \item{items}{If not NULL, this should be a character vector with the names
 of the variables in the dataframe that represent items in the scale.}
 
+\item{itemLabels}{Optionally, labels to use for the items (optionally, named,
+with the names corresponding to the \code{items}; otherwise, the order of the
+labels has to match the order of the items)}
+
 \item{plotSize}{Size of the final plot in millimeters.}
 
 \item{sizeMultiplier}{Allows more flexible control over the size of the plot
 elements}
+
+\item{pointSize}{Size of the points in the scatterplots}
 
 \item{axisLabels}{Passed to ggpairs function to set axisLabels.}
 
@@ -44,6 +53,8 @@ diagonal of the scattermatrix, or whether to use the \code{\link[=normalHist]{no
 
 \item{hideGrid}{Whether to hide the gridlines in the plot.}
 
+\item{conf.level}{The confidence level of confidence intervals}
+
 \item{...}{Additional arguments for \code{scatterMatrix()} are passed on to
 \code{\link[=normalHist]{normalHist()}}, and additional arguments for the \code{print} method are passed
 on to the default \code{print} method.}
@@ -56,7 +67,7 @@ An object with the input and several output variables. Most notably:
 and correlation coefficients in the upper right half.}
 }
 \description{
-scatterMatrix produced a matrix with jittered scatterplots, histograms, and
+scatterMatrix produces a matrix with jittered scatterplots, histograms, and
 correlation coefficients.
 }
 \examples{

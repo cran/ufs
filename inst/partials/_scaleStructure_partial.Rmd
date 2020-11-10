@@ -1,7 +1,6 @@
 
-------
-
 <div style="display:block;clear:both;" class="scale-structure-start"></div>
+<div class="scale-structure-container">
 
 ```{r,eval=TRUE, echo=FALSE}
 
@@ -96,7 +95,7 @@ if (!exists('headingLevel') || !is.numeric(headingLevel) || (length(headingLevel
                    stringsAsFactors = FALSE);
 
       row.names(intervalCIDf) <- c("Omega (total):",
-                                   "Coefficient Alpha");
+                                   "Coefficient Alpha:");
       
       print(knitr::kable(intervalCIDf,
                          row.names=TRUE,
@@ -139,7 +138,7 @@ if (!exists('headingLevel') || !is.numeric(headingLevel) || (length(headingLevel
                                                 digits = digits)),
                        stringsAsFactors = FALSE);
           row.names(ordinalCIDf) <- c("Ordinal Omega (total):",
-                                       "Ordinal Coefficient Alpha");
+                                      "Ordinal Coefficient Alpha:");
           
           print(knitr::kable(ordinalCIDf,
                              row.names=TRUE,
@@ -202,6 +201,5 @@ if (!exists('headingLevel') || !is.numeric(headingLevel) || (length(headingLevel
 
 ```
 
+</div>
 <div style="display:block;clear:both;" class="scale-structure-end"></div>
-
-------

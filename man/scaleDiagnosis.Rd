@@ -3,6 +3,7 @@
 \name{scaleDiagnosis}
 \alias{scaleDiagnosis}
 \alias{print.scaleDiagnosis}
+\alias{scaleDiagnosis_partial}
 \alias{knit_print.scaleDiagnosis}
 \title{scaleDiagnosis}
 \usage{
@@ -23,6 +24,15 @@ scaleDiagnosis(
 )
 
 \method{print}{scaleDiagnosis}(x, digits = x$digits, ...)
+
+scaleDiagnosis_partial(
+  x,
+  headingLevel = x$input$headingLevel,
+  quiet = TRUE,
+  echoPartial = FALSE,
+  partialFile = NULL,
+  ...
+)
 
 \method{knit_print}{scaleDiagnosis}(
   x,

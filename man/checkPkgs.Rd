@@ -12,9 +12,9 @@ checkPkgs(
 )
 }
 \arguments{
-\item{...}{A vector with packages. If this is a names vector, the
+\item{...}{A series of packages. If the packages are named, the
 names are the package names, and the values are the minimum required
-package versions.}
+package versions (see the second example).}
 
 \item{install}{Whether to install missing packages from \code{repos}.}
 
@@ -29,17 +29,24 @@ Invisibly, a vector of the available packages.
 }
 \description{
 This function efficiently checks for the presence of a package
-without installing it (unlike \code{\link[=library]{library()}} or \code{\link[=require]{require()}}.
+without loading it (unlike \code{\link[=library]{library()}} or \code{\link[=require]{require()}}.
 This is useful to force yourself to use the package::function
 syntax for addressing functions; you can make sure required packages
 are installed, but their namespace won't attach to the search path.
 }
 \examples{
-checkPkgs('base');
+ufs::checkPkgs('base');
+
+### Require a version
+ufs::checkPkgs(ufs = "0.3.1");
 
 ### This will show the error message
 tryCatch(
-  checkPkgs(base = "99"),
+  ufs::checkPkgs(
+    base = "99",
+    stats = "42.5",
+    ufs = 20
+  ),
   error = print
 );
 }

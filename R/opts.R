@@ -206,6 +206,9 @@ opts$defaults <-
 
     ggBaseSize = 11,
 
+    ### Default heading level, for convenience
+    defaultHeadingLevel = 3,
+
     ### Where to print tables; 'console', 'viewer', and/or
     ### one or more filenames in existing directories
     tableOutput = c("console", "viewer"),

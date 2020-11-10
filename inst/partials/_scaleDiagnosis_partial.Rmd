@@ -37,7 +37,7 @@ cat0("\n\n",
      " Reliability (internal consistency) estimates",
      "\n\n");
 
-knitr::knit_print(x$scaleReliability);
+x$scaleReliability;
 
 cat0("\n\n",
      repStr("#", headingLevel + 1),

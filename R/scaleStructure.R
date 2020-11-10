@@ -52,6 +52,12 @@
 #' bootstrapping), whereas the `psych` package point estimate was
 #' suggested in Revelle & Zinbarg (2008). The `psych` estimate
 #' usually (perhaps always) results in higher estimates for omega.
+#' @param omega.psych_nfactors The number of factor to use in the factor
+#' analysis when computing Omega. The default in [psych::omega()] is 3; to
+#' obtain the same results as in jamovi's "Reliability", set this to 1.
+#' @param omega.psych_flip Whether to let `psych` automatically flip items with
+#' negative correlations. The default in [psych::omega()] is`TRUE`; to obtain
+#' the same results as in jamovi's "Reliability", set this to `FALSE`.
 #' @param poly Whether to compute ordinal measures (if the items have
 #' sufficiently few categories).
 #' @param headingLevel The level of the Markdown heading to provide; basically
@@ -169,6 +175,8 @@ scaleStructure <- scaleReliability <- function (data=NULL, items = 'all', digits
                                                 conf.level=.95, silent=FALSE,
                                                 samples=1000, bootstrapSeed = NULL,
                                                 omega.psych = TRUE,
+                                                omega.psych_nfactors = 3,
+                                                omega.psych_flip = TRUE,
                                                 poly = TRUE,
                                                 suppressSuggestedPkgsMsg = FALSE,
                                                 headingLevel = 3) {
@@ -293,8 +301,19 @@ scaleStructure <- scaleReliability <- function (data=NULL, items = 'all', digits
 
     ### Omega
     if (requireNamespace("psych", quietly = TRUE)) {
-      invisible(utils::capture.output(suppressMessages(suppressWarnings(res$intermediate$omega.psych <-
-                                                                        psych::omega(res$input$dat, plot=FALSE)))));
+      invisible(
+        utils::capture.output(
+          suppressMessages(
+            suppressWarnings(
+              res$intermediate$omega.psych <-
+                psych::omega(res$input$dat,
+                             nfactors = omega.psych_nfactors,
+                             flip = omega.psych_flip,
+                             plot = FALSE)
+            )
+          )
+        )
+      );
       res$output$omega.psych <- res$intermediate$omega.psych$omega.tot;
       res$output$dat$omega.psych.tot <- res$output$omega.psych;
       res$output$dat$omega.psych.h <- res$intermediate$omega.psych$omega_h;
@@ -495,13 +514,13 @@ print.scaleStructure <- function (x, digits=x$input$digits, ...) {
     }
     cat(paste0("\nGreatest Lower Bound (GLB): ", round(x$output$glb, digits=digits),
                "\n             Coefficient H: ", round(x$output$coefficientH, digits=digits),
-               "\n          Cronbach's alpha: ", round(x$output$cronbach.alpha, digits=digits), "\n"));
+               "\n         Coefficient alpha: ", round(x$output$cronbach.alpha, digits=digits), "\n"));
     if (x$input$ci & !is.null(x$output$alpha.ci)) {
       ### If confidence intervals were computed AND obtained, print them
       cat(paste0("Confidence intervals:\n             Omega (total): [",
                  round(x$output$omega.ci[1], digits=digits), ", ",
                  round(x$output$omega.ci[2], digits=digits), "]\n",
-                 "          Cronbach's alpha: [", round(x$output$alpha.ci[1], digits=digits),
+                 "         Coefficient alpha: [", round(x$output$alpha.ci[1], digits=digits),
                  ", ", round(x$output$alpha.ci[2], digits=digits), "]\n"));
     }
     if (x$input$poly && x$intermediate$maxLevels < 9 && x$intermediate$maxRange < 9) {
@@ -518,10 +537,10 @@ print.scaleStructure <- function (x, digits=x$input$digits, ...) {
                    round(x$intermediate$alpha.ordinal$est, digits=digits), "\n"));
         if (x$input$ci & !is.null(x$output$alpha.ordinal.ci)) {
           ### If confidence intervals were computed AND obtained, print them
-          cat(paste0("Confidence intervals:\n     Ordinal Omega (total): [",
+          cat(paste0("Confidence intervals:\n     Ordinal Omega (total):  [",
                      round(x$output$omega.ordinal.ci[1], digits=digits), ", ",
                      round(x$output$omega.ordinal.ci[2], digits=digits), "]\n",
-                     "  Ordinal Cronbach's alpha: [", round(x$output$alpha.ordinal.ci[1], digits=digits),
+                     "  Ordinal Coefficient alpha: [", round(x$output$alpha.ordinal.ci[1], digits=digits),
                      ", ", round(x$output$alpha.ordinal.ci[2], digits=digits), "]\n"));
         }
       } else {
@@ -546,12 +565,41 @@ print.scaleStructure <- function (x, digits=x$input$digits, ...) {
     }
   } else if (x$input$n.items == 2) {
     cat(paste0("\nSpearman Brown coefficient: ", round(x$output$spearman.brown, digits=digits),
-               "\n          Cronbach's alpha: ", round(x$output$cronbach.alpha, digits=digits),
+               "\n         Coefficient alpha: ", round(x$output$cronbach.alpha, digits=digits),
                "\n       Pearson Correlation: ", round(x$intermediate$cor[1, 2], digits=digits), "\n\n"));
   }
   invisible();
 }
 
+#' @rdname scaleStructure
+#' @export
+scaleStructure_partial <- function(x,
+                                   headingLevel = x$input$headingLevel,
+                                   quiet=TRUE,
+                                   echoPartial = FALSE,
+                                   partialFile = NULL,
+                                   ...) {
+
+  ### Get filename
+  if ((!is.null(partialFile)) && file.exists(partialFile)) {
+    rmdPartialFilename <-
+      partialFile;
+  } else {
+    rmdPartialFilename <-
+      system.file("partials", "_scaleStructure_partial.Rmd", package="ufs");
+  }
+
+  if (!file.exists(rmdPartialFilename)) {
+    stop(
+      "The file with the RMarkdown partial specified to ",
+      "`ufs::scaleStructure_partial()` was not found (this file ",
+      "was '", rmdPartialFilename, "')!"
+    );
+  }
+
+  rmdpartials::partial(rmdPartialFilename);
+
+}
 
 #' @rdname scaleStructure
 #' @method knit_print scaleStructure
@@ -563,16 +611,12 @@ knit_print.scaleStructure <- function(x,
                                       echoPartial = FALSE,
                                       partialFile = NULL,
                                       ...) {
-  ### Get filename
-  if (!is.null(partialFile) && file.exists(partialFile)) {
-    rmdPartialFilename <-
-      partialFile;
-  } else {
-    rmdPartialFilename <-
-      system.file("partials", "_scaleStructure.rmd", package="ufs");
-  }
-
-  rmdpartials__partial(input=rmdPartialFilename);
+  scaleStructure_partial(x = x,
+                         headingLevel = headingLevel,
+                         quiet = quiet,
+                         echoPartial = echoPartial,
+                         partialFile = partialFile,
+                         ...);
 }
 
 

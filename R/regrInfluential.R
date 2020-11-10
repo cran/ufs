@@ -11,6 +11,8 @@
 #'
 #' @param formula The formule of the regression analysis.
 #' @param data The data to use for the analysis.
+#' @param createPlot Whether to create the scattermatrix (requires the `GGally`
+#' package to be installed).
 #' @param x Object to print.
 #' @param headingLevel The number of hash symbols to prepend to the heading.
 #' @param ... Additional arguments are passed on to the `regr` print function.
@@ -25,7 +27,18 @@
 #' regrInfluential(mpg ~ hp, mtcars);
 #'
 #' @export regrInfluential
-regrInfluential <- function(formula, data) {
+regrInfluential <- function(formula, data, createPlot = TRUE) {
+
+  if (createPlot) {
+    suppressMessages(suppressWarnings(
+      if (!requireNamespace("GGally")) {
+        stop("You need the {GGally} package to use this function!\n\n",
+             "You can install it with the following command:\n\n",
+             "install.packages('GGally');");
+      }
+    ));
+  }
+
   ### Create object for results and store input
   res <- list(input = as.list(environment()), intermediate = list(),
               output = list())

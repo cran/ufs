@@ -5,6 +5,7 @@
 \alias{scaleReliability}
 \alias{scaleStructurePartial}
 \alias{print.scaleStructure}
+\alias{scaleStructure_partial}
 \alias{knit_print.scaleStructure}
 \title{scaleStructure}
 \usage{
@@ -19,12 +20,23 @@ scaleStructure(
   samples = 1000,
   bootstrapSeed = NULL,
   omega.psych = TRUE,
+  omega.psych_nfactors = 3,
+  omega.psych_flip = TRUE,
   poly = TRUE,
   suppressSuggestedPkgsMsg = FALSE,
   headingLevel = 3
 )
 
 \method{print}{scaleStructure}(x, digits = x$input$digits, ...)
+
+scaleStructure_partial(
+  x,
+  headingLevel = x$input$headingLevel,
+  quiet = TRUE,
+  echoPartial = FALSE,
+  partialFile = NULL,
+  ...
+)
 
 \method{knit_print}{scaleStructure}(
   x,
@@ -80,6 +92,14 @@ more options for computing confidence intervals, not always requiring
 bootstrapping), whereas the \code{psych} package point estimate was
 suggested in Revelle & Zinbarg (2008). The \code{psych} estimate
 usually (perhaps always) results in higher estimates for omega.}
+
+\item{omega.psych_nfactors}{The number of factor to use in the factor
+analysis when computing Omega. The default in \code{\link[psych:omega]{psych::omega()}} is 3; to
+obtain the same results as in jamovi's "Reliability", set this to 1.}
+
+\item{omega.psych_flip}{Whether to let \code{psych} automatically flip items with
+negative correlations. The default in \code{\link[psych:omega]{psych::omega()}} is\code{TRUE}; to obtain
+the same results as in jamovi's "Reliability", set this to \code{FALSE}.}
 
 \item{poly}{Whether to compute ordinal measures (if the items have
 sufficiently few categories).}

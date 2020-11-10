@@ -1,14 +1,14 @@
 #' Check for presence of a package
 #'
 #' This function efficiently checks for the presence of a package
-#' without installing it (unlike [library()] or [require()].
+#' without loading it (unlike [library()] or [require()].
 #' This is useful to force yourself to use the package::function
 #' syntax for addressing functions; you can make sure required packages
 #' are installed, but their namespace won't attach to the search path.
 #'
-#' @param ... A vector with packages. If this is a names vector, the
+#' @param ... A series of packages. If the packages are named, the
 #' names are the package names, and the values are the minimum required
-#' package versions.
+#' package versions (see the second example).
 #' @param install Whether to install missing packages from `repos`.
 #' @param load Whether to load packages (which is exactly *not* the point
 #' of this package, but hey, YMMV).
@@ -18,11 +18,18 @@
 #' @return Invisibly, a vector of the available packages.
 #' @export
 #'
-#' @examples checkPkgs('base');
+#' @examples ufs::checkPkgs('base');
+#'
+#' ### Require a version
+#' ufs::checkPkgs(ufs = "0.3.1");
 #'
 #' ### This will show the error message
 #' tryCatch(
-#'   checkPkgs(base = "99"),
+#'   ufs::checkPkgs(
+#'     base = "99",
+#'     stats = "42.5",
+#'     ufs = 20
+#'   ),
 #'   error = print
 #' );
 checkPkgs <- function(...,

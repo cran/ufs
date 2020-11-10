@@ -142,6 +142,9 @@ ggBoxplot <- function(dat, y = NULL, x = NULL,
                       datF$outlier <- iqrOutlier(datF[, y]);
                       return(datF);
                     });
+
+
+
       dat$outlier <- ifelse(dat$outlier,
                             1:nrow(dat),
                             as.numeric(NA));

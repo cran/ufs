@@ -2,6 +2,7 @@
 % Please edit documentation in R/CIM.R
 \name{CIM}
 \alias{CIM}
+\alias{CIM_partial}
 \alias{knit_print.CIM}
 \title{Conceptual Independence Matrix}
 \usage{
@@ -25,6 +26,15 @@ CIM(
   printAbbreviations = TRUE,
   drawPlot = TRUE,
   returnPlotOnly = TRUE
+)
+
+CIM_partial(
+  x,
+  headingLevel = x$input$headingLevel,
+  quiet = TRUE,
+  echoPartial = FALSE,
+  partialFile = NULL,
+  ...
 )
 
 \method{knit_print}{CIM}(

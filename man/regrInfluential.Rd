@@ -5,7 +5,7 @@
 \alias{print.regrInfluential}
 \title{Detecting influential cases in regression analyses}
 \usage{
-regrInfluential(formula, data)
+regrInfluential(formula, data, createPlot = TRUE)
 
 \method{print}{regrInfluential}(x, headingLevel = 3, ...)
 }
@@ -13,6 +13,9 @@ regrInfluential(formula, data)
 \item{formula}{The formule of the regression analysis.}
 
 \item{data}{The data to use for the analysis.}
+
+\item{createPlot}{Whether to create the scattermatrix (requires the \code{GGally}
+package to be installed).}
 
 \item{x}{Object to print.}
 

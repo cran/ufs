@@ -38,6 +38,7 @@
 #' @param ... Additional arguments are passed on the respective default methods.
 #'
 #' @return A [ggplot2::ggplot()] plot.
+#' @rdname CIM
 #' @examples ### Load dataset `bfi`, originally from psychTools package
 #' data(bfi, package= 'ufs');
 #'
@@ -619,6 +620,35 @@ CIM <- function(data,
 
 }
 
+#' @rdname CIM
+#' @export
+CIM_partial <- function(x,
+                        headingLevel = x$input$headingLevel,
+                        quiet=TRUE,
+                        echoPartial = FALSE,
+                        partialFile = NULL,
+                        ...) {
+
+  ### Get filename
+  if ((!is.null(partialFile)) && file.exists(partialFile)) {
+    rmdPartialFilename <-
+      partialFile;
+  } else {
+    rmdPartialFilename <-
+      system.file("partials", "_CIM_partial.Rmd", package="ufs");
+  }
+
+  if (!file.exists(rmdPartialFilename)) {
+    stop(
+      "The file with the RMarkdown partial specified to ",
+      "`ufs::scaleStructure_partial()` was not found (this file ",
+      "was '", rmdPartialFilename, "')!"
+    );
+  }
+
+  rmdpartials::partial(rmdPartialFilename);
+
+}
 
 #' @rdname CIM
 #' @method knit_print CIM
@@ -631,15 +661,11 @@ knit_print.CIM <- function(x,
                            partialFile = NULL,
                            ...) {
 
-  ### Get filename
-  if (!is.null(partialFile) && file.exists(partialFile)) {
-    rmdPartialFilename <-
-      partialFile;
-  } else {
-    rmdPartialFilename <-
-      system.file("partials", "_CIM.rmd", package="ufs");
-  }
-
-  rmdpartials__partial(input=rmdPartialFilename);
+  CIM_partial(x = x,
+              headingLevel = headingLevel,
+              quiet = quiet,
+              echoPartial = echoPartial,
+              partialFile = partialFile,
+              ...);
 
 }
