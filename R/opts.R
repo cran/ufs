@@ -206,6 +206,13 @@ opts$defaults <-
 
     ggBaseSize = 11,
 
+    ggsaveParams = list(units='cm',
+                        dpi=300,
+                        type=ifelse(
+                          length(capabilities("cairo") > 0) && capabilities("cairo"),
+                          "cairo",
+                          NULL)),
+
     ### Default heading level, for convenience
     defaultHeadingLevel = 3,
 

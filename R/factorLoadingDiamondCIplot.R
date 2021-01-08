@@ -46,7 +46,7 @@
 #' ###  may generate warnings because of the bootstrapping of
 #' ###  the confidence intervals)
 #'
-#' factorLoadingDiamondCIplot(psych::fa(Bechtoldt,
+#' factorLoadingDiamondCIplot(psych::fa(psych::Bechtoldt,
 #'                                      nfactors=2,
 #'                                      n.iter=50,
 #'                                      n.obs=200));
@@ -54,7 +54,7 @@
 #' ### And using a lower alpha value for the diamonds to
 #' ### make them more transparent
 #'
-#' factorLoadingDiamondCIplot(psych::fa(Bechtoldt,
+#' factorLoadingDiamondCIplot(psych::fa(psych::Bechtoldt,
 #'                                      nfactors=2,
 #'                                      n.iter=50,
 #'                                      n.obs=200),
@@ -62,7 +62,7 @@
 #'                            size=1);
 #' }
 #'
-#' @export factorLoadingDiamondCIplot
+#' @export
 factorLoadingDiamondCIplot <- function(fa,
                                        xlab='Factor Loading',
                                        colors = viridis::viridis_pal()(max(2, fa$factors)),

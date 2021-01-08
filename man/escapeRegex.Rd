@@ -41,7 +41,7 @@ if(!any(grep(escapeRegex(string), string))) {
 }
 \seealso{
 \code{\link[base]{grep}}, \code{Hmisc},
-\url{http://biostat.mc.vanderbilt.edu/wiki/Main/Hmisc},
+\url{https://hbiostat.org/R/Hmisc/},
 \url{https://github.com/harrelfe/Hmisc}
 }
 \author{

@@ -21,7 +21,7 @@ diamondPlot(
   outputFile = NULL,
   outputWidth = 10,
   outputHeight = 10,
-  ggsaveParams = list(units = "cm", dpi = 300, type = "cairo"),
+  ggsaveParams = ufs::opts$get("ggsaveParams"),
   ...
 )
 }

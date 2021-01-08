@@ -81,12 +81,12 @@ ggSave <- function(file=NULL, plot = ggplot2::last_plot(),
 
     if (device[i] == 'jpg') {
       device[i] <- 'jpeg';
-      if (is.null(type[i])) {
+      if (is.null(type[i]) && length(capabilities("cairo") > 0) && capabilities("cairo")) {
         type[i] <- "cairo";
       }
     }
 
-    if ((is.null(type[i])) && (device[i]=="png")) {
+    if ((is.null(type[i])) && (device[i]=="png") && length(capabilities("cairo") > 0) && capabilities("cairo")) {
       type[i] <- "cairo-png";
     }
 

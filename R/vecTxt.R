@@ -1,5 +1,9 @@
 #' Easily parse a vector into a character value
 #'
+#' `vecTxtQ`, `vecTxtB`, and `vecTxtM` and are convenience functions
+#' with default quotes that can be useful when working in R Markdown
+#' documents.
+#'
 #' @param vector The vector to process.
 #' @param delimiter,firstDelimiter,lastDelimiter The delimiters
 #'   to use for respectively the middle, first
@@ -74,5 +78,17 @@ vecTxt <- function(vector, delimiter = ", ", useQuote = "",
 #'@rdname vecTxt
 #'@export
 vecTxtQ <- function(vector, useQuote = "'", ...) {
+  return(vecTxt(vector, useQuote = useQuote, ...));
+}
+
+#'@rdname vecTxt
+#'@export
+vecTxtB <- function(vector, useQuote = "`", ...) {
+  return(vecTxt(vector, useQuote = useQuote, ...));
+}
+
+#'@rdname vecTxt
+#'@export
+vecTxtM <- function(vector, useQuote = "$", ...) {
   return(vecTxt(vector, useQuote = useQuote, ...));
 }

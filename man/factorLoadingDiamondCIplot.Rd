@@ -63,7 +63,7 @@ intervals.
 ###  may generate warnings because of the bootstrapping of
 ###  the confidence intervals)
 
-factorLoadingDiamondCIplot(psych::fa(Bechtoldt,
+factorLoadingDiamondCIplot(psych::fa(psych::Bechtoldt,
                                      nfactors=2,
                                      n.iter=50,
                                      n.obs=200));
@@ -71,7 +71,7 @@ factorLoadingDiamondCIplot(psych::fa(Bechtoldt,
 ### And using a lower alpha value for the diamonds to
 ### make them more transparent
 
-factorLoadingDiamondCIplot(psych::fa(Bechtoldt,
+factorLoadingDiamondCIplot(psych::fa(psych::Bechtoldt,
                                      nfactors=2,
                                      n.iter=50,
                                      n.obs=200),

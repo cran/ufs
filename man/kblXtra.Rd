@@ -11,6 +11,10 @@ kblXtra(
   escape = FALSE,
   print = TRUE,
   viewer = FALSE,
+  kable_classic = FALSE,
+  lightable_options = "striped",
+  html_font = "\\"Arial Narrow\\", \\"Source Sans Pro\\", sans-serif",
+  full_width = TRUE,
   table.attr = "style='border:0px solid black !important;'",
   ...
 )
@@ -18,12 +22,15 @@ kblXtra(
 \arguments{
 \item{x}{The dataframe to print}
 
-\item{digits, format, escape, table.attr}{Defaults that are
-passed to \code{\link[knitr:kable]{knitr::kable()}}}
+\item{digits, format, escape, table.attr, lightable_options, html_font, full_width}{Defaults
+that are passed to \code{\link[knitr:kable]{knitr::kable()}}}
 
 \item{print}{Wther to print the table}
 
 \item{viewer}{Whether to show the table in the viewer}
+
+\item{kable_classic}{Whether to call \code{kable_classic}; otherwise,
+\code{kable_styling} is called.}
 
 \item{...}{Additional arguments are passed to \code{\link[knitr:kable]{knitr::kable()}}}
 }

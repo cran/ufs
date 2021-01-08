@@ -12,7 +12,7 @@
 #' @references Bobko, P., Roth, P. L., & Bobko, C. (2001). Correcting
 #' the Effect Size of d for Range Restriction and Unreliability.
 #' *Organizational Research Methods, 4*(1), 46–61.
-#' \url{https://doi.org/10.1177/109442810141003}
+#' \doi{10.1177/109442810141003}
 #'
 #' @examples
 #' attenuate.d(.5, .8);

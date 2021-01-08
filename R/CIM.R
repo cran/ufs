@@ -146,7 +146,6 @@ CIM <- function(data,
 
   dataframeName <- deparse(substitute(data));
 
-
   abbrScaleNames <- abbreviate(names(scales));
   abbrScales <-
     lapply(seq_along(scales), function(i) {
@@ -180,7 +179,7 @@ CIM <- function(data,
                            cfa1s = list(),
                            cfa2s = list(),
                            cfas = list(),
-                           diamondplots = list(),
+                           factorLoadingPlots = list(),
                            faDfs = list(),
                            scales = scales,
                            abbrScales = abbrScales,
@@ -202,7 +201,7 @@ CIM <- function(data,
     res$intermediate$cfa1s[[rowVar]] <- list();
     res$intermediate$cfa2s[[rowVar]] <- list();
     res$intermediate$cfas[[rowVar]] <- list();
-    res$intermediate$diamondplots[[rowVar]] <- list();
+    res$intermediate$factorLoadingPlots[[rowVar]] <- list();
     res$intermediate$faDfs[[rowVar]] <- list();
 
     ### Get index of this row
@@ -421,46 +420,60 @@ CIM <- function(data,
             }
 
             ### Make dataframe with factor loading confidence intervals
-            if ('psych' %in% class(efa)) {
+            if (n.iter > 1) {
+              if ('psych' %in% class(efa)) {
 
-              factorLoadingCIs[[rowVar]][[colVar]] <-
-                ufs::faConfInt(res$intermediate$efas[[rowVar]][[colVar]]);
-              loadingCIs <-
-                factorLoadingCIs[[rowVar]][[colVar]];
+                factorLoadingCIs[[rowVar]][[colVar]] <-
+                  ufs::faConfInt(res$intermediate$efas[[rowVar]][[colVar]]);
+                loadingCIs <-
+                  factorLoadingCIs[[rowVar]][[colVar]];
 
-              ciSummaryList[[rowIndex]][[colIndex]] <-
-                (loadingCIs[[1]]$hi < loadingCIs[[2]]$lo) |
-                (loadingCIs[[2]]$hi < loadingCIs[[1]]$lo);
+                ciSummaryList[[rowIndex]][[colIndex]] <-
+                  (loadingCIs[[1]]$hi < loadingCIs[[2]]$lo) |
+                  (loadingCIs[[2]]$hi < loadingCIs[[1]]$lo);
 
-              faDf <- matrix(unlist(factorLoadingCIs[[rowVar]][[colVar]]),
-                             ncol=6);
-            } else {
-              faDf <- matrix(rep(NA, 6*ncol(abbrVarsDat)),
-                             ncol=6);
-            }
+                faDf <- matrix(unlist(factorLoadingCIs[[rowVar]][[colVar]]),
+                               ncol=6);
 
-            ### Get abbreviated scale names
-            abbr <- abbreviate(names(scales));
+              } else {
+                faDf <- matrix(rep(NA, 6*ncol(abbrVarsDat)),
+                               ncol=6);
 
-            ### Set row and column names
-            rownames(faDf) <- c(abbrScales[[abbrScaleNames[rowVar]]],
-                                abbrScales[[abbrScaleNames[colVar]]]);
-                                # paste0(abbr[rowVar], 1:length(scales[[rowVar]])),
-                                # paste0(abbr[colVar], 1:length(scales[[colVar]])));
-            colnames(faDf) <- c(rep(c('lo', 'est', 'hi'), 2));
+              }
+              colnames(faDf) <- c(rep(c('lo', 'est', 'hi'), 2));
 
-            faDfReordered <- faDf[order(rownames(faDf)),
-                                  ];
-            res$intermediate$faDfs[[rowVar]][[colVar]] <-
-              list(faDf_raw = faDf,
-                   faDf = faDfReordered,
-                   faDf_rounded = round(faDfReordered, 2));
+          } else {
 
-            if (ufs::opts$get('debug')) {
-              cat0("\n\nJust stored this dataframe to create a gTable later on:\n\n");
-              print(res$intermediate$faDfs[[rowVar]][[colVar]]$faDf_rounded);
-              cat0("\n\n");
-            }
+            faDf <-
+              as.data.frame(
+                unclass(
+                  res$intermediate$efas[[rowVar]][[colVar]]$loadings
+                )
+              );
+
+          }
+
+          ### Get abbreviated scale names
+          abbr <- abbreviate(names(scales));
+
+          ### Set row and column names
+          rownames(faDf) <- c(abbrScales[[abbrScaleNames[rowVar]]],
+                              abbrScales[[abbrScaleNames[colVar]]]);
+          # paste0(abbr[rowVar], 1:length(scales[[rowVar]])),
+          # paste0(abbr[colVar], 1:length(scales[[colVar]])));
+
+          faDfReordered <- faDf[order(rownames(faDf)),
+          ];
+          res$intermediate$faDfs[[rowVar]][[colVar]] <-
+            list(faDf_raw = faDf,
+                 faDf = faDfReordered,
+                 faDf_rounded = round(faDfReordered, 2));
+
+          if (ufs::opts$get('debug')) {
+            cat0("\n\nJust stored this dataframe to create a gTable later on:\n\n");
+            print(res$intermediate$faDfs[[rowVar]][[colVar]]$faDf_rounded);
+            cat0("\n\n");
+          }
 
             ###------------------------------------------------------------------
             ###------------------------------------------------------------------
@@ -498,15 +511,30 @@ CIM <- function(data,
                 sort(c(rowVar, colVar));
               titleString <- paste0(titleString[1], ' & ', titleString[2], "\n",
                                     fitText);
-              grobsList[[rowIndex]][[colIndex]] <-
-                res$intermediate$diamondplots[[rowVar]][[colVar]] <-
+
+              if (n.iter > 1) {
+
+                grobsList[[rowIndex]][[colIndex]] <-
+                  res$intermediate$factorLoadingPlots[[rowVar]][[colVar]] <-
                   factorLoadingDiamondCIplot(res$intermediate$efas[[rowVar]][[colVar]],
                                              colors=colors,
                                              sortAlphabetically=TRUE) +
-              #faDfDiamondCIplot(faDf, xlab=NULL) +
+                  #faDfDiamondCIplot(faDf, xlab=NULL) +
                   ggplot2::ggtitle(titleString);
-            #           textGrob(paste0("Upper diag:\n", rowVar,
-            #                           " and ", colVar));
+                #           textGrob(paste0("Upper diag:\n", rowVar,
+                #                           " and ", colVar));
+
+              } else {
+
+                grobsList[[rowIndex]][[colIndex]] <-
+                  res$intermediate$factorLoadingPlots[[rowVar]][[colVar]] <-
+                    factorLoadingHeatmap(
+                      res$intermediate$efas[[rowVar]][[colVar]],
+                      sortAlphabetically=TRUE
+                    );
+
+              }
+
             } else {
               grobsList[[rowIndex]][[colIndex]] <-
                 grid::textGrob('Not possible');
@@ -528,34 +556,41 @@ CIM <- function(data,
               cat0("\n\n");
             }
 
-            grobsList[[rowIndex]][[colIndex]] <-
-              gridExtra::gtable_combine(headerTable,
-                                        grobsList[[rowIndex]][[colIndex]],
-                                        along=2);
+            if (n.iter > 1) {
 
-            prevWidths <- grobsList[[rowIndex]][[colIndex]]$widths;
+              grobsList[[rowIndex]][[colIndex]] <-
+                gridExtra::gtable_combine(headerTable,
+                                          grobsList[[rowIndex]][[colIndex]],
+                                          along=2);
 
-            ### Add variable names
-            titleString <-
-              sort(c(rowVar, colVar));
-            titleString <- paste0(titleString[1], ' & ', titleString[2]);
-            grobsList[[rowIndex]][[colIndex]] <-
-              gridExtra::gtable_combine(makeHeaderTable(titleString,
-                                                        colSpan=6),
-                                        grobsList[[rowIndex]][[colIndex]],
-                                        along=2);
+              prevWidths <- grobsList[[rowIndex]][[colIndex]]$widths;
 
-            ### Set widths (again, based on
-            ### https://github.com/baptiste/gridextra/wiki/tableGrob
-            grobsList[[rowIndex]][[colIndex]]$widths <-
-              grid::unit(rep(.95 * (1/ncol(grobsList[[rowIndex]][[colIndex]])),
-                             ncol(grobsList[[rowIndex]][[colIndex]])),
-                         "npc");
+              ### Add variable names
+              titleString <-
+                sort(c(rowVar, colVar));
+              titleString <- paste0(titleString[1], ' & ', titleString[2]);
+              grobsList[[rowIndex]][[colIndex]] <-
+                gridExtra::gtable_combine(
+                  makeHeaderTable(
+                    titleString,
+                    colSpan=ncol(res$intermediate$faDfs[[colVar]][[rowVar]]$faDf_rounded)
+                  ),
+                  grobsList[[rowIndex]][[colIndex]],
+                  along=2
+                );
+
+              ### Set widths (again, based on
+              ### https://github.com/baptiste/gridextra/wiki/tableGrob
+              grobsList[[rowIndex]][[colIndex]]$widths <-
+                grid::unit(rep(.95 * (1/ncol(grobsList[[rowIndex]][[colIndex]])),
+                               ncol(grobsList[[rowIndex]][[colIndex]])),
+                           "npc");
+            }
           }
         }
       }
       ### Finally, construct content; for diagonal, omega etc; for
-      ### upper diagonal, diamondPlots; for lower diagnoal, numbers
+      ### upper diagonal, factorLoadingPlots; for lower diagnoal, numbers
 
     }
   }

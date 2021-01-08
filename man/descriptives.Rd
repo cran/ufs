@@ -116,7 +116,7 @@ Ann. Statist. 13 (1985), no. 1, 70--84. doi:10.1214/aos/1176346577.
 https://projecteuclid.org/euclid.aos/1176346577.
 }
 \seealso{
-\code{\link{summary}}, [psych::describe()
+\code{\link{summary}}, \code{\link[psych:describe]{psych::describe()}}
 }
 \author{
 Gjalt-Jorn Peters

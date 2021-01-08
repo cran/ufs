@@ -43,7 +43,7 @@ regrInfluential <- function(formula, data, createPlot = TRUE) {
   res <- list(input = as.list(environment()), intermediate = list(),
               output = list())
   ### Get variables in formula
-  res$intermediate$variableNames <- all.vars(formula)
+  res$intermediate$variableNames <- all.vars(formula);
   ### Store temporary dataframe
   res$intermediate$dat <-
     data.frame(stats::na.omit(data[, res$intermediate$variableNames]));
@@ -56,20 +56,23 @@ regrInfluential <- function(formula, data, createPlot = TRUE) {
                                      indexOfInfluentiality = rowSums(res$intermediate$influence.measures$is.inf));
 
   ### Generate scattermatrix showing index fo influentiality
-  res$output$plot <-
-    GGally::ggpairs(data=res$intermediate$dat[,
-                                              c(res$intermediate$variableNames,
-                                                'indexOfInfluentiality')],
-            columns=1:length(res$intermediate$variableNames),
-            upper='blank',
-            lower=list(continuous=function(data, mapping, ...) {
-              res <- ggplot2::ggplot(data=data, mapping=mapping) +
-                ggplot2::geom_point(position="jitter") +
-                ggplot2::scale_colour_gradient(low='green', high='red') +
-                ggplot2::theme_bw();
-              return(res);
-            }),
-            mapping=ggplot2::aes_string(colour='indexOfInfluentiality'));
+  if (createPlot) {
+    res$output$plot <-
+      GGally::ggpairs(data=res$intermediate$dat[,
+                                                c(res$intermediate$variableNames,
+                                                  'indexOfInfluentiality')],
+              columns=1:length(res$intermediate$variableNames),
+              upper='blank',
+              lower=list(continuous=function(data, mapping, ...) {
+                res <- ggplot2::ggplot(data=data, mapping=mapping) +
+                  ggplot2::geom_point(position="jitter") +
+                  ggplot2::scale_colour_gradient(low='green', high='red') +
+                  ggplot2::theme_bw();
+                return(res);
+              }),
+              mapping=ggplot2::aes_string(colour='indexOfInfluentiality'));
+  }
+
   ### Conduct regression analyses for all levels of indexOfInfluentiality
   ### higher than 0
   res$output$regrObjects <- list();
@@ -96,7 +99,9 @@ print.regrInfluential <- function(x,
             repStr("#", headingLevel),
             " Influential cases:\n\n");
   print(x$output$dat.diagnostics);
-  print(x$output$plot);
+  if (!is.null(x$output$plot)) {
+    print(x$output$plot);
+  }
   ufs::cat0("\n",
             repStr("#", headingLevel + 1),
             " Regression analyses, repeated without influential cases\n\n");

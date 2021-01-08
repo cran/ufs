@@ -1,7 +1,7 @@
 Package: ufs
 Type: Package
 Title: Quantitative Analysis Made Accessible
-Version: 0.4.0
+Version: 0.4.1
 Authors@R: 
     c(
         person(given = "Gjalt-Jorn",
@@ -46,8 +46,8 @@ Imports: digest (>= 0.6.19), diptest (>= 0.75.7), dplyr (>= 0.7.6),
         pander (>= 0.6.3), plyr (>= 1.8.4), rmdpartials (>= 0.5.8),
         scales (>= 1.0.0), SuppDists (>= 1.1.9), viridis (>= 0.5.1)
 NeedsCompilation: no
-Packaged: 2020-11-10 10:15:38 UTC; gjalt
+Packaged: 2021-01-08 15:52:30 UTC; gjalt
 Author: Gjalt-Jorn Peters [aut, cre] (<https://orcid.org/0000-0002-0336-9589>),
   Stefan Gruijters [ctb] (<https://orcid.org/0000-0003-0141-0071>)
 Repository: CRAN
-Date/Publication: 2020-11-10 11:40:03 UTC
+Date/Publication: 2021-01-08 18:00:02 UTC

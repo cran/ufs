@@ -36,5 +36,12 @@ You can install the development version of `ufs` from
 remotes::install_gitlab('r-packages/ufs');
 ```
 
-(assuming you have `remotes` installed; otherwise, install that first
-using the `install.packages()` function)
+If you want the even more cutting edge version, you can install from the
+`dev` branch (as opposed to the default branch, `prod`) with:
+
+``` r
+remotes::install_gitlab('r-packages/ufs@dev');
+```
+
+(This is assuming you have the `remotes` packages installed; otherwise,
+install that first using the `install.packages` function.)

@@ -3,6 +3,8 @@
 \name{vecTxt}
 \alias{vecTxt}
 \alias{vecTxtQ}
+\alias{vecTxtB}
+\alias{vecTxtM}
 \title{Easily parse a vector into a character value}
 \usage{
 vecTxt(
@@ -17,6 +19,10 @@ vecTxt(
 )
 
 vecTxtQ(vector, useQuote = "'", ...)
+
+vecTxtB(vector, useQuote = "`", ...)
+
+vecTxtM(vector, useQuote = "$", ...)
 }
 \arguments{
 \item{vector}{The vector to process.}
@@ -47,7 +53,9 @@ last delimiter (\code{FALSE})?}
 A character vector of length 1.
 }
 \description{
-Easily parse a vector into a character value
+\code{vecTxtQ}, \code{vecTxtB}, and \code{vecTxtM} and are convenience functions
+with default quotes that can be useful when working in R Markdown
+documents.
 }
 \examples{
 vecTxtQ(names(mtcars));

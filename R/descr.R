@@ -43,7 +43,7 @@
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso \code{\link{summary}}, [psych::describe()
+#' @seealso \code{\link{summary}}, [psych::describe()]
 #' @references Hartigan, J. A.; Hartigan, P. M. The Dip Test of Unimodality.
 #' Ann. Statist. 13 (1985), no. 1, 70--84. doi:10.1214/aos/1176346577.
 #' https://projecteuclid.org/euclid.aos/1176346577.
@@ -181,8 +181,36 @@ pander.descr <- function(x, headerPrefix = "",
 #' @method as.data.frame descr
 #' @rdname descriptives
 #' @export
-as.data.frame.descr <- function(x, row.names=NULL, optional=FALSE, ...) {
-  res <- as.data.frame(t(matrix(unlist(x)[c(1,2,5,6,7,8,9,10,11,12,13,14,15,16,17,18)])),
+as.data.frame.descr <- function(x, row.names=NULL,
+                                optional=FALSE, ...) {
+
+  if (!is.null(attr(x, 'digits'))) {
+    res <-
+      unlist(lapply(
+        x,
+        function(valList) {
+          return(
+            unlist(
+              lapply(
+                valList,
+                function(val) {
+                  if (is.numeric(val)) {
+                    return(round(val, attr(x, 'digits')));
+                  } else {
+                    return(val);
+                  }
+                }
+              )
+            )
+          );
+        }
+      ));
+  } else {
+    res <-
+      unlist(x);
+  }
+  res <- res[c(1,2,5,6,7,8,9,10,11,12,13,14,15,16,17,18)];
+  res <- as.data.frame(t(matrix(res)),
                        row.names=row.names,
                        optional=optional,
                        ...);
