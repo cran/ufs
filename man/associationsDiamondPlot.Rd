@@ -15,7 +15,7 @@ associationsDiamondPlot(
   decreasing = NULL,
   sortBy = NULL,
   conf.level = 0.95,
-  criteriaColors = viridis::viridis(length(criteria)),
+  criteriaColors = viridisPalette(length(criteria)),
   criterionColor = "black",
   returnLayerOnly = FALSE,
   esMetric = "r",

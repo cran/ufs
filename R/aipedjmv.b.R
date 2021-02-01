@@ -1,7 +1,7 @@
 
 # This file is a generated template, your changes will not be overwritten
 
-aipedjmvClass <- if (requireNamespace('jmvcore')) R6::R6Class(
+aipedjmvClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     "aipedjmvClass",
     inherit = aipedjmvBase,
     private = list(

@@ -143,6 +143,15 @@ opts$ez$figSize <-
 
   }
 
+### Helper function to check the cairo type
+ggsaveDefaultType <- function() {
+  if (length(capabilities("cairo") > 0) && capabilities("cairo")) {
+    return("cairo");
+  } else {
+    return(NULL);
+  }
+}
+
 # opts$ez$list <-
 #   function(showValue = FALSE) {
 #     optionNames <-
@@ -208,10 +217,7 @@ opts$defaults <-
 
     ggsaveParams = list(units='cm',
                         dpi=300,
-                        type=ifelse(
-                          length(capabilities("cairo") > 0) && capabilities("cairo"),
-                          "cairo",
-                          NULL)),
+                        type=ggsaveDefaultType()),
 
     ### Default heading level, for convenience
     defaultHeadingLevel = 3,

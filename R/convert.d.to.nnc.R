@@ -1,7 +1,7 @@
 #' Helper functions for Numbers Needed for Change
 #'
-#' These functions are used by [behaviorchange::nnc()] to compute the Numbers
-#' Needed for Change, but are also available for manual use.
+#' These functions are used by `nnc()` in the behaviorchange package to
+#' compute the Numbers Needed for Change, but are also available for manual use.
 #'
 #' @aliases convert.d.to.nnc convert.d.to.eer convert.cer.to.d convert.eer.to.d
 #' @param d The value of Cohen's *d*.
@@ -22,7 +22,7 @@
 #' @author Gjalt-Jorn Peters & Stefan Gruijters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso [behaviorchange::nnc()]
+#' @seealso `nnc()` in the behaviorchange package.
 #' @references Gruijters, S. L., & Peters, G. Y. (2019). Gauging the
 #' impact of behavior change interventions: A tutorial on the Numbers
 #' Needed to Treat. *PsyArXiv.* \doi{10.31234/osf.io/2bau7}

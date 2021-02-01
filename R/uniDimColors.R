@@ -6,7 +6,14 @@ uniDimColors <- function(start,
                          show=TRUE) {
   res <- grDevices::colorRampPalette(c(start, end))(length);
   if (show) {
-    plot(rep(1,length),col=res,pch=15,cex=3, axes=FALSE, xlab="", ylab="");
+    graphics::plot(
+      rep(1,length),
+      col=res,
+      pch=15,
+      cex=3,
+      axes=FALSE,
+      xlab="",
+      ylab="");
   }
   return(res);
 }

@@ -11,18 +11,15 @@
 #' confidence intervals by visualising the factor loadings and their confidence
 #' intervals.
 #'
-#'
 #' @param fa The object produced by the [psych::fa()] function from the
 #' [psych::psych] package. It is important that the `n.iter` argument
 #' of [psych::fa()] was set to a realistic number, because otherwise, no
 #' confidence intervals will be available.
 #' @param xlab The label for the x axis.
 #' @param colors The colors used for the factors. The default uses the discrete
-#' [viridis()] palette, which is optimized for perceptual uniformity,
+#' `viridis` palette, which is optimized for perceptual uniformity,
 #' maintaining its properties when printed in grayscale, and designed for
-#' colourblind readers. A vector can also be supplied; the colors must be valid
-#' arguments to [colorRamp()] (and therefore, to
-#' [col2rgb()]).
+#' colourblind readers.
 #' @param labels The labels to use for the items (on the Y axis).
 #' @param theme The ggplot2 theme to use.
 #' @param sortAlphabetically Whether to sort the items alphabetically.
@@ -65,7 +62,7 @@
 #' @export
 factorLoadingDiamondCIplot <- function(fa,
                                        xlab='Factor Loading',
-                                       colors = viridis::viridis_pal()(max(2, fa$factors)),
+                                       colors = viridisPalette(max(2, fa$factors)),
                                        labels=NULL,
                                        theme=ggplot2::theme_bw(),
                                        sortAlphabetically = FALSE,

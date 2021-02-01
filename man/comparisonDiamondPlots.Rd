@@ -17,7 +17,7 @@ duoComparisonDiamondPlot(
   showData = TRUE,
   dataAlpha = 0.1,
   dataSize = 3,
-  comparisonColors = viridis::viridis(length(unique(dat[, compareBy]))),
+  comparisonColors = viridisPalette(length(unique(dat[, compareBy]))),
   associationsColor = "grey",
   alpha = 0.33,
   jitterWidth = 0.5,
@@ -50,7 +50,7 @@ meansComparisonDiamondPlot(
   showData = TRUE,
   dataAlpha = 0.1,
   dataSize = 3,
-  comparisonColors = viridis::viridis(length(unique(dat[, compareBy]))),
+  comparisonColors = viridisPalette(length(unique(dat[, compareBy]))),
   alpha = 0.33,
   jitterWidth = 0.5,
   jitterHeight = 0.4,
@@ -202,8 +202,8 @@ multiple sample estimates while respecting their inaccuracy.
 \emph{PsyArXiv.} http://doi.org/10.17605/OSF.IO/9W8YV
 }
 \seealso{
-\code{\link[=diamondPlot]{diamondPlot()}}, \code{\link[=meansDiamondPlot]{meansDiamondPlot()}},
-\code{\link[behaviorchange:CIBER]{behaviorchange::CIBER()}}
+\code{\link[=diamondPlot]{diamondPlot()}}, \code{\link[=meansDiamondPlot]{meansDiamondPlot()}}, the \code{CIBER()} function in
+the \code{behaviorchange} package
 }
 \author{
 Gjalt-Jorn Peters

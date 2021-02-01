@@ -82,8 +82,8 @@
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso [diamondPlot()], [meansDiamondPlot()],
-#' [behaviorchange::CIBER()]
+#' @seealso [diamondPlot()], [meansDiamondPlot()], the `CIBER()` function in
+#' the `behaviorchange` package
 #' @references Peters, G.-J. Y. (2017). Diamond Plots: a tutorial to introduce
 #' a visualisation tool that facilitates interpretation and comparison of
 #' multiple sample estimates while respecting their inaccuracy.
@@ -114,7 +114,7 @@ meansComparisonDiamondPlot <- function(dat, items = NULL,
                                        sortBy=NULL,
                                        conf.level=.95,
                                        showData = TRUE, dataAlpha = .1, dataSize=3,
-                                       comparisonColors = viridis::viridis(length(unique(dat[, compareBy]))),
+                                       comparisonColors = viridisPalette(length(unique(dat[, compareBy]))),
                                        alpha = .33,
                                        jitterWidth = .5,
                                        jitterHeight = .4,

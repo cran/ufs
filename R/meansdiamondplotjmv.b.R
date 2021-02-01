@@ -1,7 +1,7 @@
 
 # This file is a generated template, your changes will not be overwritten
 
-meansDiamondPlotjmvClass <- if (requireNamespace('jmvcore')) R6::R6Class(
+meansDiamondPlotjmvClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     "meansDiamondPlotjmvClass",
     inherit = meansDiamondPlotjmvBase,
     private = list(

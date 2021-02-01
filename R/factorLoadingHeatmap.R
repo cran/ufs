@@ -18,11 +18,9 @@
 #' confidence intervals will be available.
 #' @param xlab The label for the x axis.
 #' @param colors The colors used for the factors. The default uses the discrete
-#' [viridis()] palette, which is optimized for perceptual uniformity,
+#' `viridis` palette, which is optimized for perceptual uniformity,
 #' maintaining its properties when printed in grayscale, and designed for
-#' colourblind readers. A vector can also be supplied; the colors must be valid
-#' arguments to [colorRamp()] (and therefore, to
-#' [col2rgb()]).
+#' colourblind readers.
 #' @param labels The labels to use for the items (on the Y axis).
 #' @param showLoadings Whether to show the factor loadings or not.
 #' @param heatmap Whether to produce a heatmap or use diamond plots.
@@ -70,7 +68,7 @@
 #' @export
 factorLoadingHeatmap <- function(fa,
                                  xlab='Factor Loading',
-                                 colors = viridis::viridis_pal()(max(2, fa$factors)),
+                                 colors = viridisPalette(max(2, fa$factors)),
                                  labels=NULL,
                                  showLoadings = FALSE,
                                  heatmap = FALSE,

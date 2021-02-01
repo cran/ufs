@@ -22,7 +22,13 @@ biDimColors <- function(start,
     grDevices::colorRampPalette(c(mid, end))(ceiling(length/2));
   res <- c(startToMid, utils::tail(midToEnd, -1));
   if (show) {
-    plot(rep(1,length),col=res,pch=15,cex=3, axes=FALSE, xlab="", ylab="");
+    graphics::plot(rep(1,length),
+                   col=res,
+                   pch=15,
+                   cex=3,
+                   axes=FALSE,
+                   xlab="",
+                   ylab="");
   }
   return(res);
 }

@@ -65,8 +65,8 @@ Numbers Needed for Change).}
 The converted value.
 }
 \description{
-These functions are used by \code{\link[behaviorchange:nnc]{behaviorchange::nnc()}} to compute the Numbers
-Needed for Change, but are also available for manual use.
+These functions are used by \code{nnc()} in the behaviorchange package to
+compute the Numbers Needed for Change, but are also available for manual use.
 }
 \examples{
 
@@ -80,7 +80,7 @@ impact of behavior change interventions: A tutorial on the Numbers
 Needed to Treat. \emph{PsyArXiv.} \doi{10.31234/osf.io/2bau7}
 }
 \seealso{
-\code{\link[behaviorchange:nnc]{behaviorchange::nnc()}}
+\code{nnc()} in the behaviorchange package.
 }
 \author{
 Gjalt-Jorn Peters & Stefan Gruijters

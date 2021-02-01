@@ -7,7 +7,7 @@
 factorLoadingDiamondCIplot(
   fa,
   xlab = "Factor Loading",
-  colors = (viridis::viridis_pal())(max(2, fa$factors)),
+  colors = viridisPalette(max(2, fa$factors)),
   labels = NULL,
   theme = ggplot2::theme_bw(),
   sortAlphabetically = FALSE,
@@ -23,11 +23,9 @@ confidence intervals will be available.}
 \item{xlab}{The label for the x axis.}
 
 \item{colors}{The colors used for the factors. The default uses the discrete
-\code{\link[=viridis]{viridis()}} palette, which is optimized for perceptual uniformity,
+\code{viridis} palette, which is optimized for perceptual uniformity,
 maintaining its properties when printed in grayscale, and designed for
-colourblind readers. A vector can also be supplied; the colors must be valid
-arguments to \code{\link[=colorRamp]{colorRamp()}} (and therefore, to
-\code{\link[=col2rgb]{col2rgb()}}).}
+colourblind readers.}
 
 \item{labels}{The labels to use for the items (on the Y axis).}
 

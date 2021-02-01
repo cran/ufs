@@ -119,7 +119,7 @@ This is basically a \code{\link[=meansDiamondPlot]{meansDiamondPlot()}}, but ext
 specifying subquestions and anchors at the left and right side. This is
 convenient for psychological questionnaires when the anchors or dimensions
 were different from item to item. This function is used to function the left
-panel of the \code{\link[behaviorchange:CIBER]{behaviorchange::CIBER()}} plot.
+panel of the CIBER plot in the \code{behaviorchange} package.
 }
 \details{
 This is a diamondplot that can be used for items/questions where the anchors
@@ -137,7 +137,7 @@ biAxisDiamondPlot(dat=mtcars,
 
 }
 \seealso{
-\code{\link[behaviorchange:CIBER]{behaviorchange::CIBER()}}, \code{\link[=associationsDiamondPlot]{associationsDiamondPlot()}}
+CIBER() in the behaviorchange package, \code{\link[=associationsDiamondPlot]{associationsDiamondPlot()}}
 }
 \author{
 Gjalt-Jorn Peters

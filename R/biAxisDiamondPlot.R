@@ -4,7 +4,7 @@
 #' specifying subquestions and anchors at the left and right side. This is
 #' convenient for psychological questionnaires when the anchors or dimensions
 #' were different from item to item. This function is used to function the left
-#' panel of the [behaviorchange::CIBER()] plot.
+#' panel of the CIBER plot in the `behaviorchange` package.
 #'
 #' This is a diamondplot that can be used for items/questions where the anchors
 #' of the response scales could be different for every item. For the rest, it
@@ -64,7 +64,7 @@
 #' @author Gjalt-Jorn Peters
 #'
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
-#' @seealso [behaviorchange::CIBER()], [associationsDiamondPlot()]
+#' @seealso CIBER() in the behaviorchange package, [associationsDiamondPlot()]
 #' @keywords hplot
 #' @examples
 #'
