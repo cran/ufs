@@ -2,9 +2,9 @@
 <!-- badges: start -->
 
 [![Pipeline
-status](https://gitlab.com/r-packages/ufs/badges/prod/pipeline.svg)](https://gitlab.com/r-packages/ufs/commits/prod)
+status](https://gitlab.com/r-packages/ufs/badges/prod/pipeline.svg)](https://gitlab.com/r-packages/ufs/-/commits/prod)
 [![Coverage
-status](https://codecov.io/gl/r-packages/ufs/branch/prod/graph/badge.svg)](https://codecov.io/gl/r-packages/ufs?branch=prod)
+status](https://codecov.io/gl/r-packages/ufs/branch/prod/graph/badge.svg)](https://app.codecov.io/gl/r-packages/ufs?branch=prod)
 [![Version on
 CRAN](https://www.r-pkg.org/badges/version/ufs?color=brightgreen)](https://cran.r-project.org/package=ufs)
 [![Monthly downloads on

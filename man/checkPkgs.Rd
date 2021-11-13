@@ -35,9 +35,10 @@ syntax for addressing functions; you can make sure required packages
 are installed, but their namespace won't attach to the search path.
 }
 \examples{
+\donttest{
 ufs::checkPkgs('base');
 
-### Require a version
+### Require a specific version
 ufs::checkPkgs(ufs = "0.3.1");
 
 ### This will show the error message
@@ -49,4 +50,5 @@ tryCatch(
   ),
   error = print
 );
+}
 }

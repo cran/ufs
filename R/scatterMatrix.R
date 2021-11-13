@@ -73,6 +73,10 @@ scatterMatrix <- function(dat, items=NULL,
     }
   ));
 
+  if (knitr::is_html_output() || knitr::is_latex_output()) {
+    progress <- FALSE;
+  }
+
   if (is.null(items)) {
     items <- names(dat);
   }

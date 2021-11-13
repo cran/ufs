@@ -24,6 +24,10 @@ fa_failsafe <- function(...,
   ### First time, so 'zeroeth' repetition
   n.repeatOnWarning_repetitions <- 0;
 
+  if (is.null(n.repeatOnWarning)) {
+    n.repeatOnWarning <- 0;
+  }
+
   ### (Re)set logs to empty vector
   options(ufs.CIM.warnings = c());
   options(ufs.CIM.errors = c());
@@ -51,7 +55,7 @@ fa_failsafe <- function(...,
   ### Potentially repeat multiple times
   while (((length(getOption("ufs.CIM.warnings")) +
            length(getOption("ufs.CIM.errors"))) > warningTolerance) &&
-         n.repeatOnWarning_repetitions <= n.repeatOnWarning) {
+         (n.repeatOnWarning_repetitions <= n.repeatOnWarning)) {
 
     if (showWarnings) {
       print(getOption("ufs.CIM.warnings"));

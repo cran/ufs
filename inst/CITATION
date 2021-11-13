@@ -1,0 +1,13 @@
+citHeader("To cite ufs in publications use:")
+
+citEntry(
+  entry    = "Manual",
+  title    = "ufs: A collection of utilities",
+  author   = "Gjalt-Jorn Ygram Peters, Stefan Gruijters",
+  year     = 2021,
+  note     = "R package version 0.4.5",
+  url      = "https://r-packages.gitlab.io/ufs",
+  textVersion = paste(
+"Peters GJY, Gruijters, S (2021). ufs: A collection of utilities. R package version 0.4.5. https://r-packages.gitlab.io/ufs"
+  )
+)

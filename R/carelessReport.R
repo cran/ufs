@@ -95,6 +95,10 @@ carelessReport <- function(data,
            reportTableColNames);
   }
 
+  originalKnitrKableNA <- getOption("knitr.kable.NA");
+  on.exit(options(knitr.kable.NA = originalKnitrKableNA));
+  options(knitr.kable.NA = "");
+
   print(
     knitr::kable(
       suspectParticipants[, varsForTable],

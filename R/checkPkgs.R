@@ -18,9 +18,10 @@
 #' @return Invisibly, a vector of the available packages.
 #' @export
 #'
-#' @examples ufs::checkPkgs('base');
+#' @examples \donttest{
+#' ufs::checkPkgs('base');
 #'
-#' ### Require a version
+#' ### Require a specific version
 #' ufs::checkPkgs(ufs = "0.3.1");
 #'
 #' ### This will show the error message
@@ -32,6 +33,7 @@
 #'   ),
 #'   error = print
 #' );
+#' }
 checkPkgs <- function(...,
                       install = FALSE,
                       load = FALSE,
@@ -43,7 +45,8 @@ checkPkgs <- function(...,
   } else {
     x <- names(vrsn);
   }
-  pkgNames <- utils::installed.packages()[, 'Package'];
+  installedPkgs <- utils::installed.packages();
+  pkgNames <- installedPkgs[, 'Package'];
   res <- stats::setNames(rep(FALSE, length(x)),
                          x);
   for (i in seq_along(x)) {
@@ -57,13 +60,14 @@ checkPkgs <- function(...,
   }
   if (any(res)) {
     if (install) {
-      utils::install.packages(x[res],
-                              repos=repos);
+      installedPkgs(x[res], repos=repos);
     } else {
       stop("Of package(s) ", vecTxtQ(x[res]),
            ", you need at least versions ", vecTxt(vrsn[res]),
            ", respectively. Install those with:\n\n",
-           "install.packages(c(", vecTxtQ(x[res]), "));\n");
+           "install.packages(c(",
+           vecTxtQ(x[res], lastDelimiter = ", "),
+           "));\n");
     }
   }
   if (load) {

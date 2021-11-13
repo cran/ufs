@@ -152,7 +152,7 @@ ggProportionPlot <- function(dat,
                              theme = ggplot2::theme_bw(),
                              returnPlotOnly = TRUE) {
 
-  if (is.vector(dat) || is.factor(dat)) {
+  if (is.numeric(dat) || is.factor(dat)) {
     if (is.character(dat)) {
       if (all(grepl('\\d+', colnames(dat)))) {
         dat <- as.numeric(dat);
@@ -191,6 +191,9 @@ ggProportionPlot <- function(dat,
         hiCategory <- max(dat[, items], na.rm=TRUE);
       }
     }
+  } else {
+    stop("The object passed as `dat` is not a numeric vector or factor or data.frame, ",
+         "but instead has class ", vecTxtQ(class(dat)), ".");
   }
   if (na.rm) {
     tmpDat <- tmpDat[stats::complete.cases(tmpDat), , drop=FALSE];

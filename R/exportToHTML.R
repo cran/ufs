@@ -35,7 +35,7 @@ exportToHTML <- function(input,
   ### Set viewer based on whether we're in rstudio and interactive
   if (interactive() && ("viewer" %in% output)) {
     ### Set viewer depending on whether we're in RStudio
-    if ((!requireNamespace("rstudioapi", quietly = TRUE)) &&
+    if ((requireNamespace("rstudioapi", quietly = TRUE)) &&
         (rstudioapi::isAvailable())) {
       viewer <- rstudioapi::viewer;
     } else {

@@ -46,11 +46,21 @@ insertNumberedCaption <- function(captionText = "",
   if (!is.numeric(counter)) counter <- 1;
   if (is.numeric(resetCounterTo)) counter <- resetCounterTo;
   ### Compose caption text
+  if ((!is.null(prefix)) && (!(is.na(prefix))) && (nchar(prefix > 0))) {
+    formattedPrefix <- sprintf(prefix, counter);
+  } else {
+    formattedPrefix <- "";
+  }
+  if ((!is.null(suffix)) && (!(is.na(suffix))) && (nchar(suffix > 0))) {
+    formattedSuffix <- sprintf(suffix, counter);
+  } else {
+    formattedSuffix <- "";
+  }
   res <-
     paste0(
-      sprintf(prefix, counter),
+      formattedPrefix,
       captionText,
-      sprintf(suffix, counter)
+      formattedSuffix
     );
   ### Update counter in options
   do.call(options,

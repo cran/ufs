@@ -1,7 +1,7 @@
 Package: ufs
 Type: Package
-Title: Quantitative Analysis Made Accessible
-Version: 0.4.3
+Title: A Collection of Utilities
+Version: 0.5.2
 Authors@R: 
     c(
         person(given = "Gjalt-Jorn",
@@ -33,21 +33,21 @@ URL: https://r-packages.gitlab.io/ufs
 BugReports: https://gitlab.com/r-packages/ufs/-/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Depends: R (>= 3.0.0)
 Suggests: bootES (>= 1.2), car (>= 3.0), careless (>= 1.1), GGally (>=
-        1.4.0), jmvcore (>= 1.2), lavaan (>= 0.6), MBESS (>= 4.5.1),
-        psych (>= 1.8), rio (>= 0.5), remotes (>= 0.2), rmarkdown (>=
-        2.5), rstudioapi (>= 0.11), viridis (>= 0.5.1)
+        1.4.0), jmvcore (>= 1.2), lavaan (>= 0.6), MASS (>= 7.3), MBESS
+        (>= 4.5.1), psych (>= 1.8), rio (>= 0.5), remotes (>= 0.2),
+        rmarkdown (>= 2.5), rstudioapi (>= 0.11), viridis (>= 0.5.1)
 Imports: digest (>= 0.6.19), diptest (>= 0.75.7), dplyr (>= 0.7.6),
         ggplot2 (>= 2.2.1), ggrepel (>= 0.8), ggridges (>= 0.5.0),
         grDevices (>= 3.0.0), gridExtra (>= 2.3), gtable (>= 0.2.0),
         htmltools (>= 0.4.0), kableExtra (>= 1.1.0), knitr (>= 1.22),
-        pander (>= 0.6.3), plyr (>= 1.8.4), rmdpartials (>= 0.5.8),
-        scales (>= 1.0.0), SuppDists (>= 1.1.9)
+        pander (>= 0.6.3), plyr (>= 1.8.4), pwr, rmdpartials (>=
+        0.5.8), scales (>= 1.0.0), SuppDists (>= 1.1.9)
 NeedsCompilation: no
-Packaged: 2021-01-30 11:21:27 UTC; micro
+Packaged: 2021-11-13 20:10:58 UTC; gjalt
 Author: Gjalt-Jorn Peters [aut, cre] (<https://orcid.org/0000-0002-0336-9589>),
   Stefan Gruijters [ctb] (<https://orcid.org/0000-0003-0141-0071>)
 Repository: CRAN
-Date/Publication: 2021-02-02 00:10:02 UTC
+Date/Publication: 2021-11-13 20:30:02 UTC
