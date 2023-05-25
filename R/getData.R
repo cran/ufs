@@ -1,10 +1,6 @@
-#' Basic SPSS translation functions
+#' Use a dialog to load data from an SPSS file
 #'
-#' Basic functons to make working with R easier for SPSS users: getData and
-#' getDat provide an easy way to load SPSS datafiles, and exportToSPSS to write
-#' to a datafile and syntax file that SPSS can import; filterBy and useAll
-#' allow easy temporary filtering of rows from the dataframe; mediaan and modus
-#' compute the median and mode of ordinal or numeric data.
+#' `getData()` and `getDat()` provide an easy way to load SPSS datafiles.
 #'
 #' @aliases getData getDat
 #' @param filename,file It is possible to specify a path and filename to load

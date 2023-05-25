@@ -13,6 +13,11 @@
 #' @param type An additional arguments for the graphic device.
 #' @param device The graphic device; is inferred from the file if not specified.
 #' @param bg The background (e.g. 'white').
+#' @param preventType Whether to prevent passing a value for the `type` argument
+#' to [ggplot2::ggsave()]. This is prevented by default since {gglot} switched
+#' to using the ragg device by default, resulting in throwing a warning
+#' ("Warning: Using ragg device as default. Ignoring `type` and `antialias` arguments")
+#' if something if passed for 'type'.
 #' @param ... Any additional arguments are passed on to [ggplot2::ggsave()].
 #'
 #' @return The plot, invisibly.
@@ -25,7 +30,9 @@ ggSave <- function(file=NULL, plot = ggplot2::last_plot(),
                    height=ufs::opts$get("ggSaveFigHeight"),
                    units=ufs::opts$get("ggSaveUnits"),
                    dpi=ufs::opts$get("ggSaveDPI"),
-                   device=NULL, type=NULL, bg="transparent", ...) {
+                   device=NULL, type=NULL, bg="transparent",
+                   preventType = ufs::opts$get("ggSavePreventType"),
+                   ...) {
 
   extension <-
     gsub("^.*\\.(.+)$", "\\1", file);
@@ -91,9 +98,18 @@ ggSave <- function(file=NULL, plot = ggplot2::last_plot(),
     }
 
     if (device[i]=="png") {
-      ggplot2::ggsave(file=file[i], plot=plot, device=device[i],
-                      height=height[i], width=width[i], units=units[i],
-                      dpi=dpi[i], type=type[i], bg = bg[i], ...);
+      if (preventType) {
+        ### Preventing type by default since gglot uses the ragg device,
+        ### otherwise it throws
+        ### "Warning: Using ragg device as default. Ignoring `type` and `antialias` arguments"
+        ggplot2::ggsave(file=file[i], plot=plot, device=device[i],
+                        height=height[i], width=width[i], units=units[i],
+                        dpi=dpi[i], bg = bg[i], ...);
+      } else{
+        ggplot2::ggsave(file=file[i], plot=plot, device=device[i],
+                        height=height[i], width=width[i], units=units[i],
+                        dpi=dpi[i], type=type[i], bg = bg[i], ...);
+      }
     } else if (device[i]=="svg") {
       ### The 'svg' device doesn't have a 'type' argument
       ggplot2::ggsave(file=file[i], plot=plot, device=device[i],
@@ -105,9 +121,18 @@ ggSave <- function(file=NULL, plot = ggplot2::last_plot(),
                       height=height[i], width=width[i], units=units[i],
                       dpi=dpi[i], bg = bg[i], ...);
     } else {
-      ggplot2::ggsave(file=file[i], plot=plot, device=device[i],
-                      height=height[i], width=width[i], units=units[i],
-                      dpi=dpi[i], type=type[i], bg = bg[i], ...);
+      if (preventType) {
+        ### Preventing type by default since gglot uses the ragg device,
+        ### otherwise it throws
+        ### "Warning: Using ragg device as default. Ignoring `type` and `antialias` arguments"
+        ggplot2::ggsave(file=file[i], plot=plot, device=device[i],
+                        height=height[i], width=width[i], units=units[i],
+                        dpi=dpi[i], bg = bg[i], ...);
+      } else {
+        ggplot2::ggsave(file=file[i], plot=plot, device=device[i],
+                        height=height[i], width=width[i], units=units[i],
+                        dpi=dpi[i], type=type[i], bg = bg[i], ...);
+      }
     }
 
   }

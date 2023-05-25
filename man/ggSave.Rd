@@ -14,6 +14,7 @@ ggSave(
   device = NULL,
   type = NULL,
   bg = "transparent",
+  preventType = ufs::opts$get("ggSavePreventType"),
   ...
 )
 }
@@ -33,6 +34,12 @@ ggSave(
 \item{type}{An additional arguments for the graphic device.}
 
 \item{bg}{The background (e.g. 'white').}
+
+\item{preventType}{Whether to prevent passing a value for the \code{type} argument
+to \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}}. This is prevented by default since {gglot} switched
+to using the ragg device by default, resulting in throwing a warning
+("Warning: Using ragg device as default. Ignoring \code{type} and \code{antialias} arguments")
+if something if passed for 'type'.}
 
 \item{...}{Any additional arguments are passed on to \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}}.}
 }

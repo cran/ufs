@@ -87,13 +87,24 @@ CIM <- function(data,
               output = list());
 
   ###--------------------------------------------------------------------------
-  ### Uses two suggested packages; check their presence
+  ### Uses three suggested packages; check their presence
   ###--------------------------------------------------------------------------
 
   if (!requireNamespace("psych", quietly = TRUE)) {
     stop("To do the exploratory factor analysis, the \"psych\" package is required. ",
          "Please install it using `install.packages('psych');`.",
          call. = FALSE);
+  }
+
+  if (!requireNamespace("GPArotation", quietly = TRUE)) {
+    stop("To do the exploratory factor analysis, the \"GPArotation\" package is required. ",
+         "Please install it using `install.packages('GPArotation');`.",
+         call. = FALSE);
+  } else {
+    ### This is just to satisfy R CHECK - otherwise we're not "allowed" to
+    ### check whether GPArotation exists, and `psych` doesn't handle that
+    ### elegantly itself.
+    a <- GPArotation::box20
   }
 
   if (!requireNamespace("lavaan", quietly = TRUE)) {

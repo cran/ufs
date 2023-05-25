@@ -152,12 +152,15 @@
 #'
 #' ### Use all items (don't order confidence intervals to save time
 #' ### during automated testing of the example)
-#' scaleStructure(dat=exampleData, ci=FALSE);
+#' ufs::scaleStructure(dat=exampleData, ci=FALSE);
 #'
 #' ### Use a selection of three variables (without confidence
 #' ### intervals to save time
-#' scaleStructure(dat=exampleData, items=c('t0_item2', 't0_item3', 't0_item4'),
-#'                ci=FALSE);
+#' ufs::scaleStructure(
+#'   dat=exampleData,
+#'   items=c('t0_item2', 't0_item3', 't0_item4'),
+#'   ci=FALSE
+#' );
 #'
 #' ### Make the items resemble an ordered categorical (ordinal) scale
 #' ordinalExampleData <- data.frame(apply(exampleData, 2, cut,
@@ -165,7 +168,7 @@
 #'                                        labels=as.character(1:5)));
 #'
 #' ### Now we also get estimates assuming the ordinal measurement level
-#' scaleStructure(ordinalExampleData, ci=FALSE);
+#' ufs::scaleStructure(ordinalExampleData, ci=FALSE);
 #' }
 #'
 #'
@@ -294,29 +297,50 @@ scaleStructure <- scaleReliability <- function (data=NULL, items = 'all', digits
     res$output$coefficientH <- 1 / (1 + res$intermediate$minorDenom);
 
     ### GLB
-    suppressWarnings(res$intermediate$glb <-
-                       psych::glb(res$input$dat));
-    res$output$glb  <- res$intermediate$glb$glb.max;
-    res$output$dat$glb  <- res$intermediate$glb$glb.max;
+    tryCatch(
+      suppressWarnings(res$intermediate$glb <-
+                         psych::glb(res$input$dat)),
+      error = function(e) {
+        warning("\n\nWhen calling `psych::glb`, it threw an ",
+                "error, specifically:\n\n", e,
+                "\nThis prevents me from providing an ",
+                "estimate for the Greatest Lower Bound (GLB). I am setting ",
+                "it to NA.");
+      }
+    )
+    if (is.null(res$intermediate$glb)) {
+      res$intermediate$glb <- list(glb.max = NA);
+      res$output$glb  <- NA;
+      res$output$dat$glb  <- NA;
+    } else {
+      res$output$glb  <- res$intermediate$glb$glb.max;
+      res$output$dat$glb  <- res$intermediate$glb$glb.max;
+    }
 
     ### Omega
     if (requireNamespace("psych", quietly = TRUE)) {
-      invisible(
-        utils::capture.output(
-          suppressMessages(
-            suppressWarnings(
-              res$intermediate$omega.psych <-
-                psych::omega(res$input$dat,
-                             nfactors = omega.psych_nfactors,
-                             flip = omega.psych_flip,
-                             plot = FALSE)
+      if (requireNamespace("GPArotation", quietly = TRUE)) {
+        invisible(
+          utils::capture.output(
+            suppressMessages(
+              suppressWarnings(
+                res$intermediate$omega.psych <-
+                  psych::omega(res$input$dat,
+                               nfactors = omega.psych_nfactors,
+                               flip = omega.psych_flip,
+                               plot = FALSE)
+              )
             )
           )
-        )
-      );
-      res$output$omega.psych <- res$intermediate$omega.psych$omega.tot;
-      res$output$dat$omega.psych.tot <- res$output$omega.psych;
-      res$output$dat$omega.psych.h <- res$intermediate$omega.psych$omega_h;
+        );
+        res$output$omega.psych <- res$intermediate$omega.psych$omega.tot;
+        res$output$dat$omega.psych.tot <- res$output$omega.psych;
+        res$output$dat$omega.psych.h <- res$intermediate$omega.psych$omega_h;
+      } else {
+        stop("\n\nIf you want to compute omega, you need the {psych} package, ",
+             "which in turn needs the {GPArotation} package. You can ",
+             "install it with:\n\ninstall.packages('GPArotation');\n\n");
+      }
     }
     if (requireNamespace("MBESS", quietly = TRUE)) {
       res$intermediate$omega <-

@@ -125,7 +125,7 @@ diamondPlot <- function(data,
       ### Otherwise, we don't consider it an index (but as a vector of length one),
       ### so we keep it as is, just like when it /is/ a vector (of length > one)
     }
-  } else if (class(yValues) == 'character') {
+  } else if (inherits(yValues, 'character')) {
     yLabels <- yValues;
   } else if (!is.null(rownames(data))) {
     yLabels <- rownames(data);

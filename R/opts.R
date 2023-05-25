@@ -240,6 +240,8 @@ opts$defaults <-
     knitAndSave.catPlot = FALSE,
     knitFig.catPlot = FALSE,
 
+    ggSavePreventType = TRUE,
+
     ### Careless options
     carelessDict = list(c("_chr", ""),
                         c("irv", "IRV "),

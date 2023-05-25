@@ -3,7 +3,7 @@
 \name{getData}
 \alias{getData}
 \alias{getDat}
-\title{Basic SPSS translation functions}
+\title{Use a dialog to load data from an SPSS file}
 \usage{
 getData(
   filename = NULL,
@@ -65,11 +65,7 @@ with \code{dfName} (i.e. 'dat' by default) already exists, it will be backed
 up with a warning. \code{getDat()} also invisibly returns the data.frame.
 }
 \description{
-Basic functons to make working with R easier for SPSS users: getData and
-getDat provide an easy way to load SPSS datafiles, and exportToSPSS to write
-to a datafile and syntax file that SPSS can import; filterBy and useAll
-allow easy temporary filtering of rows from the dataframe; mediaan and modus
-compute the median and mode of ordinal or numeric data.
+\code{getData()} and \code{getDat()} provide an easy way to load SPSS datafiles.
 }
 \note{
 getData() currently can't read from LibreOffice or OpenOffice files.

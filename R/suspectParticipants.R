@@ -29,7 +29,7 @@ suspectParticipants <- function(carelessObject,
          call. = FALSE);
   }
 
-  if (class(carelessObject) == "carelessObject") {
+  if (inherits(carelessObject, "carelessObject")) {
     carelessObject <- unclass(carelessObject);
   } else {
     stop("The argument you pass must be the result of a call to `carelessObject`!");
