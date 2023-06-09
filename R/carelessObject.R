@@ -27,9 +27,9 @@ carelessObject <- function(data,
                            responseTime = NULL) {
 
   if (!requireNamespace("careless", quietly = TRUE)) {
-    stop("Package \"careless\" needed for this function to work. You can install it using:\n\n",
-         "  install.packages('careless');\n",
-         call. = FALSE);
+    message("Package \"careless\" needed for this function to work. You can install it using:\n\n",
+            "  install.packages('careless');\n");
+    return(invisible(FALSE));
   }
 
   res <- list(input = as.list(environment()));

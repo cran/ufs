@@ -119,9 +119,10 @@ simDataSet <- function(n, varNames,
                        silent = FALSE) {
 
   if (!requireNamespace("MBESS", quietly = TRUE)) {
-    stop("You need the MBESS package to use this function.\n",
-         "\nYou can install it with:\n\n",
-         "  install.packages('MBESS');\n");
+    message("You need the MBESS package to use this function.\n",
+            "\nYou can install it with:\n\n",
+            "  install.packages('MBESS');\n");
+    return(invisible(FALSE));
   }
 
   if (!is.null(seed)) {

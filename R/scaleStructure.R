@@ -337,9 +337,10 @@ scaleStructure <- scaleReliability <- function (data=NULL, items = 'all', digits
         res$output$dat$omega.psych.tot <- res$output$omega.psych;
         res$output$dat$omega.psych.h <- res$intermediate$omega.psych$omega_h;
       } else {
-        stop("\n\nIf you want to compute omega, you need the {psych} package, ",
-             "which in turn needs the {GPArotation} package. You can ",
-             "install it with:\n\ninstall.packages('GPArotation');\n\n");
+        message("\n\nIf you want to compute omega, you need the {psych} package, ",
+                "which in turn needs the {GPArotation} package. You can ",
+                "install it with:\n\ninstall.packages('GPArotation');\n\n");
+        return(invisible(FALSE));
       }
     }
     if (requireNamespace("MBESS", quietly = TRUE)) {

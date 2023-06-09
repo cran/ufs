@@ -55,74 +55,79 @@ carelessReport <- function(data,
                            missingSymbol = "Missing") {
 
   if (!requireNamespace("careless", quietly = TRUE)) {
-    stop("Package \"careless\" needed for this function to work. You can install it using:\n\n",
-         "  install.packages('careless');\n",
-         call. = FALSE);
+
+    message("\nPackage \"careless\" needed for this function to work. ",
+            "You can install it using:\n\n",
+            "  install.packages('careless');\n");
+
+    return(invisible(FALSE));
+
+  } else {
+
+    ### Get original dataset name
+    if (is.null(datasetName)) {
+      datasetName <-
+        deparse(substitute(data));
+    }
+
+    carelessObject <- carelessObject(data = data,
+                                     items = items,
+                                     flagUnivar = flagUnivar,
+                                     flagMultivar = flagMultivar,
+                                     irvSplit = irvSplit,
+                                     responseTime = responseTime);
+
+    suspectParticipants <- suspectParticipants(carelessObject,
+                                               digits = digits,
+                                               nFlags = nFlags,
+                                               missingSymbol = missingSymbol);
+
+    cat0("\n\n", repStr("#", headingLevel),
+         " Careless Responding Report",
+         headingSuffix, "\n\n");
+
+    ### Select variables to show in table
+    varsForTable <- grep("_chr", names(suspectParticipants));
+    reportTableColNames <- names(suspectParticipants)[varsForTable];
+
+    ### Produce column names
+    carelessDict <- opts$get("carelessDict");
+    for (processDict in 1:length(carelessDict)) {
+      reportTableColNames <-
+        gsub(carelessDict[[processDict]][1],
+             carelessDict[[processDict]][2],
+             reportTableColNames);
+    }
+
+    originalKnitrKableNA <- getOption("knitr.kable.NA");
+    on.exit(options(knitr.kable.NA = originalKnitrKableNA));
+    options(knitr.kable.NA = "");
+
+    print(
+      knitr::kable(
+        suspectParticipants[, varsForTable],
+        col.names = reportTableColNames
+      )
+    );
+
+    cat0("\n\nFor the Individual Response Pattern plot for each ",
+         "participant, see the following headings, which may ",
+         "appear as tabs above this section.\n\n");
+
+    for (currentRow in row.names(suspectParticipants)) {
+      cat("\n\n");
+      cat0("\n\n", repStr("#", headingLevel+1),
+           " IRP-plot for participant ",
+           currentRow, "\n\n");
+      cat("\n\n");
+      print(irpplot(data = data,
+                    row = currentRow,
+                    columns = items,
+                    dataName = datasetName));
+      cat("\n\n");
+    }
+
+    return(invisible(NULL));
   }
-
-  ### Get original dataset name
-  if (is.null(datasetName)) {
-    datasetName <-
-      deparse(substitute(data));
-  }
-
-  carelessObject <- carelessObject(data = data,
-                                   items = items,
-                                   flagUnivar = flagUnivar,
-                                   flagMultivar = flagMultivar,
-                                   irvSplit = irvSplit,
-                                   responseTime = responseTime);
-
-  suspectParticipants <- suspectParticipants(carelessObject,
-                                             digits = digits,
-                                             nFlags = nFlags,
-                                             missingSymbol = missingSymbol);
-
-  cat0("\n\n", repStr("#", headingLevel),
-       " Careless Responding Report",
-       headingSuffix, "\n\n");
-
-  ### Select variables to show in table
-  varsForTable <- grep("_chr", names(suspectParticipants));
-  reportTableColNames <- names(suspectParticipants)[varsForTable];
-
-  ### Produce column names
-  carelessDict <- opts$get("carelessDict");
-  for (processDict in 1:length(carelessDict)) {
-    reportTableColNames <-
-      gsub(carelessDict[[processDict]][1],
-           carelessDict[[processDict]][2],
-           reportTableColNames);
-  }
-
-  originalKnitrKableNA <- getOption("knitr.kable.NA");
-  on.exit(options(knitr.kable.NA = originalKnitrKableNA));
-  options(knitr.kable.NA = "");
-
-  print(
-    knitr::kable(
-      suspectParticipants[, varsForTable],
-      col.names = reportTableColNames
-    )
-  );
-
-  cat0("\n\nFor the Individual Response Pattern plot for each ",
-       "participant, see the following headings, which may ",
-       "appear as tabs above this section.\n\n");
-
-  for (currentRow in row.names(suspectParticipants)) {
-    cat("\n\n");
-    cat0("\n\n", repStr("#", headingLevel+1),
-         " IRP-plot for participant ",
-         currentRow, "\n\n");
-    cat("\n\n");
-    print(irpplot(data = data,
-                  row = currentRow,
-                  columns = items,
-                  dataName = datasetName));
-    cat("\n\n");
-  }
-
-  return(invisible(NULL));
 
 }

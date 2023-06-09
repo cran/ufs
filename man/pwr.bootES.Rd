@@ -28,32 +28,36 @@ A single numeric value (the sample size).
 This function uses \code{\link[bootES:bootES]{bootES::bootES()}} to compute
 }
 \examples{
-### To estimate a mean
-x <- rnorm(500, mean=8, sd=3);
-pwr.bootES(data.frame(x=x),
-           R=500,
-           w=.5);
+### This requires the bootES package
+  if (requireNamespace("bootES", quietly = TRUE)) {
 
-### To estimate a correlation (the 'effect.type' parameter is
-### redundant here; with two columns in the data frame, computing
-### the confidence interval for the Pearson correlation is the default
-### ehavior of bootES)
-y <- x+rnorm(500, mean=0, sd=5);
-cor(x, y);
-requiredN <-
-  pwr.bootES(data.frame(x=x,
-                        y=y),
-             effect.type='r',
+  ### To estimate a mean
+  x <- rnorm(500, mean=8, sd=3);
+  pwr.bootES(data.frame(x=x),
              R=500,
-             w=.2);
-print(requiredN);
-### Compare to parametric confidence interval
-### based on the computed required sample size
-confIntR(r = cor(x, y),
-         N = requiredN);
-### WIdth of obtained confidence interval
-print(round(diff(as.numeric(confIntR(r = cor(x, y),
-                            N = requiredN))), 2));
+             w=.5);
+
+  ### To estimate a correlation (the 'effect.type' parameter is
+  ### redundant here; with two columns in the data frame, computing
+  ### the confidence interval for the Pearson correlation is the default
+  ### ehavior of bootES)
+  y <- x+rnorm(500, mean=0, sd=5);
+  cor(x, y);
+  requiredN <-
+    pwr.bootES(data.frame(x=x,
+                          y=y),
+               effect.type='r',
+               R=500,
+               w=.2);
+  print(requiredN);
+  ### Compare to parametric confidence interval
+  ### based on the computed required sample size
+  confIntR(r = cor(x, y),
+           N = requiredN);
+  ### Width of obtained confidence interval
+  print(round(diff(as.numeric(confIntR(r = cor(x, y),
+                              N = requiredN))), 2));
+}
 }
 \references{
 Kirby, K. N., & Gerlanc, D. (2013). BootES: An R package for bootstrap confidence

@@ -25,8 +25,9 @@ quietRemotesInstall <- function(x,
                                 ...) {
 
   if (!requireNamespace("remotes", quietly = TRUE)) {
-    stop("This is a wrapper for `remotes` functions; ",
-         "you need to have `remotes` installed to use it.");
+    message("This is a wrapper for `remotes` functions; ",
+            "you need to have `remotes` installed to use it.");
+    return(invisible(FALSE));
   }
 
   if (unloadNamespace) {
@@ -84,8 +85,9 @@ quietGitLabUpdate <- function(x,
                               ...) {
 
   if (!requireNamespace("remotes", quietly = TRUE)) {
-    stop("This is a wrapper for `remotes` functions; ",
-         "you need to have `remotes` installed to use it.");
+    message("This is a wrapper for `remotes` functions; ",
+            "you need to have `remotes` installed to use it.");
+    return(invisible(FALSE));
   }
 
   quietRemotesInstall(x,

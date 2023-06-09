@@ -47,9 +47,10 @@ pwr.omegasq <- function(k = NULL, n = NULL,
                         digits=4) {
 
   if (!requireNamespace("pwr", quietly = TRUE)) {
-    stop("You need to have the {pwr} package installed ",
-         "to use this function. You can install it with:\n\n",
-         "  install.packages('pwr');\n");
+    message("You need to have the {pwr} package installed ",
+            "to use this function. You can install it with:\n\n",
+            "  install.packages('pwr');\n");
+    return(invisible(FALSE));
   }
 
   res <- as.list(environment());

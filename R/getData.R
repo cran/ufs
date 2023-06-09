@@ -142,8 +142,8 @@ getData <- function(filename=NULL, file=NULL,
     dat <- utils::read.delim(filename, stringsAsFactors=stringsAsFactors, ...);
   } else {
     if (!requireNamespace("rio", quietly = TRUE)) {
-      stop("Package \"rio\" needed to load .sav format. Please install it using `install.packages('rio');`.",
-           call. = FALSE)
+      message("Package \"rio\" needed to load .sav format. Please install it using `install.packages('rio');`.");
+      return(invisible(FALSE));
     } else {
       dat <- rio::import(filename, encoding=encoding, fread=FALSE);
       if (applyRioLabels) {

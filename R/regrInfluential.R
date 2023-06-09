@@ -32,9 +32,10 @@ regrInfluential <- function(formula, data, createPlot = TRUE) {
   if (createPlot) {
     suppressMessages(suppressWarnings(
       if (!requireNamespace("GGally")) {
-        stop("You need the {GGally} package to use this function!\n\n",
-             "You can install it with the following command:\n\n",
-             "install.packages('GGally');");
+        message("You need the {GGally} package to use this function!\n\n",
+                "You can install it with the following command:\n\n",
+                "install.packages('GGally');");
+        return(invisible(FALSE));
       }
     ));
   }

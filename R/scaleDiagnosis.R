@@ -150,9 +150,23 @@ scaleDiagnosis <- function(data=NULL, items=NULL, plotSize=180, sizeMultiplier =
   ### Bivariate correlations
   res$cor <- stats::cor(res$dat, use="complete.obs");
 
-  res$scatterMatrix <- scatterMatrix(res$dat, plotSize=180, sizeMultiplier = 1,
-                                     axisLabels = "none", normalHist=normalHist,
-                                     progress=FALSE, ...);
+
+  suppressMessages(suppressWarnings(
+    if (!requireNamespace("GGally")) {
+      message("For the scatter matrix, you need the {GGally} package.\n\n",
+              "You can install it with the following command:\n\n",
+              "install.packages('GGally');");
+
+      res$scatterMatrix <- NULL;
+
+    } else {
+
+      res$scatterMatrix <- scatterMatrix(res$dat, plotSize=180, sizeMultiplier = 1,
+                                         axisLabels = "none", normalHist=normalHist,
+                                         progress=FALSE, ...);
+
+    }
+  ))
 
   ### Exploratory factor analysis
   #pa.out <- factor.pa(r = bfi, nfactors = 5, residuals = FALSE,
@@ -213,7 +227,9 @@ print.scaleDiagnosis <- function(x, digits=x$digits, ...) {
   }
   cat("\n\n");
   print(x$describe, digits=digits, ...);
-  print(x$scatterMatrix$output$scatterMatrix, ...);
+  if (!is.null(x$scatterMatrix)) {
+    print(x$scatterMatrix$output$scatterMatrix, ...);
+  }
   invisible();
 }
 

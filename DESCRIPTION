@@ -1,7 +1,7 @@
 Package: ufs
 Type: Package
 Title: A Collection of Utilities
-Version: 0.5.6
+Version: 0.5.10
 Authors@R: 
     c(
         person(given = "Gjalt-Jorn",
@@ -46,8 +46,8 @@ Imports: digest (>= 0.6.19), diptest (>= 0.75.7), dplyr (>= 0.7.6),
         1.22), pander (>= 0.6.3), plyr (>= 1.8.4), pwr, rmdpartials (>=
         0.5.8), scales (>= 1.0.0), SuppDists (>= 1.1.9)
 NeedsCompilation: no
-Packaged: 2023-05-24 18:32:36 UTC; gjalt
+Packaged: 2023-06-07 18:31:00 UTC; gjalt
 Author: Gjalt-Jorn Peters [aut, cre] (<https://orcid.org/0000-0002-0336-9589>),
   Stefan Gruijters [ctb] (<https://orcid.org/0000-0003-0141-0071>)
 Repository: CRAN
-Date/Publication: 2023-05-25 09:20:02 UTC
+Date/Publication: 2023-06-09 16:30:03 UTC
