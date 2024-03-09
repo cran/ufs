@@ -120,6 +120,7 @@ freq <- function(vector, digits = 1, nsmall=1, transposed=FALSE, round=1,
   return(res);
 }
 
+#' @export
 print.freq <- function(x, digits=x$input$digits, nsmall=x$input$nsmall,
                        transposed=x$input$transposed, ...) {
   if (transposed) {
@@ -165,6 +166,7 @@ print.freq <- function(x, digits=x$input$digits, nsmall=x$input$nsmall,
 }
 
 ### Function to smoothly pander frequencies from userfriendlyscience
+#' @export
 pander.freq <- function(x, ...) {
   pander::pander(x$dat, missing="");
 }

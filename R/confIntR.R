@@ -142,6 +142,7 @@ confIntR <- function(r, N, conf.level = .95, plot=FALSE) {
   return(res);
 }
 
+#' @export
 print.confIntR <- function(x, ...) {
   ### Basically a trick because we're passing the plot as an attribute.
   if (!is.null(attr(x, 'plot'))) {

@@ -272,6 +272,7 @@ regr <- function(formula, data=NULL, conf.level=.95, digits=2,
 
 }
 
+#' @export
 print.regr <- function(x, digits=x$input$digits,
                        pvalueDigits=x$input$pvalueDigits, ...) {
 
@@ -378,6 +379,7 @@ print.regr <- function(x, digits=x$input$digits,
 
 }
 
+#' @export
 pander.regr <- function (x, digits = x$input$digits, pvalueDigits = x$input$pvalueDigits, ...) {
   pander::pandoc.p(paste0("\n\n#### Regression analysis for formula: ", x$intermediate$formula.as.character));
   pander::pandoc.p("\n\n##### Significance test of the entire model (all predictors together):\n\n");

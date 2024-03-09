@@ -108,11 +108,19 @@ duoComparisonDiamondPlot <- function(dat, items = NULL,
   plot1grob <- ggplot2::ggplot_gtable(builtMeansPlot);
   plot2grob <- ggplot2::ggplot_gtable(builtAssocPlot);
 
+  #browser();
+
   ### Add row in plot2 for the legend; first get row position & height
-  legendRow <- plot1grob$layout[plot1grob$layout$name=='guide-box',
+  legendRow <- plot1grob$layout[grep("guide-box-top", plot1grob$layout$name),
                                 c("t", "b")];
-  legendHeight <- plot1grob$heights[legendRow[['b']]];
-  rowBelowLegendHeight <- plot1grob$heights[legendRow[['b']]+1];
+#  if (length(legendRow[['b']]) == 0) {
+  #   legendHeight <- grid::unit(1, "mm");
+  #   rowBelowLegendHeight <- grid::unit(1, "mm");
+  # } else {
+    legendHeight <- plot1grob$heights[legendRow[['b']]];
+    rowBelowLegendHeight <- plot1grob$heights[legendRow[['b']]+1];
+#  }
+
   rowAboveLegend <- min(legendRow) - 1;
 
   plot2grob <- gtable::gtable_add_rows(plot2grob,

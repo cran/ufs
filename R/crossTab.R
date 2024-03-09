@@ -55,6 +55,7 @@ crossTab <- function(x, y=NULL, conf.level=.95,
 
 }
 
+#' @export
 print.crossTab <- function(x, digits=x$input$digits,
                            pValueDigits=x$input$pValueDigits, ...) {
   print(x$intermediate$table);
@@ -65,6 +66,7 @@ print.crossTab <- function(x, digits=x$input$digits,
       formatPvalue(x$output$chisq$p.value, pValueDigits), sep="");
 }
 
+#' @export
 pander.crossTab <- function(x, digits=x$input$digits,
                            pValueDigits=x$input$pValueDigits, ...) {
   cat("\n");

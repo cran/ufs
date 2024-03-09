@@ -154,6 +154,7 @@ cohensdCI <- confIntD <- function(d, n, conf.level = .95, plot=FALSE, silent=TRU
   return(res);
 }
 
+#' @export
 print.cohensdCI <- function(x, ...) {
   ### Basically a trick because we're passing the plot as an attribute.
   if (!is.null(attr(x, 'plot'))) {

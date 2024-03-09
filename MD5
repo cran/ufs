@@ -1,5 +1,5 @@
-8d8edd0b24883930da23e969e21e3a9d *DESCRIPTION
-8797877e4fac1eaf1bcde4257ef48244 *NAMESPACE
+7e785f37754fd287a4121a33f6ac9e7d *DESCRIPTION
+e03b536af2d46fd367ef41c3522f8a72 *NAMESPACE
 ddac8b25eeb535f2d09baafe2c0b6bbb *R/A_VarghaDelaney.R
 ba5ccc158660fd738450f7d89027bb8f *R/BAC_plot.R
 879f48910336f705ddf6d2759e2233f9 *R/CIM.R
@@ -26,11 +26,11 @@ f66a1d8a76c84d7f792951f7b6345df9 *R/bfi-data.R
 fab85987fc7eb61ca8a0b0572108776c *R/cat0.R
 24344c905c37215eb606032c89bdea4b *R/checkDataIntegrity.R
 cac6bc8e65e293e4aae5f1a5586b7cad *R/checkPkgs.R
-04b110baac4f294bcb547b7960d69964 *R/cohensdCI.R
+b92d71502998a110f8b929965c33448a *R/cohensdCI.R
 db785a4ef0d0414b67cddf4adaa2fca0 *R/cohensdDist.R
 f34edf25bf3acf606b0f5f32850f343e *R/confIntOmegaSq.R
 016bf2f744a934c7f2d785f5cd3567ad *R/confIntProp.R
-4dfba94228bf9b2cab7919c248dedc31 *R/confIntR.R
+405cb0a4b2d5c1afe719b25787a5d67c *R/confIntR.R
 1d354dbc7559597ff32871c5954a9685 *R/confIntSD.R
 a490ef3be1090f1b54ad525136b83abf *R/confIntV.R
 421ac55a671b468df80d7be8b898fed0 *R/confintdjmv.b.R
@@ -44,14 +44,14 @@ d7c02ceec047f2cfd16908c22d558fd7 *R/convert.R
 a8b06664fc0c2b572012ff0de61a64a0 *R/convert.d.to.nnc.R
 c366d69eeb46c860ad20065b4066aca9 *R/convert.eer.to.d.R
 e818e189066f84d224dd25f5cd5154d7 *R/convertToNumeric.R
-da2ea335e031e637db0a65fa9a292a70 *R/crossTab.R
+c16f72ecfc42700ac349a8a2d2012692 *R/crossTab.R
 d77ca47817fae6999686ff9fa72fa551 *R/dataShape.R
 e929dd558bee30e048bc2a8f376ceffc *R/descr.R
 f2b9225918eec488a4b87e21ed41a0a8 *R/diamondCoordinates.R
 b030466ed5e68f91acd0e6d8215acff9 *R/diamondPlot.R
 5c534a01b435c77632324507d125fe46 *R/disattenuate.d.R
 8707bf042b56a66d655ac7d3e0688b5f *R/disattenuate.r.R
-d26f6a674e52f06beca996e6f934ef80 *R/duoComparisonDiamondPlot.R
+78343e5a10fce76a4e0e87319102b75d *R/duoComparisonDiamondPlot.R
 8e9532521bd4586a8ea8915aa2702f93 *R/escapeRegex_(from_Hmisc).R
 d807aa692deab1e9e5223e80ea8b3244 *R/exceptionalScore.R
 de021b2ec51b65482ab5d80e608d04ff *R/exceptionalScores.R
@@ -65,7 +65,7 @@ e784191e232c98af874b979eec813478 *R/findShortestInterval.R
 639f3451648e27113f236a069938da02 *R/formatCI.R
 91557989eb48a8470fa284e62158f48a *R/formatPvalue.R
 2db9b05f7fa827b652277c6a6c4bb3a6 *R/formatR.R
-5fa75e83d74d2c54ac32c7fa9cd3b360 *R/freq.R
+0ae8cc1c7fda7900f75f36e3f64ebc71 *R/freq.R
 773a0be0b368addc9b84aff393e3f5ea *R/from_MBESS_ci.pvaf.R
 e8811deae002596548f420e4082074bb *R/from_MBESS_ci.reliability.R
 228c4187fb9d8d0646500aa61e111735 *R/from_MBESS_conf.limits.ncf.R
@@ -80,7 +80,7 @@ ba55c3a89a8501321cdfdb2bd2cfd008 *R/ggEasyMarimekko.R
 dbbe86cf2ee8c3700d726173f2b5578a *R/ggEasyRidge.R
 f3f6d4a3d9741d6b2ec3122a2f135ed1 *R/ggPie.R
 bae33427ba469f6890fbc1273f3b365c *R/ggProportionPlot.R
-3cf88938c44129c0282f1caede8ffa64 *R/ggSave.R
+e023e47507bf3dac3bd909654e1876cf *R/ggSave.R
 2577567b4da6e32011d0ff18b327e342 *R/ggSmallSampleFreqs.R
 529f830f0856d9092f3799b27fc4fa26 *R/ggqq.R
 a10732f7c4d1a8edfa73bf4b850facfc *R/heading.R
@@ -130,7 +130,7 @@ a40c9ac202e2d67f74c8ce3901979084 *R/quietRemotesInstall.R
 c2bc8b213f8be0cf1131841e5079aac0 *R/rawDataDiamondLayer.R
 d9dcee86e8cef438492883ca2586f743 *R/rbind_df_list.R
 503ccbfd9d0e879fcbb446f5202c333c *R/rbind_dfs.R
-3032df1ac4471d79f6d5604b34d3ac57 *R/regr.R
+8383ca8dc98110549ebb2464d1d9c0d2 *R/regr.R
 c860a62262971726415448ec24caa78e *R/regrInfluential.R
 f5cfefe0e2eaf3dfb2a343f1e0f744b4 *R/repeatStr.R
 8a607109cc521c9619dda4ffd425bec6 *R/report.R
@@ -162,7 +162,7 @@ d18115aa24ed64bf2d5a4d0f5f4fc5c6 *R/varsToDiamondPlotDf.R
 d193ce77dc972a943a8142ae7eea6467 *R/zotero_get_all_items.R
 667874e5f75b313681479a73dd5a8f1b *R/zotero_nr_of_items.R
 f647b8b3c80b27ca27c727b80faf58cf *README.md
-f01682ffd9d5582c0d3b8a226f3c2b16 *build/partial.rdb
+2836b2c5db38c9819380bd093383d89d *build/partial.rdb
 d2a9178fcb5ec8614537f8441510d1db *data/bfi.rda
 166840073264954c27f8d5e4d50e4aae *data/testRetestSimData.rda
 63810371fb8c17d3e2f9247485c68824 *inst/CITATION
@@ -225,7 +225,7 @@ a056950801316f11e26dfff538d6f39b *man/ggBoxplot.Rd
 21f4fb4758155fda434d62a6f5b5fdd7 *man/ggEasyPlots.Rd
 e4728439b8043448f665d66a553064c9 *man/ggPie.Rd
 255472f8fe42641ad108dcaf7f56ee42 *man/ggProportionPlot.Rd
-02463095d48e4fdc834943c4ed147939 *man/ggSave.Rd
+930773bbb62df9788bb83c5cdcca2412 *man/ggSave.Rd
 d67f49c9fbd8cef5ae280753b0129ea5 *man/ggqq.Rd
 1e42f12786eb8e392e8594a5bfd9d7f7 *man/heading.Rd
 70be9911b6b297c60eaab4ed46b7d916 *man/ifelseObj.Rd

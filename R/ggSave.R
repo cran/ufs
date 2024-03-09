@@ -14,7 +14,7 @@
 #' @param device The graphic device; is inferred from the file if not specified.
 #' @param bg The background (e.g. 'white').
 #' @param preventType Whether to prevent passing a value for the `type` argument
-#' to [ggplot2::ggsave()]. This is prevented by default since {gglot} switched
+#' to [ggplot2::ggsave()]. This is prevented by default since [ggplot2::ggplot()] switched
 #' to using the ragg device by default, resulting in throwing a warning
 #' ("Warning: Using ragg device as default. Ignoring `type` and `antialias` arguments")
 #' if something if passed for 'type'.
